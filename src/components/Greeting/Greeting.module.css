@@ -1,0 +1,40 @@
+.main {
+  height: 980px;
+  padding-top: 282px;
+  background-image: url(../../assets/images/background_main.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.section {
+  width: 884px;
+  height: 460px;
+  margin-left: 116px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+.h2 {
+  margin: 0;
+  font-size: 80px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 55px 45px 0;
+  margin-bottom: 70px;
+}
+
+.button {
+  position: relative;
+  margin-left: 45px;
+}
+
+.button::after {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 15px;
+  top: 30px;
+  left: 215px;
+  background-image: url(../../assets/logo/arrow.png);
+  background-repeat: no-repeat;
+}
