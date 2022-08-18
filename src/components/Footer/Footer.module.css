@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  background: #241D30;
+}
+
+.student {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  text-decoration: none;
+
+  color: #FFFFFF;
+}
+
+.student:nth-child(2) {
+  margin-left: 51px;
+  margin-right: 50px;
+}
+
+.year {
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+line-height: 44px;
+
+color: #FFFFFF;
+}

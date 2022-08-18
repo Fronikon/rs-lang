@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './components/Footer/Footer';
 import { Greeting } from './components/Greeting/Greeting';
 import Header from './components/Header/Header';
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <Header />
       <Greeting />
+      <Footer />
     </>
   );
 }
