@@ -1,0 +1,28 @@
+.nav-menu {
+  position: absolute;
+  top: 0;
+  left: -500px;
+  width: 350px;
+  height: 100%;
+  background-color: #FFFFFF;
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.25);
+  transition: left 500ms;
+  z-index: 5;
+}
+
+.nav-menu__header {
+  height: 100px;
+  background-color: rgba(0, 0, 0, 18%);
+}
+
+.nav-menu__links {
+  font-size: 2em;
+}
+
+.nav-menu__link {
+  margin-bottom: 0.5em;
+}
+
+.open {
+  left: 0px;
+}

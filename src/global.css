@@ -2,6 +2,16 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background-color: #2D253A;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .container {
