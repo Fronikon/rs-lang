@@ -7,13 +7,9 @@
 }
 
 .student {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
   font-size: 36px;
   line-height: 44px;
   text-decoration: none;
-
   color: #FFFFFF;
 }
 
@@ -23,11 +19,7 @@
 }
 
 .year {
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 36px;
-line-height: 44px;
-
-color: #FFFFFF;
+  font-size: 36px;
+  line-height: 44px;
+  color: #FFFFFF;
 }
