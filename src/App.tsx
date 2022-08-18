@@ -1,7 +1,8 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Greeting } from './components/Greeting/Greeting';
 import NavMenu from './components/NavMenu/NavMenu';
 import Header from './components/Header/Header';
-import { Route, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound/NotFound';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
       <NavMenu />
       <Header />
       <Routes>
-        <Route path='/' element={<div>Main Page</div>} />
+        <Route path='/' element={<Greeting />} />
         <Route path='/auth' element={<div>Auth Page</div>} />
         <Route path='/textbook' element={<div>Textbook Page</div>} />
         <Route path='*' element={<NotFound />}/>
