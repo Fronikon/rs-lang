@@ -4,6 +4,7 @@ import { Greeting } from './components/Greeting/Greeting';
 import NavMenu from './components/NavMenu/NavMenu';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/textbook' element={<div>Textbook Page</div>} />
         <Route path='*' element={<NotFound />}/>
       </Routes>
+      <Footer />
     </>
   );
 }
