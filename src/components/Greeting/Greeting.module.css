@@ -8,8 +8,7 @@
 }
 
 .section {
-  width: 884px;
-  height: 460px;
+  width: 1019px;
   margin-left: 116px;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
@@ -21,12 +20,13 @@
   font-weight: 700;
   color: #ffffff;
   padding: 55px 45px 0;
-  margin-bottom: 70px;
+  margin-bottom: 25px;
 }
 
 .button {
   position: relative;
   margin-left: 45px;
+  margin-bottom: 55px;
 }
 
 .button::after {
@@ -38,4 +38,15 @@
   left: 215px;
   background-image: url(../../assets/logo/arrow.png);
   background-repeat: no-repeat;
+}
+
+.description {
+  width: 783px;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 58px;
+  padding-left: 45px;
+  margin-top: 0;
+
+  color: #FFFFFF;
 }
