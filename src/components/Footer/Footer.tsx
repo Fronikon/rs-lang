@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import styles from './Footer.module.css';
 import rssLogo from '../../assets/logo/rssLogo.svg';
+import listStudents from './constants';
 
 const Footer: React.FC = () => {
   return (
@@ -11,24 +12,7 @@ const Footer: React.FC = () => {
         </a>
       </div>
       <div className="students">
-        <a
-          className={cn(styles['student'])}
-          href="https://github.com/Fronikon"
-        >
-          Dmitriy Beresnev
-        </a>
-        <a
-          className={cn(styles['student'])}
-          href="https://github.com/InnokentyKedrov"
-        >
-          Andrey Lavrenov
-        </a>
-        <a
-          className={cn(styles['student'])}
-          href="https://github.com/karap9s"
-        >
-          Daniil Sharenkov
-        </a>
+        {listStudents}
       </div>
       <div className="creation-year">
         <p className={cn(styles['student'])}>2022</p>
