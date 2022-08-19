@@ -1,6 +1,3 @@
-import cn from 'classnames';
-import styles from './Footer.module.css';
-
 interface IStudents {
   id: number;
   name: string;
@@ -25,11 +22,4 @@ const students: IStudents[] = [
   },
 ];
 
-export const listStudents = students.map((student) => (
-  <a className={cn(styles['student'])} href={student.link} key={student.id}>
-    {student.name}
-  </a>
-));
-
-
-export default listStudents;
+export default students;

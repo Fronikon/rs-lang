@@ -1,9 +1,15 @@
 import cn from 'classnames';
 import styles from './Footer.module.css';
 import rssLogo from '../../assets/logo/rssLogo.svg';
-import listStudents from './constants';
+import students from './constants';
 
 const Footer: React.FC = () => {
+  const listStudents = students.map((student) => (
+    <a className={cn(styles['student'])} href={student.link} key={student.id}>
+      {student.name}
+    </a>
+  ));
+
   return (
     <footer className={cn(styles.footer, 'container')}>
       <div className="rs_logo-container">
