@@ -11,7 +11,7 @@ export const Greeting: React.FC = () => {
           прогрессом.
         </p>
         <button className={cn(styles.button, 'button')} type="button">
-          Начать путь
+          Наша команда
         </button>
       </section>
     </main>

@@ -29,17 +29,6 @@
   margin-bottom: 55px;
 }
 
-.button::after {
-  position: absolute;
-  content: '';
-  width: 15px;
-  height: 15px;
-  top: 30px;
-  left: 215px;
-  background-image: url(../../assets/logo/arrow.png);
-  background-repeat: no-repeat;
-}
-
 .description {
   width: 783px;
   font-weight: 400;
