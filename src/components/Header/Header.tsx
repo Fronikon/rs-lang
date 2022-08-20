@@ -3,7 +3,7 @@ import authLogo from '../../assets/logo/auth.png';
 import burgerMenuLogo from '../../assets/logo/menu.png';
 import styles from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { switchIsNavMenuOpenAC } from '../../redux/actions';
+import { actions } from '../../redux/actions';
 import { StoreType } from '../../index';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
 
   const onClickBurger: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    dispatch(switchIsNavMenuOpenAC());
+    dispatch(actions.switchIsNavMenuOpen());
   };
 
   return (

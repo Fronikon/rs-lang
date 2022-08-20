@@ -1,4 +1,4 @@
-import { ActionTypes } from "../types/enums";
+import { ActionTypes } from "../../types/enums";
 
 const initialState = {
   isNavMenuOpen: false
