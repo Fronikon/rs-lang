@@ -2,7 +2,7 @@ import students from "../Footer/constants";
 import Daniil from '../../assets/images/Daniil.jpg';
 import Dmitriy from '../../assets/images/dmitriy.jpg';
 
-interface ICards {
+export interface ICards {
   id: number,
   img: string,
   name: string,

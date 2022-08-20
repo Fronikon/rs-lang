@@ -4,8 +4,7 @@
   font-size: 60px;
   line-height: 73px;
   color: #000000;
-  margin-top: 70px;
-  margin-bottom: 70px;
+  margin: 70px auto 70px;
 }
 
 .cards {
@@ -43,7 +42,5 @@
 .description {
   width: 244px;
   text-align: center;
-  margin-left: 24px;
-  margin-right: 24px;
-  margin-bottom: 24px;
+  margin: 16px 24px 24px 24px;
 }
