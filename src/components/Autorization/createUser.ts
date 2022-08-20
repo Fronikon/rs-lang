@@ -1,11 +1,11 @@
-interface IUser {
+export interface IUser {
   username?: string,
   email: string,
   password: string,
 }
 
 export const createUser = async (user: IUser) => {
-  const rawResponse = await fetch('https://rs-lang-team47.herokuapp.com/users', {
+  const response = await fetch('https://rs-lang-team47.herokuapp.com/users', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -13,6 +13,10 @@ export const createUser = async (user: IUser) => {
     },
     body: JSON.stringify(user)
   });
-  const content = await rawResponse.json();
-  console.log('content: ', content);
+  console.log(response.status);
+  if (response.status === 422) {
+    console.log('Неверный логин или пароль.');
+  } else if (response.status === 417) {
+    console.log('Пользователь с таким email уже зарегистрирован.');
+  }
 };
