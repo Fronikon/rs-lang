@@ -6,6 +6,7 @@ import FormLogin from './FormLogin/FormLogin';
 
 export const authDatas: AuthInputDataType[] = [
   {
+    key: '0',
     lableName: 'Логин',
     dataName: 'username',
     inputName: 'username',
@@ -13,6 +14,7 @@ export const authDatas: AuthInputDataType[] = [
     placeholder: 'Введите логин'
   },
   {
+    key: '1',
     lableName: 'E-mail',
     dataName: 'email',
     inputName: 'email',
@@ -20,6 +22,7 @@ export const authDatas: AuthInputDataType[] = [
     placeholder: 'Введите e-mail'
   },
   {
+    key: '2',
     lableName: 'Пароль',
     dataName: 'password',
     inputName: 'password',

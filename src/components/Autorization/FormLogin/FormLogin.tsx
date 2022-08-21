@@ -28,10 +28,11 @@ const FormLogin: React.FC = () => {
   };
 
   return (
-    <form className={cn(styles.author__form)}  onSubmit={submitLogin}>
+    <form className={cn(styles.author__form)}  onSubmit={submitLogin} key='FormLogin'>
       <h2 className={cn(styles.author__title)}>Войти</h2>
       {authDatas.filter((item)=> item.dataName !== 'username').map((data: AuthInputDataType) => {
-        return <LabelForm 
+        return <LabelForm
+          key={data.key + 'login'}
           name={data.lableName}
           errorName={error[data.dataName]}
           inputValue={input[data.dataName]}

@@ -29,10 +29,11 @@ const FormRegister: React.FC = () => {
   };
 
   return (
-    <form className={cn(styles.author__form)}  onSubmit={submitCreateUser}>
+    <form className={cn(styles.author__form)}  onSubmit={submitCreateUser} key='FormRegister'>
       <h2 className={cn(styles.author__title)}>Регистрация</h2>
       {authDatas.map((data: AuthInputDataType) => {
-        return <LabelForm 
+        return <LabelForm
+          key={data.key + 'register'}
           name={data.lableName}
           errorName={error[data.dataName]}
           inputValue={input[data.dataName]}
