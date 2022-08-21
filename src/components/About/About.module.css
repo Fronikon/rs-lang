@@ -1,0 +1,46 @@
+.h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 60px;
+  line-height: 73px;
+  color: #000000;
+  margin: 70px auto 70px;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 248px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5%;
+  box-shadow: 5px 5px 5px black;
+}
+
+.name {
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+}
+
+.position {
+  margin-top: 6px;
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  border-bottom: 1px black solid;
+}
+
+.description {
+  width: 244px;
+  text-align: center;
+  margin: 16px 24px 24px 24px;
+}
