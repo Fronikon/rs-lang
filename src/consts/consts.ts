@@ -1,0 +1,1 @@
+export const baseUrl = "https://rs-lang-team47.herokuapp.com";

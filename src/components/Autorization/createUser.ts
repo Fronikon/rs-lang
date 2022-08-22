@@ -1,3 +1,5 @@
+import { baseUrl } from "../../consts/consts";
+
 export interface IUser {
   username?: string,
   email: string,
@@ -5,7 +7,7 @@ export interface IUser {
 }
 
 export const createUser = async (user: IUser) => {
-  const response = await fetch('https://rs-lang-team47.herokuapp.com/users', {
+  const response = await fetch(`${baseUrl}/users`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

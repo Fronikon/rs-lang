@@ -1,7 +1,8 @@
+import { baseUrl } from '../../consts/consts';
 import { IUser } from './createUser';
 
 export const loginUser = async (user: IUser) => {
-  const response = await fetch('https://rs-lang-team47.herokuapp.com/signin', {
+  const response = await fetch(`${baseUrl}/signin`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
