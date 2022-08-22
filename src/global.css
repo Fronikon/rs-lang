@@ -8,6 +8,10 @@ body {
   background-color: #2d253a;
 }
 
+main {
+  background-color: #ededed;
+}
+
 li {
   list-style: none;
 }
