@@ -1,4 +1,4 @@
-export type WordType = {
+export type WordCardsType = {
   id: string,
   group: number,
   page: number,

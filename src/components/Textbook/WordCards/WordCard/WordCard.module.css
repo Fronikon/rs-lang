@@ -1,0 +1,41 @@
+.word-card {
+  overflow: hidden;
+  display: flex;
+
+  min-height: 200px;
+  margin-bottom: 50px;
+
+  font-size: 24px;
+
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.img {
+  width: 250px;
+}
+
+.word-card__inner {
+  padding: 20px;
+}
+
+.word-name__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.word-name b {
+  margin-left: 10px;
+
+  color: #1fa74d;
+}
+
+.translate {
+  color: #00000073;
+}
+
+.word-name__wrapper,
+.word-meaning,
+.word-example {
+  margin: 0 0 15px;
+}

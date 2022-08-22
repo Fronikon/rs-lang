@@ -1,4 +1,5 @@
 import { ActionTypes } from "../../types/enums";
+import { AnyAction } from 'redux';
 
 const initialState = {
   isNavMenuOpen: false
@@ -6,11 +7,7 @@ const initialState = {
 
 type NavMenuStateType = typeof initialState
 
-type ActionType = {
-  type: string,
-}
-
-const navMenuReducer = (state: NavMenuStateType = initialState, action: ActionType): NavMenuStateType => {
+const navMenuReducer = (state: NavMenuStateType = initialState, action: AnyAction): NavMenuStateType => {
   switch (action.type) {
   case ActionTypes.switchIsNavMenuOpen: {
     return {...state, isNavMenuOpen: !state.isNavMenuOpen};

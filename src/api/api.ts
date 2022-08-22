@@ -1,4 +1,4 @@
-const BASE_URL = 'https://rs-lang-team47.herokuapp.com/';
+export const BASE_URL = 'https://rs-lang-team47.herokuapp.com/';
 
 export const wordsApi = {
   getWords: (group: number, page: number) => {
