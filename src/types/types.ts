@@ -6,6 +6,7 @@ export type AuthInputValueType = {
 }
 
 export type AuthInputDataType = {
+  key: string
   lableName: string,
   dataName: string,
   inputName: string,
