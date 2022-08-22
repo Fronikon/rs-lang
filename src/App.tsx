@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Footer from './components/Footer/Footer';
 import Textbook from './components/Textbook/Textbook';
+import About from './components/About/About';
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
       <NavMenu />
       <Header />
       <Routes>
-        <Route path='/' element={<Greeting />} />
-        <Route path='/auth' element={<div>Auth Page</div>} />
+        <Route path="/" element={<Greeting />} />
+        <Route path="/auth" element={<div>Auth Page</div>} />
         <Route path='/textbook' element={<Textbook />} />
-        <Route path='*' element={<NotFound />}/>
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
