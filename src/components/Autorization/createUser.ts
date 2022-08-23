@@ -14,11 +14,15 @@ export const createUser = async (user: IUser) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(user)
-  });
-  console.log(response.status);
-  if (response.status === 422) {
-    console.log('Неверный логин или пароль.');
-  } else if (response.status === 417) {
-    console.log('Пользователь с таким email уже зарегистрирован.');
-  }
+  }).then (response => {
+    switch (response.status) {
+    case 200: console.log('Вы успешно зарегистрировались.');
+      return response.json();
+    case 422: console.log('Неверный логин или пароль.');
+      return response.status;
+    case 417: console.log('Пользователь с таким email уже зарегистрирован.');
+      return response.status;
+    }
+  }).then (data => data);
+  console.log('response: ', response);
 };

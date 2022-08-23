@@ -3,6 +3,10 @@ import { AuthInputDataType } from '../../types/types';
 import styles from './Authorization.module.css';
 import FormRegister from './FormRegister/FormRegister';
 import FormLogin from './FormLogin/FormLogin';
+import LogOut from './LogOut/LogOut';
+import Modal from './Modal/Modal';
+import { useEffect, useState } from 'react';
+import { authData } from './loginUser';
 
 export const authDatas: AuthInputDataType[] = [
   {
@@ -32,12 +36,29 @@ export const authDatas: AuthInputDataType[] = [
 ];
 
 const Authorization: React.FC = () => {
-  return (
-    <main className={cn(styles.author)}>
-      <FormRegister />
-      <FormLogin />
-    </main>
-  );
+  const [isModalActive, setIsModalActive] = useState(false);
+  useEffect(() => {
+    const timerFunc = setTimeout(() => {
+      setIsModalActive(true);
+    }, 1000);
+    return () => clearTimeout(timerFunc);
+  }, [isModalActive]);
+
+  if (localStorage.getItem('login') === 'true') {
+    return (
+      <main className={cn(styles.author)}>
+        <LogOut />
+      </main>
+    );
+  } else {
+    return (
+      <main className={cn(styles.author)}>
+        <FormRegister />
+        <FormLogin />
+        {isModalActive && <Modal message={authData.message}/>}
+      </main>
+    );
+  }
 };
 
 export default Authorization;

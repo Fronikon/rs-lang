@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-.logout__button {
+.logout__container > .logout__button {
   display: flex;
   justify-content: center;
 
