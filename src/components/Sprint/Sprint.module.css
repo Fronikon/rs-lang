@@ -1,0 +1,267 @@
+/* ------------------------------------Main------------------------------------ */
+
+.main {
+  background: linear-gradient(#0167CD, #6D3EBC);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  position: absolute;
+  top: 120px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.start_wrapper {
+  margin: 365px 665px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 5px;
+  display: none;
+}
+
+.heading {
+  font-size: 60px;
+  line-height: 70px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-bottom: 0;
+}
+
+.description {
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 20px 51px 20px 51px;
+  width: 535px;
+}
+
+.start {
+  background: #1FA74D;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start_text {
+  margin: 18px 35.5px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: white;
+}
+
+.start:hover {
+  cursor: pointer;
+}
+
+.chapter {
+  cursor: pointer;
+  position: relative;
+  background-color: #B31F43;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chapter_text {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 18px;
+  color: white;
+  margin: 24px 16px 24px 10px;
+}
+
+.chapter_arrow {
+  margin-right: 8px;
+}
+
+/* ------------------------------------Game------------------------------------ */
+
+.general_game_wrapper {
+  width: 100%;
+  /* display: flex; */
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game_wrapper {
+  /* margin: 365px 665px; */
+  margin-bottom: 365px;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.points {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 30px;
+  left: 42%;
+  width: 50px;
+  height: 50px;
+  color: #1FA74D;
+  border: 1px solid #1FA74D;
+  border-radius: 100%;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.english_word {
+  font-size: 40px;
+  line-height: 48px;
+  margin: 0;
+}
+
+.russian_word {
+  font-size: 24px;
+  line-height: 29px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.buttons_wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0 50px 0;
+}
+
+.checkboxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: grey;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.checkbox:nth-child(2) {
+  margin: 0 15px;
+}
+
+.checkbox:checked {
+  accent-color: #1FA74D;
+}
+
+.picture {
+  margin: 30px 266px;
+}
+
+.line {
+  height: 1px;
+  width: 90%;
+  background-color: black;
+}
+
+.game_buttons_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.true {
+  background: #1FA74D;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.true_text {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 18px;
+  color: white;
+  margin: 18px 41.5px;
+}
+
+.false {
+  background: #A71F1F;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.false_text {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 18px;
+  color: white;
+  margin: 18px 23.5px;
+}
+
+.total {
+  margin-top: 202px;
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 73px;
+  color: #FFFFFF;
+}
+
+.timer {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 22%;
+  top: 105px;
+  border: 4px solid #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  line-height: 42px;
+  color: #FFFFFF;
+}
+
+/* ------------------------------------Result------------------------------------ */
+
+.result_game_wrapper {
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.result {
+  margin: 20px 0 37px 0;
+}
+
+.wrong {
+  margin-left: 30px;
+  margin-right: 318px;
+}
