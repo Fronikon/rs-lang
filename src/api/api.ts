@@ -18,81 +18,67 @@ export const authApi = {
 };
 
 // *********************************************
-export let eventUser = {
-  code: 0,
-  message: ''
+
+const getMessageLogin = (status: number) => {
+  switch (status) {
+  case 200:
+    return 'Вы вошли в систему';
+  case 403:
+    return 'Неверный логин или пароль';
+  case 404:
+    return 'Пользователь не найден';
+  default:
+    return 'Неизвестная ошибка';
+  }
 };
 
 export const loginUser = async (user: IUser) => {
-  const response = await fetch(`${BASE_URL}/signin`, {
+  const response = await fetch(`${BASE_URL}signin`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(user)
-  }).then (response => {
-    switch (response.status) {
-    case 200:
-      eventUser = {
-        code: 200,
-        message: 'Вы вошли в систему'
-      };
+  });
+
+  if (response.status === 200) {
+    response.json().then((res) => {
       localStorage.setItem('login', 'true');
-      return response.json();
-    case 403:
-      eventUser = {
-        code: 403,
-        message: 'Неверный логин или пароль'
-      };
-      return response.status;
-    case 404:
-      eventUser = {
-        code: 403,
-        message: 'Пользователь не найден'
-      };
-      return response.status;
-    }
-  }).then (data => data);
-  if (response.token) {    
-    localStorage.setItem('token', response.token);
-    localStorage.setItem('userId', response.userId);
+      localStorage.setItem('token', res.token);
+      localStorage.setItem('userId', res.userId);
+    });
   }
+
+  return getMessageLogin(response.status);
 };
 
 // *********************************************
 
+const getMessageRegister = (status: number) => {
+  switch (status) {
+  case 200:
+    return 'Вы успешно зарегистрировались';
+  case 422:
+    return 'Неверный логин или пароль';
+  case 417:
+    return 'Пользователь с таким email уже зарегистрирован';
+  default:
+    return 'Неизвестная ошибка';
+  }
+};
+
 export const createUser = async (user: IUser) => {
-  const response = await fetch(`${BASE_URL}/users`, {
+  const response = await fetch(`${BASE_URL}users`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(user)
-  }).then (response => {
-    switch (response.status) {
-    case 200:
-      eventUser = {
-        code: 200,
-        message: 'Вы успешно зарегистрировались'
-      };
-      return response.json();
-    case 422:
-      eventUser = {
-        code: 200,
-        message: 'Неверный логин или пароль'
-      };
-      return response.status;
-    case 417:
-      eventUser = {
-        code: 200,
-        message: 'Пользователь с таким email уже зарегистрирован'
-      };
-      return response.status;
-    }
-  }).then (data => data);
-  return response;
+  });
+
+  return getMessageRegister(response.status);
 };
 
 // *********************************************
