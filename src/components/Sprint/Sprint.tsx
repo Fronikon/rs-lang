@@ -1,11 +1,13 @@
 import cn from 'classnames';
 import styles from './Sprint.module.css';
-import ArrowDown from '../../assets/logo/Vector.svg';
 import Close from '../../assets/logo/close-sign.svg';
 import FirstFox from '../../assets/images/first_fox.png';
 import Megaphone from '../../assets/logo/megaphone.svg';
+import Dropdown from './Dropdown';
+import { useState } from 'react';
 
 const Sprint: React.FC = () => {
+  const [selected, setSelected] = useState<string>('1 раздел');
   return (
     <main className={cn(styles.main)}>
       <a href="/">
@@ -23,14 +25,7 @@ const Sprint: React.FC = () => {
           <button className={cn(styles.start)}>
             <p className={cn(styles.start_text)}>Начать</p>
           </button>
-          <button className={cn(styles.chapter)}>
-            <p className={cn(styles.chapter_text)}>1 раздел</p>
-            <img
-              className={cn(styles.chapter_arrow)}
-              src={ArrowDown}
-              alt="Arrow Down"
-            />
-          </button>
+          <Dropdown selected={selected} setSelected={setSelected}/>
         </div>
       </div>
 
@@ -73,8 +68,7 @@ const Sprint: React.FC = () => {
                 src={Megaphone}
                 alt="megaphone"
               />
-              <p className={cn(styles.eng_bold_word)}>duck</p>
-              —
+              <p className={cn(styles.eng_bold_word)}>duck</p>—
               <p className={cn(styles.rus_standart_word)}>утка</p>
             </div>
             <div className={cn(styles.word)}>
@@ -83,8 +77,7 @@ const Sprint: React.FC = () => {
                 src={Megaphone}
                 alt="megaphone"
               />
-              <p className={cn(styles.eng_bold_word)}>duck</p>
-              —
+              <p className={cn(styles.eng_bold_word)}>duck</p>—
               <p className={cn(styles.rus_standart_word)}>утка</p>
             </div>
             <div className={cn(styles.word)}>
@@ -93,8 +86,7 @@ const Sprint: React.FC = () => {
                 src={Megaphone}
                 alt="megaphone"
               />
-              <p className={cn(styles.eng_bold_word)}>duck</p>
-              —
+              <p className={cn(styles.eng_bold_word)}>duck</p>—
               <p className={cn(styles.rus_standart_word)}>утка</p>
             </div>
             <div className={cn(styles.word)}>
@@ -103,8 +95,7 @@ const Sprint: React.FC = () => {
                 src={Megaphone}
                 alt="megaphone"
               />
-              <p className={cn(styles.eng_bold_word)}>duck</p>
-              —
+              <p className={cn(styles.eng_bold_word)}>duck</p>—
               <p className={cn(styles.rus_standart_word)}>утка</p>
             </div>
             <div className={cn(styles.word)}>
@@ -113,8 +104,7 @@ const Sprint: React.FC = () => {
                 src={Megaphone}
                 alt="megaphone"
               />
-              <p className={cn(styles.eng_bold_word)}>duck</p>
-              —
+              <p className={cn(styles.eng_bold_word)}>duck</p>—
               <p className={cn(styles.rus_standart_word)}>утка</p>
             </div>
           </div>
@@ -132,8 +122,7 @@ const Sprint: React.FC = () => {
                 src={Megaphone}
                 alt="megaphone"
               />
-              <p className={cn(styles.eng_bold_word)}>duck</p>
-              —
+              <p className={cn(styles.eng_bold_word)}>duck</p>—
               <p className={cn(styles.rus_standart_word)}>утка</p>
             </div>
             <div className={cn(styles.word)}>
@@ -142,8 +131,7 @@ const Sprint: React.FC = () => {
                 src={Megaphone}
                 alt="megaphone"
               />
-              <p className={cn(styles.eng_bold_word)}>duck</p>
-              —
+              <p className={cn(styles.eng_bold_word)}>duck</p>—
               <p className={cn(styles.rus_standart_word)}>утка</p>
             </div>
           </div>

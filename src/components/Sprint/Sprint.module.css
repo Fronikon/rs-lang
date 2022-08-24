@@ -18,7 +18,6 @@
   margin: 365px 665px;
   background: rgba(0,0,0,0.3);
   border-radius: 5px;
-  display: none;
 }
 
 .heading {
@@ -68,6 +67,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 158px;
 }
 
 .chapter_text {
@@ -80,6 +80,28 @@
 
 .chapter_arrow {
   margin-right: 8px;
+}
+
+.dropdown {
+  user-select: none;
+}
+
+.dropdown_item {
+  color: black;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 18px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.dropdown_item:hover {
+  cursor: pointer;
+  background-color: lightgray;
 }
 
 /* ------------------------------------Game------------------------------------ */
@@ -137,6 +159,7 @@
   display: flex;
   justify-content: space-around;
   margin: 20px 0 50px 0;
+  height: 64px;
 }
 
 .checkboxes {
@@ -256,6 +279,7 @@
   align-items: center;
   text-align: center;
   margin: 177px 0;
+  display: none;
 }
 
 .result {
