@@ -266,8 +266,11 @@
 }
 
 .results_wrapper {
-  margin-left: 30px;
-  margin-right: 318px;
+  margin-left: 25px;
+}
+
+.right {
+  margin-left: 25px;
 }
 
 .counter {
@@ -308,6 +311,33 @@
 
 .word_icon:hover {
   cursor: pointer;
+}
+
+.words {
+  padding-right: 318px;
+  margin-right: 23px;
+  height: 250px;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 60px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #C5C3C3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
 
 .word {
