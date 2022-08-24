@@ -56,6 +56,7 @@ export const loginUser = async (user: IUser) => {
   }).then (data => data);
   if (response.token) {    
     localStorage.setItem('token', response.token);
+    localStorage.setItem('userId', response.userId);
   }
 };
 
@@ -92,4 +93,17 @@ export const createUser = async (user: IUser) => {
     }
   }).then (data => data);
   return response;
+};
+
+// *********************************************
+export const refreshToken = async (userId: IUser) => {
+  const response = await fetch(`${BASE_URL}/users/${userId}/tokens`, {
+    method: 'GET',
+    body: JSON.stringify(userId)
+  }).then (response => {
+    if (response.status === 200) return response.json();
+  }).then (data => data);
+  localStorage.setItem('token', response.token);
+  localStorage.setItem('refreshToken', response.refreshToken);
+  return  response;
 };
