@@ -1,9 +1,13 @@
 import { ActionTypes } from "../types/enums";
+import { WordType } from "../types/types";
 
-// at the end of the function name should be written AC(Action Creator)
+export type switchIsNavMenuOpenAction = {type: ActionTypes.switchIsNavMenuOpen}
+export type getWordsAction = {
+  type: ActionTypes.getWords
+  words: WordType[]
+}
 
-export const switchIsNavMenuOpenAC = () => {
-  return {
-    type: ActionTypes.switchIsNavMenuOpen
-  };
+export const actions = {
+  switchIsNavMenuOpen: (): switchIsNavMenuOpenAction => ({type: ActionTypes.switchIsNavMenuOpen}),
+  setWords: (words: WordType[]): getWordsAction => ({type: ActionTypes.getWords, words})
 };
