@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AuthInputDataType, AuthInputValueType } from '../../../types/types';
-import { loginUser } from './../loginUser';
 import cn from 'classnames';
 import { authDatas } from './../Authorization';
 import styles from '../Authorization.module.css';
 import LabelForm from '../LabelForm/LabelForm';
+import { loginUser } from '../../../api/api';
 
 const FormLogin: React.FC = () => {
   const [input, setInput] = useState<AuthInputValueType>({

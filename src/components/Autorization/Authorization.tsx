@@ -6,7 +6,7 @@ import FormLogin from './FormLogin/FormLogin';
 import LogOut from './LogOut/LogOut';
 import Modal from './Modal/Modal';
 import { useEffect, useState } from 'react';
-import { eventLoginUser } from './loginUser';
+import { eventUser } from '../../api/api';
 
 export const authDatas: AuthInputDataType[] = [
   {
@@ -42,7 +42,7 @@ const Authorization: React.FC = () => {
       setIsModalActive(true);
     }, 1000);
     return () => clearTimeout(timerFunc);
-  }, [eventLoginUser]);
+  }, [eventUser]);
 
   if (localStorage.getItem('login') === 'true') {
     return (
@@ -55,7 +55,7 @@ const Authorization: React.FC = () => {
       <main className={cn(styles.author)}>
         <FormRegister />
         <FormLogin />
-        {isModalActive && <Modal message={eventLoginUser.message}/>}
+        {isModalActive && <Modal message={eventUser.message}/>}
       </main>
     );
   }

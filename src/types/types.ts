@@ -30,3 +30,9 @@ export type WordType = {
   textMeaningTranslate: string,
   textExampleTranslate: string
 }
+
+export interface IUser {
+  username?: string,
+  email: string,
+  password: string,
+}
