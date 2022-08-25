@@ -5,16 +5,26 @@ import FirstFox from '../../assets/images/first_fox.png';
 import Megaphone from '../../assets/logo/megaphone.svg';
 import Dropdown from './Dropdown';
 import { useState } from 'react';
+import Timer from './Timer';
 
 const Sprint: React.FC = () => {
   const [selected, setSelected] = useState<string>('1 раздел');
+  const [isActive, setIsActive] = useState(false);
+  const [timerActive, setTimerActive] = useState(false);
+  const [timerEnd, setTimerEnd] = useState(false);
+
+  const handleClick = () => {
+    setIsActive((current) => !current);
+    setTimerActive(true);
+  };
+
   return (
     <main className={cn(styles.main)}>
       <a href="/">
         <img className={cn(styles.close)} src={Close} alt="close" />
       </a>
 
-      <div className={cn(styles.start_wrapper)}>
+      <div className={isActive ? cn(styles.none) : cn(styles.start_wrapper)}>
         <h2 className={cn(styles.heading)}>Спринт</h2>
         <p className={cn(styles.description)}>
           Успей за отведенное время набрать как можно больше очков. За каждые
@@ -22,16 +32,23 @@ const Sprint: React.FC = () => {
           увеличивается.
         </p>
         <div className={cn(styles.buttons_wrapper)}>
-          <button className={cn(styles.start)}>
+          <button className={cn(styles.start)} onClick={handleClick}>
             <p className={cn(styles.start_text)}>Начать</p>
           </button>
-          <Dropdown selected={selected} setSelected={setSelected}/>
+          <Dropdown selected={selected} setSelected={setSelected} />
         </div>
       </div>
 
-      <div className={cn(styles.general_game_wrapper)}>
+      <div
+        className={isActive ? (timerEnd ? cn(styles.none) : cn(styles.general_game_wrapper)) : cn(styles.none)}
+      >
         <p className={cn(styles.total)}>0</p>
-        <div className={cn(styles.timer)}>60</div>
+        <Timer
+          timerActive={timerActive}
+          setTimerActive={setTimerActive}
+          timerEnd={timerEnd}
+          setTimerEnd={setTimerEnd}
+        />
         <div className={cn(styles.game_wrapper)}>
           <div className={cn(styles.points)}>+10</div>
           <div className={cn(styles.checkboxes)}>
@@ -54,7 +71,9 @@ const Sprint: React.FC = () => {
         </div>
       </div>
 
-      <div className={cn(styles.result_game_wrapper)}>
+      <div
+        className={timerEnd ? cn(styles.result_game_wrapper) : cn(styles.none)}
+      >
         <h2 className={cn(styles.result)}>Результат</h2>
         <div className={cn(styles.results_wrapper, styles.wrong)}>
           <div className={cn(styles.counter, styles.dont_know)}>
