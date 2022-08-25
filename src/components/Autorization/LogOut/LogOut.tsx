@@ -1,12 +1,16 @@
 import cn from 'classnames';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { actions } from '../../../redux/actions';
 import styles from './LogOut.module.css';
 
 const LogOut: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   function clickButton(event: { preventDefault: () => void; }) {
     event.preventDefault();
-    localStorage.setItem('login', 'false');
+    dispatch(actions.switchIsLogin());
     localStorage.setItem('token', 'null');
     navigate("/");
   }

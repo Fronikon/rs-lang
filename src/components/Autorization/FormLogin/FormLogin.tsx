@@ -6,6 +6,8 @@ import styles from '../Authorization.module.css';
 import LabelForm from '../LabelForm/LabelForm';
 import { loginUser } from '../../../api/api';
 import { validation } from './../LabelForm/LabelForm';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../../redux/actions';
 
 type PropsType = {
   setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>
@@ -24,19 +26,42 @@ const FormLogin: React.FC<PropsType> = (props) => {
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
+
+  const getMessageLogin = (status: number) => {
+    switch (status) {
+    case 200:
+      return 'Вы вошли в систему';
+    case 403:
+      return 'Неверный логин или пароль';
+    case 404:
+      return 'Пользователь не найден';
+    default:
+      return 'Неизвестная ошибка';
+    }
+  };
 
   useEffect(() => {
     if (isSubmitting && Object.values(error).every((item) => item === '')) {
       loginUser({
         email: input.email,
         password: input.password,
-      }).then((message) => {
+      }).then((response) => {
+        if (response.status === 200) {
+          dispatch(actions.switchIsLogin());
+          response.json().then((res) => {
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('userId', res.userId);
+          });
+        }
+        const message = getMessageLogin(response.status);
         props.setModalMessage(message);
         props.setIsModalActive(true);
       });
     }
+    
     setIsSubmitting(false);
-  }, [isSubmitting, error, input.email, input.password, props]);
+  }, [isSubmitting, error, input.email, input.password, props, dispatch]);
   
   const submitLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -46,7 +71,6 @@ const FormLogin: React.FC<PropsType> = (props) => {
         setError(prev => validation(prev, item[0], item[1]));
       }
     });
-
     setIsSubmitting(true);
   };
 

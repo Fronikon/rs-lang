@@ -17,21 +17,6 @@ export const authApi = {
   
 };
 
-// *********************************************
-
-const getMessageLogin = (status: number) => {
-  switch (status) {
-  case 200:
-    return 'Вы вошли в систему';
-  case 403:
-    return 'Неверный логин или пароль';
-  case 404:
-    return 'Пользователь не найден';
-  default:
-    return 'Неизвестная ошибка';
-  }
-};
-
 export const loginUser = async (user: IUser) => {
   const response = await fetch(`${BASE_URL}signin`, {
     method: 'POST',
@@ -41,31 +26,7 @@ export const loginUser = async (user: IUser) => {
     },
     body: JSON.stringify(user)
   });
-
-  if (response.status === 200) {
-    response.json().then((res) => {
-      localStorage.setItem('login', 'true');
-      localStorage.setItem('token', res.token);
-      localStorage.setItem('userId', res.userId);
-    });
-  }
-
-  return getMessageLogin(response.status);
-};
-
-// *********************************************
-
-const getMessageRegister = (status: number) => {
-  switch (status) {
-  case 200:
-    return 'Вы успешно зарегистрировались';
-  case 422:
-    return 'Неверный логин или пароль';
-  case 417:
-    return 'Пользователь с таким email уже зарегистрирован';
-  default:
-    return 'Неизвестная ошибка';
-  }
+  return response;
 };
 
 export const createUser = async (user: IUser) => {
@@ -77,8 +38,7 @@ export const createUser = async (user: IUser) => {
     },
     body: JSON.stringify(user)
   });
-
-  return getMessageRegister(response.status);
+  return response;
 };
 
 // *********************************************

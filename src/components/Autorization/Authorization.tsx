@@ -6,6 +6,8 @@ import FormLogin from './FormLogin/FormLogin';
 import LogOut from './LogOut/LogOut';
 import Modal from './Modal/Modal';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { StoreType } from '../../index';
 
 export const authDatas: AuthInputDataType[] = [
   {
@@ -37,6 +39,7 @@ export const authDatas: AuthInputDataType[] = [
 const Authorization: React.FC = () => {
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>('');
+  const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
 
   useEffect(() => {
     if (isModalActive) {
@@ -44,7 +47,7 @@ const Authorization: React.FC = () => {
     }
   }, [isModalActive]);
   
-  if (localStorage.getItem('login') === 'true') {
+  if (isLogin) {
     return (
       <main className={cn(styles.author)}>
         <LogOut />

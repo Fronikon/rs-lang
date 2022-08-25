@@ -26,13 +26,27 @@ const FormRegister: React.FC<PropsType> = (props) => {
     password: "",
   });
 
+  const getMessageRegister = (status: number) => {
+    switch (status) {
+    case 200:
+      return 'Вы успешно зарегистрировались';
+    case 422:
+      return 'Неверный логин или пароль';
+    case 417:
+      return 'Пользователь с таким email уже зарегистрирован';
+    default:
+      return 'Неизвестная ошибка';
+    }
+  };
+
   useEffect(() => {
     if (isSubmitting && Object.values(error).every((item) => item === '')) {
       createUser({
         username: input.username,
         email: input.email,
         password: input.password,
-      }).then(message => {
+      }).then(response => {
+        const message = getMessageRegister(response.status);
         props.setModalMessage(message);
       });
   
