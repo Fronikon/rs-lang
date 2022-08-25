@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AuthInputDataType, AuthInputValueType } from "../../../types/types";
 import cn from 'classnames';
 import { authDatas } from '../Authorization';
 import styles from '../Authorization.module.css';
 import LabelForm from "../LabelForm/LabelForm";
 import { createUser } from "../../../api/api";
+import { validation } from './../LabelForm/LabelForm';
 
-const FormRegister: React.FC = () => {
+type PropsType = {
+  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>
+  setModalMessage: React.Dispatch<React.SetStateAction<string>>
+}
+
+const FormRegister: React.FC<PropsType> = (props) => {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [input, setInput] = useState<AuthInputValueType>({
     username: "",
     email: "",
@@ -19,13 +26,29 @@ const FormRegister: React.FC = () => {
     password: "",
   });
 
-  const submitCreateUser = (event: React.FormEvent) => {
+  useEffect(() => {
+    if (isSubmitting && Object.values(error).every((item) => item === '')) {
+      createUser({
+        username: input.username,
+        email: input.email,
+        password: input.password,
+      }).then(message => {
+        props.setModalMessage(message);
+      });
+  
+      props.setIsModalActive(true);
+    }
+    setIsSubmitting(false);
+  }, [isSubmitting, error, input.email, input.password, input.username, props]);
+  
+  const submitCreateUser = async (event: React.FormEvent) => {
     event.preventDefault();
-    createUser({
-      username: input.username,
-      email: input.email,
-      password: input.password,
+
+    Object.entries(input).forEach((item) => {
+      setError(prev => validation(prev, item[0], item[1]));
     });
+
+    setIsSubmitting(true);
   };
 
   return (
