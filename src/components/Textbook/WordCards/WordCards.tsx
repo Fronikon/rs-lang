@@ -1,5 +1,5 @@
 import WordCard from "./WordCard/WordCard";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
 import { asyncActions } from './../../../redux/asyncActions';
 import { StoreType } from "../../..";
@@ -8,12 +8,14 @@ import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from 'redux';
 import { BASE_URL } from './../../../api/api';
 
-const WordCards = () => {
+type PropsType = {
+  currentGroup: number
+  currentPage: number
+  wordCards: WordCardsType[]
+}
+
+const WordCards: React.FC<PropsType> = ({currentGroup, currentPage, wordCards}) => {
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
-  
-  const wordCards = useSelector((state: StoreType): WordCardsType[] => state.textbook.wordCards);
-  const currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup);
-  const currentPage = useSelector((state: StoreType): number => state.textbook.currentPage);
 
   useEffect(() => {
     dispatch(asyncActions.getWords(currentGroup, currentPage));
