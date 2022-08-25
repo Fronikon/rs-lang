@@ -1,11 +1,11 @@
 .main {
-  height: 980px;
+  height: 698px;
   padding-top: 282px;
 
   background-color: #2d253a;
   background-image: url("../../assets/images/background_main.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .section {
