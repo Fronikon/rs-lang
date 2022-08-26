@@ -45,6 +45,7 @@ a {
   color: #fff;
 
   background: #1f5ba7;
+  border: none;
   border-radius: 8px;
   box-shadow: 0 4px 0 rgb(5 5 5 / 80%);
 }
