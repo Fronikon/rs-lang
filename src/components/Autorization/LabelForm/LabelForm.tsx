@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { ChangeEvent } from 'react';
 import styles from '../Authorization.module.css';
 import { LabelFormPropsType } from '../../../types/types';
-import { validation } from './validation';
+import validation from './validation';
 
 export const LabelForm: React.FC<LabelFormPropsType> = (props) => {
   const validateInput = (event: ChangeEvent<HTMLInputElement>) => {

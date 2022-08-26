@@ -1,6 +1,6 @@
 import { AuthInputValueType } from "../../../types/types";
 
-export const validation = (prev: AuthInputValueType, name: string, value: string) => {
+const validation = (prev: AuthInputValueType, name: string, value: string) => {
   const stateObj = { ...prev, [name]: "" };
   const pattern = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
  
@@ -34,3 +34,5 @@ export const validation = (prev: AuthInputValueType, name: string, value: string
  
   return stateObj;
 };
+
+export default validation;
