@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../../../redux/actions";
-import { getSelectOptions } from "../TextbookControls";
+import { getSelectOptions } from "../utils";
 import styles from './PageSelect.module.css';
 
 type PropsType = {

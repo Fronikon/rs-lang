@@ -1,7 +1,7 @@
+import { useSelector } from 'react-redux';
 import WordCards from './WordCards/WordCards';
 import styles from "./Textbook.module.css";
 import TextbookControls from './WordCardsControls/TextbookControls';
-import { useSelector } from 'react-redux';
 import { StoreType } from '../..';
 import { WordCardsType } from '../../types/types';
 
