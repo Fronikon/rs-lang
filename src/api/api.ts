@@ -17,7 +17,7 @@ export const authApi = {
   
 };
 
-export const loginUser = async (user: IUser) => {
+export const loginUser = async (user: IUser): Promise<Response> => {
   const response = await fetch(`${BASE_URL}signin`, {
     method: 'POST',
     headers: {
@@ -29,7 +29,7 @@ export const loginUser = async (user: IUser) => {
   return response;
 };
 
-export const createUser = async (user: IUser) => {
+export const createUser = async (user: IUser): Promise<Response> => {
   const response = await fetch(`${BASE_URL}users`, {
     method: 'POST',
     headers: {
@@ -42,7 +42,7 @@ export const createUser = async (user: IUser) => {
 };
 
 // *********************************************
-export const refreshToken = async (userId: IUser) => {
+export const refreshToken = async (userId: IUser): Promise<Response> => {
   const response = await fetch(`${BASE_URL}/users/${userId}/tokens`, {
     method: 'GET',
     body: JSON.stringify(userId)
