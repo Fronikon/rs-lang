@@ -1,11 +1,11 @@
 import cn from 'classnames';
-import authLogo from '../../assets/logo/auth.png';
 import burgerMenuLogo from '../../assets/logo/menu.png';
 import styles from './Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions';
 import { StoreType } from '../../index';
 import { Link } from 'react-router-dom';
+import AuthIcon from './AuthIcon/AuthIcon';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,11 +25,7 @@ const Header: React.FC = () => {
       <Link to="/">
         <h1 className={styles.title}>RS-LANG</h1>
       </Link>
-      <Link to="/auth">
-        <div className={cn(styles['auth'], 'icon-button')}>
-          <img src={authLogo} alt="auth" />
-        </div>
-      </Link>
+      <AuthIcon />
     </header>
   );
 };
