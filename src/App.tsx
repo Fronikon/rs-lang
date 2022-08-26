@@ -8,19 +8,22 @@ import Footer from './components/Footer/Footer';
 import Textbook from './components/Textbook/Textbook';
 import About from './components/About/About';
 import Authorization from './components/Autorization/Authorization';
+import styles from './App.module.css';
 
 function App() {
   return (
     <>
       <NavMenu />
       <Header />
-      <Routes>
-        <Route path="/" element={<Greeting />} />
-        <Route path="/auth" element={<Authorization />} />
-        <Route path='/textbook' element={<Textbook />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <div className={styles.content}>
+        <Routes>
+          <Route path="/" element={<Greeting />} />
+          <Route path="/auth" element={<Authorization />} />
+          <Route path='/textbook' element={<Textbook />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   );
