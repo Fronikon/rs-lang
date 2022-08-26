@@ -43,7 +43,12 @@ export type WordType = {
 }
 
 export interface IUser {
-  username?: string,
   email: string,
   password: string,
+  username?: string,
+}
+
+export type AuthDataType = {
+  message: string
+  code?: number
 }

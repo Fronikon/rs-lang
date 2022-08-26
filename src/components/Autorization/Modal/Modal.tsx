@@ -1,12 +1,8 @@
 import cn from 'classnames';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthDataType } from '../../../types/types';
 import styles from './Modal.module.css';
-
-export type AuthDataType = {
-  code?: number
-  message: string
-}
 
 const Modal: React.FC<AuthDataType> = (props) => {
   const navigate = useNavigate();
