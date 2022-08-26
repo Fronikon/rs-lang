@@ -1,7 +1,7 @@
 import cn from 'classnames';
-import styles from './Modal.module.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './Modal.module.css';
 
 export type AuthDataType = {
   code?: number

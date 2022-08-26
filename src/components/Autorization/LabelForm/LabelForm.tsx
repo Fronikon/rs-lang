@@ -1,5 +1,5 @@
-import { ChangeEvent } from 'react';
 import cn from 'classnames';
+import { ChangeEvent } from 'react';
 import styles from '../Authorization.module.css';
 import { AuthInputValueType } from '../../../types/types';
 

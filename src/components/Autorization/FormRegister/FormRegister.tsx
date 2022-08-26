@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { AuthInputDataType, AuthInputValueType } from "../../../types/types";
 import cn from 'classnames';
-import { authDatas } from '../Authorization';
+import { useEffect, useState } from "react";
 import styles from '../Authorization.module.css';
+import { AuthInputDataType, AuthInputValueType } from "../../../types/types";
+import { authDatas } from '../Authorization';
 import LabelForm from "../LabelForm/LabelForm";
 import { createUser } from "../../../api/api";
 import { validation } from './../LabelForm/LabelForm';

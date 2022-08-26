@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { AuthInputDataType, AuthInputValueType } from '../../../types/types';
 import cn from 'classnames';
-import { authDatas } from './../Authorization';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import styles from '../Authorization.module.css';
+import { AuthInputDataType, AuthInputValueType } from '../../../types/types';
+import { authDatas } from './../Authorization';
 import LabelForm from '../LabelForm/LabelForm';
 import { loginUser } from '../../../api/api';
 import { validation } from './../LabelForm/LabelForm';
-import { useDispatch } from 'react-redux';
 import { actions } from '../../../redux/actions';
 
 type PropsType = {

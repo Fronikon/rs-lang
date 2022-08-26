@@ -1,12 +1,12 @@
 import cn from 'classnames';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AuthInputDataType } from '../../types/types';
 import styles from './Authorization.module.css';
 import FormRegister from './FormRegister/FormRegister';
 import FormLogin from './FormLogin/FormLogin';
 import LogOut from './LogOut/LogOut';
 import Modal from './Modal/Modal';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { StoreType } from '../../index';
 
 export const authDatas: AuthInputDataType[] = [
