@@ -14,6 +14,17 @@ export type AuthInputDataType = {
   placeholder: string
 }
 
+export type LabelFormPropsType = {
+  name: string
+  errorName: string
+  placeholder: string
+  inputType: string
+  inputName: string
+  inputValue: string
+  setInput: React.Dispatch<React.SetStateAction<AuthInputValueType>>
+  setError: React.Dispatch<React.SetStateAction<AuthInputValueType>>
+}
+
 export type WordType = {
   id: string,
   group: number,
