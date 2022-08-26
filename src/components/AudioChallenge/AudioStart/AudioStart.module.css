@@ -40,6 +40,8 @@
 }
 
 .start__button {
+  cursor: pointer;
+
   width: 158px;
   height: 65px;
 
