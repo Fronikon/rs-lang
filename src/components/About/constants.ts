@@ -1,6 +1,7 @@
 import students from "../Footer/constants";
 import Daniil from '../../assets/images/Daniil.jpg';
 import Dmitriy from '../../assets/images/dmitriy.jpg';
+import Andrey from '../../assets/images/Andrey.png';
 
 export interface ICards {
   id: number,
@@ -20,7 +21,7 @@ const cards: ICards[] = [
   },
   {
     id: students[1].id,
-    img: '../../assets/images/dmitriy.jpg',
+    img: `${Andrey}`,
     name: students[1].name,
     position: 'Developer',
     description: 'Сделал то и то и это',

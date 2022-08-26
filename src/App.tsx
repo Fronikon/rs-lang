@@ -5,6 +5,7 @@ import NavMenu from './components/NavMenu/NavMenu';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Footer from './components/Footer/Footer';
+import Textbook from './components/Textbook/Textbook';
 import About from './components/About/About';
 import Authorization from './components/Autorization/Authorization';
 import AudioChallenge from './components/AudioChallenge/AudioChallenge';
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Greeting />} />
         <Route path="/auth" element={<Authorization />} />
-        <Route path="/textbook" element={<div>Textbook Page</div>} />
+        <Route path='/textbook' element={<Textbook />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/audio//*" element={<AudioChallenge />} />

@@ -1,4 +1,8 @@
 export enum ActionTypes {
   switchIsNavMenuOpen = 'SWITCH-IS-NAV-MENU-OPEN',
-  getWords = 'GET-WORDS'
+  setWords = 'SET-WORDS',
+  setAudio = 'SET-AUDIO',
+  setGroup = 'SET-GROUP',
+  setPage = 'SET-PAGE',
+  switchIsLogin = 'SWITCH-IS-LOGIN'
 }
