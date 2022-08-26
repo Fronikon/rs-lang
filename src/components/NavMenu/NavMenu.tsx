@@ -20,6 +20,13 @@ const NavMenu: React.FC = () => {
         <li className={styles['nav-menu__link']}>
           <Link to="/about">О команде</Link>
         </li>
+        <li className={styles['nav-menu__link']}>
+          <Link to="/sprint">Спринт</Link>
+        </li>
+        <li className={styles['nav-menu__link']}>
+          <Link to="/audio">Аудиовызов</Link>
+        </li>
+
       </ul>
     </div>
   );

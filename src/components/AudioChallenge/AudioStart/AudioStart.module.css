@@ -1,0 +1,56 @@
+.audio__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  box-sizing: border-box;
+  width: 650px;
+  height: 350px;
+  padding: 50px;
+
+  background: rgb(0 0 0 / 33%);
+  border-radius: 10px;
+}
+
+.audio__title {
+  margin: 0;
+
+  font-family: Roboto, sans-serif;
+  font-size: 60px;
+  line-height: 70px;
+  color: #fff;
+  text-align: center;
+}
+
+.audio__description {
+  margin: 0;
+  padding: 20px 51px;
+
+  font-family: Roboto, sans-serif;
+  font-size: 30px;
+  line-height: 35px;
+  color: #fff;
+  text-align: center;
+}
+
+.buttons__wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.start__button {
+  width: 158px;
+  height: 65px;
+
+  font-family: Inter, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  color: #fff;
+
+  background-color: #1fa74d;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 5px black;
+}

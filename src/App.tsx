@@ -6,6 +6,8 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
+import Authorization from './components/Autorization/Authorization';
+import AudioChallenge from './components/AudioChallenge/AudioChallenge';
 
 function App() {
   return (
@@ -14,10 +16,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Greeting />} />
-        <Route path="/auth" element={<div>Auth Page</div>} />
+        <Route path="/auth" element={<Authorization />} />
         <Route path="/textbook" element={<div>Textbook Page</div>} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/audio//*" element={<AudioChallenge />} />
       </Routes>
       <Footer />
     </>
