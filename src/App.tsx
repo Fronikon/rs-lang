@@ -9,11 +9,15 @@ import Textbook from './components/Textbook/Textbook';
 import About from './components/About/About';
 import Authorization from './components/Autorization/Authorization';
 import styles from './App.module.css';
+import { useSelector } from 'react-redux';
+import { StoreType } from '.';
 
 function App() {
+  const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
+
   return (
     <>
-      <NavMenu />
+      {isNavMenuOpen && <NavMenu />}
       <Header />
       <div className={styles.content}>
         <Routes>
