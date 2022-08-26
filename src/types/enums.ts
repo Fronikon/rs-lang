@@ -3,5 +3,6 @@ export enum ActionTypes {
   setWords = 'SET-WORDS',
   setAudio = 'SET-AUDIO',
   setGroup = 'SET-GROUP',
-  setPage = 'SET-PAGE'
+  setPage = 'SET-PAGE',
+  switchIsLogin = 'SWITCH-IS-LOGIN'
 }

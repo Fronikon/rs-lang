@@ -1,0 +1,24 @@
+.logout__container {
+  width: 656px;
+  margin: 127px auto;
+  padding: 34px;
+
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.logout__title {
+  margin: 0;
+  margin-bottom: 56px;
+
+  text-align: center;
+}
+
+.logout__container > .logout__button {
+  display: flex;
+  justify-content: center;
+
+  width: 356px;
+  margin: 0 auto;
+  padding: 20px 0;
+}

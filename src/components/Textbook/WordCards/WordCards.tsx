@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
 import { asyncActions } from './../../../redux/asyncActions';
 import { StoreType } from "../../..";
-import { WordCardsType } from "../../../types/types";
+import { WordType } from "../../../types/types";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from 'redux';
 import { BASE_URL } from './../../../api/api';
@@ -11,7 +11,7 @@ import { BASE_URL } from './../../../api/api';
 type PropsType = {
   currentGroup: number
   currentPage: number
-  wordCards: WordCardsType[]
+  wordCards: WordType[]
 }
 
 const WordCards: React.FC<PropsType> = ({currentGroup, currentPage, wordCards}) => {

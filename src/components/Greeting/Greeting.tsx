@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 import styles from './Greeting.module.css';
 
 export const Greeting: React.FC = () => {
@@ -11,7 +12,7 @@ export const Greeting: React.FC = () => {
           прогрессом.
         </p>
         <button className={cn(styles.button, 'button')} type="button">
-          Наша команда
+          <Link to="/about">Наша команда</Link>
         </button>
       </section>
     </main>

@@ -3,10 +3,10 @@ import WordCards from './WordCards/WordCards';
 import styles from "./Textbook.module.css";
 import TextbookControls from './WordCardsControls/TextbookControls';
 import { StoreType } from '../..';
-import { WordCardsType } from '../../types/types';
+import { WordType } from '../../types/types';
 
 const Textbook = () => {
-  const wordCards = useSelector((state: StoreType): WordCardsType[] => state.textbook.wordCards),
+  const wordCards = useSelector((state: StoreType): WordType[] => state.textbook.wordCards),
     currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup),
     currentPage = useSelector((state: StoreType): number => state.textbook.currentPage);
 

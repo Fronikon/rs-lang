@@ -1,9 +1,9 @@
 import { ActionTypes } from "../../types/enums";
-import { WordCardsType } from "../../types/types";
+import { WordType } from "../../types/types";
 import { setAudioAction, getWordsAction, setGroupAction, setPageAction } from "../actions";
 
 const initialState = {
-  wordCards: [] as WordCardsType[],
+  wordCards: [] as WordType[],
   currentAudio: null as null | HTMLAudioElement,
   currentGroup: 0 as number,
   currentPage: 0 as number
@@ -15,7 +15,7 @@ type ActionType = getWordsAction | setAudioAction | setGroupAction | setPageActi
 const textbookReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
   switch (action.type) {
   case ActionTypes.setWords: {
-    return {...state, wordCards: action.newWordCards};
+    return {...state, wordCards: action.words};
   }
   case ActionTypes.setAudio: {
     return {...state, currentAudio: action.newAudio};
