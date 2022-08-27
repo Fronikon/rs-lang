@@ -6,6 +6,7 @@ import cards from './constants';
 const About: React.FC = () => {
   const listCards = cards.map((card) => (
     <Card
+      key={card.id}
       id={card.id}
       img={card.img}
       name={card.name}

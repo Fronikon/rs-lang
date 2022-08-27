@@ -2,7 +2,7 @@ import styles from './Sprint.module.css';
 import cn from 'classnames';
 import ArrowDown from '../../assets/logo/Vector.svg';
 import React, { useState } from 'react';
-import options from './Constants';
+import { options } from './Constants';
 
 type SelectedType = {
   selected: string,

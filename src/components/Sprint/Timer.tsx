@@ -11,7 +11,7 @@ type TimerType = {
 
 const Timer: React.FC<TimerType> = ({ timerActive, setTimerActive, timerEnd, setTimerEnd }
 ) => {
-  const [time, setTime] = useState(5);
+  const [time, setTime] = useState(10);
 
   useEffect(() => {
     if (time > 0 && timerActive) {
