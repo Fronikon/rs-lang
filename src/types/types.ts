@@ -1,3 +1,5 @@
+import { Difficulties } from "./enums";
+
 export type AuthInputValueType = {
   [index: string]: string
   username: string
@@ -40,6 +42,13 @@ export type WordType = {
   wordTranslate: string,
   textMeaningTranslate: string,
   textExampleTranslate: string
+  difficulty?: Difficulties
+}
+
+export type UserWord = {
+  id: string,
+  difficulty: Difficulties,
+  wordId: string
 }
 
 export interface IUser {

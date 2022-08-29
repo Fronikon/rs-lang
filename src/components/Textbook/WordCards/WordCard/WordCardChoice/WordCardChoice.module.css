@@ -1,0 +1,12 @@
+.word-card__choice {
+  display: flex;
+  gap: 20px;
+}
+
+.know {
+  background-color: #1fa74d;
+}
+
+.unknown {
+  background-color: #a71f1f;
+}

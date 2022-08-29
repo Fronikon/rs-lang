@@ -6,3 +6,9 @@ export enum ActionTypes {
   setPage = 'SET-PAGE',
   switchIsLogin = 'SWITCH-IS-LOGIN'
 }
+
+export enum Difficulties {
+  learned = 'learned',
+  learnedHard = 'learned-hard',
+  hard = 'hard',
+}

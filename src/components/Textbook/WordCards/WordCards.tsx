@@ -12,18 +12,20 @@ type PropsType = {
   currentGroup: number
   currentPage: number
   wordCards: WordType[]
+  isLogin: boolean
 }
 
-const WordCards: React.FC<PropsType> = ({currentGroup, currentPage, wordCards}) => {
+const WordCards: React.FC<PropsType> = ({currentGroup, currentPage, wordCards, isLogin}) => {
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
 
   useEffect(() => {
-    dispatch(asyncActions.getWords(currentGroup, currentPage));
+    dispatch(asyncActions.getWords());
   }, [dispatch, currentGroup, currentPage]);
 
   return (
     <div>
       {wordCards.map((wordCard) => <WordCard
+        id={wordCard.id}
         img={BASE_URL + wordCard.image}
         audio={BASE_URL + wordCard.audio}
         audioMeaning={BASE_URL + wordCard.audioMeaning}
@@ -35,6 +37,8 @@ const WordCards: React.FC<PropsType> = ({currentGroup, currentPage, wordCards}) 
         textMeaningTranslate={wordCard.textMeaningTranslate}
         textExample={wordCard.textExample}
         textExampleTranslate={wordCard.textExampleTranslate}
+        difficulty={wordCard.difficulty}
+        isLogin={isLogin}
         key={wordCard.id}
       />)}
     </div>

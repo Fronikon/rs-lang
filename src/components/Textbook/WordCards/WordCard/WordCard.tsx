@@ -1,7 +1,10 @@
 import styles from "./WordCard.module.css";
 import VoiceButton from './VoiceButton/VoiceButton';
+import WordCardChoice from "./WordCardChoice/WordCardChoice";
+import { Difficulties } from "../../../../types/enums";
 
 type WordCardPropsType = {
+  id: string
   img: string
   audio: string
   audioMeaning: string
@@ -13,6 +16,8 @@ type WordCardPropsType = {
   textMeaningTranslate: string
   textExample: string
   textExampleTranslate: string
+  difficulty?: Difficulties
+  isLogin: boolean
 }
 
 type WordCardMeaningPropsType = {
@@ -87,10 +92,16 @@ const WordCard: React.FC<WordCardPropsType> = (props) => {
         />
         <WordCardMeaning
           textMeaning={props.textMeaning}
-          textMeaningTranslate={props.textMeaningTranslate} />
+          textMeaningTranslate={props.textMeaningTranslate}
+        />
         <WordCardExample
           textExample={props.textExample}
-          textExampleTranslate={props.textExampleTranslate} />
+          textExampleTranslate={props.textExampleTranslate}
+        />
+        {props.isLogin && <WordCardChoice
+          wordId={props.id}
+          difficulty={props.difficulty}
+        />}
       </div>
     </div>
   );
