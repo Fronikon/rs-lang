@@ -1,11 +1,11 @@
 import cn from 'classnames';
-import { Key, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { StoreType } from '../../../..';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { wordsApi } from '../../../../api/api';
+import { actions } from '../../../../redux/actions';
 import { WordType } from '../../../../types/types';
 import styles from './QuestionPage.module.css';
-import WordQuest from './Word';
+import WordQuest from './WordQuest';
 
 function setRandomNumbersArray() {
   const randomNumbersArray: number[] = [];
@@ -20,35 +20,66 @@ function setRandomNumbersArray() {
   return randomNumbersArray;
 }
 
-const QuestionPage: React.FC = () => {
-  const currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup);
-  const currentPage = useSelector((state: StoreType): number => state.textbook.currentPage);
+type PropsType = {
+  currentGroup: number
+  currentPAge: number
+}
 
-  // const [currentArray, setCurrentArray] = useState<WordType[]>([]);
-  // const [randomNumbersArray, setRandomNumbersArray] = useState<WordType[]>([]);
+const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
+  const [currentArray, setCurrentArray] = useState<WordType[]>([]);
+  const [currentAudio, setCurrentAudio] = useState<string>('');
+  const currentAudioNumber = Math.floor(Math.random() * 5);
+
   useEffect(() => {
-    wordsApi.getWords(currentGroup, currentPage)
+    wordsApi.getWords(currentGroup, currentPAge)
       .then((data) => {
-        const currentArray: WordType[] = [];
+        const copyArray: WordType[] = [];
         const randomNumbersArray = setRandomNumbersArray();
         randomNumbersArray.forEach(el => {
-          currentArray.push(data[el].wordTranslate);
+          copyArray.push(data[el]);
         });
-        console.log('currentArray: ', currentArray);
+        setCurrentArray([...copyArray]);
       });
-  });
+  }, [currentGroup, currentPAge]);
+
+  setCurrentAudio(currentArray[currentAudioNumber].audio);
+
+  // const onClickPlayVoice = () => {
+  //   if (currentAudio) {
+  //     currentAudio.pause();
+  //     dispatch(actions.setAudio(null));
+  //   }
+  //   playVoice(0);
+  // };
+  
+  // console.log('currentArray: ', currentArray);
+
+  // function playVoice(num: number) {
+  //   if (num !== music.length) {
+  //     const audio = new Audio();
+  //     audio.src = music[num];
+  //     audio.autoplay = true;
+  //     dispatch(actions.setAudio(audio));
+
+  //     audio.onended = () => playVoice(num + 1);
+  //   }
+  // }
 
   return (
     <div className={cn(styles.questionPage__container)}>
       <div className={cn(styles.questionPage__headerContainer)}>
         <div className={cn(styles.questionPage__counter)}>0/20</div>
-        <button className={cn(styles.questionPage__closeButton)} type='button'></button>
+        <Link to="/audio">
+          <button className={cn(styles.questionPage__closeButton)} type='button'></button>
+        </Link>
       </div>
-      <button className={cn(styles.questionPage__button)} type='button'></button>
+      <button
+        className={cn(styles.questionPage__button)}
+        // onClick={onClickPlayVoice}
+        type='button'>
+      </button>
       <ul className={cn(styles.questionPage__list)}>
-        {currentArray.map((el: Key | null | undefined) => <WordQuest
-          key={el}
-        />)}
+        {currentArray.map((el) => <WordQuest wordTranslate={el.wordTranslate} key={el.id} />)}
       </ul>
       <button className={cn(styles.questionPage__skipButton)} type='button'>Не знаю</button>
     </div>

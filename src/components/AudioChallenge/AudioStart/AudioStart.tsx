@@ -1,10 +1,12 @@
 import cn from 'classnames';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { StoreType } from '../../..';
 import GroupSelect from '../../Textbook/WordCardsControls/GroupSelect/GroupSelect';
-import { WordCardsControlsPropsType } from '../../Textbook/WordCardsControls/TextbookControls';
 import styles from './AudioStart.module.css';
 
-const AudioStart: React.FC<WordCardsControlsPropsType> = (props) => {
+const AudioStart: React.FC = () => {
+  const  currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup);
   
   return (
     <main className={cn(styles.audio)}>
@@ -15,7 +17,7 @@ const AudioStart: React.FC<WordCardsControlsPropsType> = (props) => {
           <Link to="/audio/quest">
             <button className={cn(styles.start__button)}>Начать</button>
           </Link>
-          <GroupSelect currentGroup={props.currentGroup} />
+          <GroupSelect currentGroup={currentGroup} />
         </div>
       </div>
     </main>
