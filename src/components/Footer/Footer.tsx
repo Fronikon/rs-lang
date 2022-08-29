@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
         {listStudents}
       </div>
       <div className="creation-year">
-        <p className={cn(styles['student'])}>2022</p>
+        <span className={cn(styles['student'])}>2022</span>
       </div>
     </footer>
   );
