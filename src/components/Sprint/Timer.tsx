@@ -18,7 +18,7 @@ const Timer: React.FC<TimerType> = ({ timerActive, setTimerActive, timerEnd, set
       setTimeout(setTime, 1000, time - 1);
     } else if (time === 0) {
       setTimeout(() => {
-        // setTimerEnd(true);
+        setTimerEnd(true);
       }, 1000);
     } else {
       setTimerActive(false);
