@@ -11,9 +11,9 @@ export const Greeting: React.FC = () => {
           Проходи увлекательные игры, запоминай сложные слова и следи за своим
           прогрессом.
         </p>
-        <button className={cn(styles.button, 'button')} type="button">
-          <Link to="/about">Наша команда</Link>
-        </button>
+          <Link to="/about">
+            <button className={cn(styles.button, 'button')} type="button">Наша команда</button>
+          </Link>
       </section>
     </main>
   );

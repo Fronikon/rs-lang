@@ -11,14 +11,17 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
   const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
 
-  const onClickBurger: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const openNavMenu: React.MouseEventHandler<HTMLDivElement> = (e) => {
     dispatch(actions.switchIsNavMenuOpen());
+    window.addEventListener('scroll', e => {
+      window.scrollTo({top: 0});
+    });
   };
 
   return (
     <header className={cn(styles.header, 'container')}>
       <div
-        onClick={onClickBurger}
+        onClick={openNavMenu}
         className={cn(styles['burger-menu'], 'icon-button', isNavMenuOpen && styles['_active'])}>
         <img src={burgerMenuLogo} alt="burger-menu" />
       </div>

@@ -10,10 +10,11 @@
 }
 
 .burger-menu {
+  z-index: 10;
+
   transition: transform 500ms;
 }
 
 ._active {
-  z-index: 10;
   transform: rotate(90deg);
 }
