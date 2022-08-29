@@ -3,6 +3,10 @@
   gap: 20px;
 }
 
+.word-card__button {
+  padding: 0.3em 0.5em;
+}
+
 .know {
   background-color: #1fa74d;
 }

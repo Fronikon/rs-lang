@@ -44,7 +44,7 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty}) => {
             () => onDeleteWord(Difficulties.hard) :
             () => changeDifficultyUserWord(Difficulties.learned, Difficulties.hard)
         }
-        className={cn(styles['word-card__button'], styles.know)}
+        className={cn(styles['word-card__button'], 'button', styles.know)}
       >{isLearned ? 'Я забыл' : 'Я выучил'}</button>
       <button
         onClick={
@@ -52,7 +52,7 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty}) => {
             () => onDeleteWord(Difficulties.learned) :
             () => changeDifficultyUserWord(Difficulties.hard, Difficulties.learned)
         }
-        className={cn(styles['word-card__button'], styles.unknown)}
+        className={cn(styles['word-card__button'], 'button', styles.unknown)}
       >{isHard ? 'Мне не сложно' : 'Мне сложно'}</button>
     </div>
   );
