@@ -69,6 +69,8 @@
   justify-content: center;
   align-items: center;
   width: 158px;
+  margin-bottom: 2px;
+  border-radius: 5px;
 }
 
 .chapter_text {
@@ -88,21 +90,72 @@
 }
 
 .dropdown_item {
-  color: black;
+  color: #FFFFFF;
   background-color: #fff;
   display: flex;
-  justify-content: center;
   align-items: center;
   font-weight: 400;
   font-size: 24px;
   line-height: 18px;
-  padding: 5px;
-  border: 1px solid black;
+  padding: 23px 0 23px 16px;
+  border: 1px solid lightgrey;
 }
 
 .dropdown_item:hover {
   cursor: pointer;
   background-color: lightgray;
+}
+
+.dropdown_item:nth-child(1) {
+  background-color: #B31F43;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.dropdown_item:nth-child(2) {
+  background-color: #039473;
+}
+
+.dropdown_item:nth-child(3) {
+  background-color: #AD5D9A;
+}
+
+.dropdown_item:nth-child(4) {
+  background-color: #F86E6C;
+}
+
+.dropdown_item:nth-child(5) {
+  background-color: #F7D057;
+}
+
+.dropdown_item:nth-child(6) {
+  background-color: #5F4A8B;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.red {
+  background-color: #B31F43;
+}
+
+.green {
+  background-color: #039473;
+}
+
+.purple {
+  background-color: #AD5D9A;
+}
+
+.orange {
+  background-color: #F86E6C;
+}
+
+.yellow {
+  background-color: #F7D057;
+}
+
+.plum {
+  background-color: #5F4A8B;
 }
 
 /* ------------------------------------Game------------------------------------ */
@@ -135,11 +188,29 @@
   left: 42%;
   width: 50px;
   height: 50px;
-  color: #1FA74D;
-  border: 1px solid #1FA74D;
   border-radius: 100%;
   font-size: 20px;
   line-height: 24px;
+}
+
+.green_points {
+  color: #1FA74D;
+  border: 1px solid #1FA74D;
+}
+
+.orange_points {
+  color: #DA991B;
+  border: 1px solid #DA991B;
+}
+
+.red_points {
+  color: #A71F1F;
+  border: 1px solid #A71F1F;
+}
+
+.purple_points {
+  color: #6E3EBC;
+  border: 1px solid #6E3EBC;
 }
 
 .english_word {
