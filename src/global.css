@@ -2,13 +2,16 @@
 
 @import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
 
+html,
+body {
+  overflow-x: hidden;
+
+  height: 100%;
+}
+
 body {
   font-family: Inter, Roboto, sans-serif;
 
-  background-color: #2d253a;
-}
-
-main {
   background-color: #ededed;
 }
 
@@ -32,16 +35,14 @@ a {
 .button {
   cursor: pointer;
 
-  width: 268px;
-  height: 69px;
-  padding: 20px auto;
+  padding: 0.8em 1em;
 
   font-size: 24px;
   font-weight: 700;
-  line-height: 29px;
   color: #fff;
 
   background: #1f5ba7;
+  border: none;
   border-radius: 8px;
   box-shadow: 0 4px 0 rgb(5 5 5 / 80%);
 }

@@ -1,18 +1,19 @@
 .nav-menu {
-  position: absolute;
-  top: 0;
-  left: -500px;
+  cursor: initial;
+
   width: 350px;
-  height: 100%;
-  background-color: #FFFFFF;
-  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.25);
+  height: 100vh;
+
+  background-color: #fff;
+  box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+
   transition: left 500ms;
-  z-index: 5;
 }
 
 .nav-menu__header {
   height: 100px;
-  background-color: rgba(0, 0, 0, 18%);
+
+  background-color: rgb(0 0 0 / 18%);
 }
 
 .nav-menu__links {
@@ -23,6 +24,16 @@
   margin-bottom: 0.5em;
 }
 
-.open {
-  left: 0px;
+.shadow {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgb(0 0 0 / 27.4%);
 }
