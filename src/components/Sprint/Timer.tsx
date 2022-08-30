@@ -11,14 +11,14 @@ type TimerType = {
 
 const Timer: React.FC<TimerType> = ({ timerActive, setTimerActive, timerEnd, setTimerEnd }
 ) => {
-  const [time, setTime] = useState(5);
+  const [time, setTime] = useState(1);
 
   useEffect(() => {
     if (time > 0 && timerActive) {
       setTimeout(setTime, 1000, time - 1);
     } else if (time === 0) {
       setTimeout(() => {
-        setTimerEnd(true);
+        // setTimerEnd(true);
       }, 1000);
     } else {
       setTimerActive(false);

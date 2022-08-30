@@ -63,27 +63,27 @@ const Game: React.FC<TPoints> = ({
         setCurrentArr([data[randomWord1], data[randomWord2]]);
       });
     }
-  }, [groupNumber, points]);
+  }, [groupNumber, trueArray, falseArray]);
 
   useEffect(() => {
     if (inARow === 0) {
       setScale(10);
       setPointsColor('green_points');
       setFox(FirstFox);
-    } else if (inARow === 3) {
+    } else if (inARow === 4) {
       setScale(20);
       setPointsColor('orange_points');
       setFox(SecondFox);
-    } else if (inARow === 6) {
+    } else if (inARow === 8) {
       setScale(40);
       setPointsColor('red_points');
       setFox(ThirdFox);
-    } else if (inARow === 9) {
+    } else if (inARow === 12) {
       setScale(80);
       setPointsColor('purple_points');
       setFox(ForthFox);
-    } 
-  }, [inARow, setScale, setFox]);
+    }
+  }, [inARow, setScale, setFox, trueArray, falseArray]);
 
   const trueBtnHandler = () => {
     if (currentArr[0].word === currentArr[1].word) {
@@ -93,7 +93,6 @@ const Game: React.FC<TPoints> = ({
     } else {
       setInARow(0);
       setFalseArray(falseArray.concat(currentArr[0]));
-      setPoints(points - scale);
     }
   };
 
@@ -105,16 +104,36 @@ const Game: React.FC<TPoints> = ({
     } else {
       setInARow(0);
       setFalseArray(falseArray.concat(currentArr[0]));
-      setPoints(points - scale);
     }
   };
   return (
     <div className={cn(styles.game_wrapper)}>
       <div className={cn(styles.points, styles[pointsColor])}>+{scale}</div>
       <div className={cn(styles.checkboxes)}>
-        <input className={cn(styles.checkbox)} type="checkbox" />
-        <input className={cn(styles.checkbox)} type="checkbox" />
-        <input className={cn(styles.checkbox)} type="checkbox" />
+        <label className={cn(styles.label)}>
+          <input
+            className={cn(styles.checkbox)}
+            type="checkbox"
+            checked={inARow % 4 >= 1}
+          />
+          <div className={cn(styles.check)}></div>
+        </label>
+        <label className={cn(styles.label)}>
+          <input
+            className={cn(styles.checkbox)}
+            type="checkbox"
+            checked={inARow % 4 >= 2}
+          />
+          <div className={cn(styles.check)}></div>
+        </label>
+        <label className={cn(styles.label)}>
+          <input
+            className={cn(styles.checkbox)}
+            type="checkbox"
+            checked={inARow % 4 >= 3}
+          />
+          <div className={cn(styles.check)}></div>
+        </label>
       </div>
       <img className={cn(styles.picture)} src={fox} alt="fox" />
       <h3 className={cn(styles.english_word)}>{engWord}</h3>

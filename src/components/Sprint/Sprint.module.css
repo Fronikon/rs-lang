@@ -240,6 +240,30 @@
 }
 
 .checkbox {
+  display: none;
+}
+
+.label:nth-child(2) {
+  margin: 0 15px;
+}
+
+.check {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: grey;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  -webkit-appearance: none;
+  outline: none;
+  position: relative;
+}
+
+.check:after {
+  content: '✔';
+  color: white;
+  display: none;
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -251,12 +275,9 @@
   outline: none;
 }
 
-.checkbox:nth-child(2) {
-  margin: 0 15px;
-}
-
-.checkbox:checked {
-  accent-color: #1FA74D;
+.checkbox:checked + .check:after {
+  display: block;
+  background-color: #1FA74D;
 }
 
 .picture {
