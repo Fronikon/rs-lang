@@ -10,12 +10,12 @@ import { AnyAction } from "redux";
 
 type PropsType = {
   wordId: string
+  isLearned: boolean
+  isHard: boolean
   difficulty?: Difficulties
 }
 
-const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty}) => {
-  const isLearned = difficulty === Difficulties.learned || difficulty === Difficulties.learnedHard;
-  const isHard = difficulty === Difficulties.hard || difficulty === Difficulties.learnedHard;
+const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, isLearned, isHard}) => {
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
 
   const changeDifficultyUserWord = async (value: string, oppositeValue: string) => {

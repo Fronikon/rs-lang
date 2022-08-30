@@ -39,3 +39,21 @@
 .word-example {
   margin: 0 0 15px;
 }
+
+.statuses-word {
+  display: flex;
+
+  margin-left: auto;
+}
+
+.status-word {
+  width: 10px;
+}
+
+.hard {
+  background-color: #a71f1f;
+}
+
+.learned {
+  background-color: #1fa74d;
+}
