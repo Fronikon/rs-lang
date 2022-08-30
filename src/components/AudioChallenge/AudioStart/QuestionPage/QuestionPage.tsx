@@ -1,11 +1,12 @@
+/* eslint-disable no-console */
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { wordsApi } from '../../../../api/api';
-import { actions } from '../../../../redux/actions';
 import { WordType } from '../../../../types/types';
 import styles from './QuestionPage.module.css';
-import WordQuest from './WordQuest';
+// import WordQuest from './WordQuest';
+import { BASE_URL } from '../../../../api/api';
 
 function setRandomNumbersArray() {
   const randomNumbersArray: number[] = [];
@@ -28,7 +29,9 @@ type PropsType = {
 const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
   const [currentArray, setCurrentArray] = useState<WordType[]>([]);
   const [currentAudio, setCurrentAudio] = useState<string>('');
-  const currentAudioNumber = Math.floor(Math.random() * 5);
+  const [currentAudioNumber] = useState<number>(Math.floor(Math.random() * 5));
+  const [rightAnswersArray, setRightAnswersArray] = useState<WordType[]>([]);
+  const [wrongAnswersArray, setWrongAnswersArray] = useState<WordType[]>([]);
 
   useEffect(() => {
     wordsApi.getWords(currentGroup, currentPAge)
@@ -38,33 +41,42 @@ const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
         randomNumbersArray.forEach(el => {
           copyArray.push(data[el]);
         });
-        setCurrentArray([...copyArray]);
+        setCurrentArray(copyArray);
+        setCurrentAudio(copyArray[currentAudioNumber].audio);
       });
-  }, [currentGroup, currentPAge]);
+  }, []);
 
-  setCurrentAudio(currentArray[currentAudioNumber].audio);
+  const onClickPlayVoice = () => {
+    if (currentAudio !== '') {
+      playVoice(currentAudioNumber);
+    }
+  };
 
-  // const onClickPlayVoice = () => {
-  //   if (currentAudio) {
-  //     currentAudio.pause();
-  //     dispatch(actions.setAudio(null));
-  //   }
-  //   playVoice(0);
-  // };
+  function playVoice(num: number) {
+    const audio = new Audio();
+    audio.src = BASE_URL + currentAudio;
+    audio.autoplay = true;
+  }
+
+  type translate = {
+    wordTranslate: string
+  }
   
-  // console.log('currentArray: ', currentArray);
-
-  // function playVoice(num: number) {
-  //   if (num !== music.length) {
-  //     const audio = new Audio();
-  //     audio.src = music[num];
-  //     audio.autoplay = true;
-  //     dispatch(actions.setAudio(audio));
-
-  //     audio.onended = () => playVoice(num + 1);
-  //   }
-  // }
-
+  const checkWord = (el: React.MouseEvent) => {
+    const target = el.target as HTMLLIElement;
+    if (target.innerText === currentArray[currentAudioNumber].wordTranslate) {
+      console.log(true);
+    } else console.log(false);
+  };
+  
+  const WordQuest: React.FC<translate> = (props) => {
+    return (
+      <li className={cn(styles.questionPage__item)} onClick={checkWord}>
+        {props.wordTranslate}
+      </li>
+    );
+  };
+  
   return (
     <div className={cn(styles.questionPage__container)}>
       <div className={cn(styles.questionPage__headerContainer)}>
@@ -75,7 +87,7 @@ const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
       </div>
       <button
         className={cn(styles.questionPage__button)}
-        // onClick={onClickPlayVoice}
+        onClick={onClickPlayVoice}
         type='button'>
       </button>
       <ul className={cn(styles.questionPage__list)}>

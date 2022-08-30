@@ -68,6 +68,18 @@
   border-radius: 50%;
 }
 
+.questionPage__button:hover {
+  cursor: pointer;
+
+  transform: scale(1.2);
+
+  transition: all 500ms;
+}
+
+.questionPage__button:active {
+  transform: scale(1);
+}
+
 .questionPage__list {
   display: flex;
   gap: 70px;
