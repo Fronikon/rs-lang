@@ -1,0 +1,16 @@
+.textbook-controls {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+  padding: 5px 0;
+}
+
+.control-page {
+  display: flex;
+  gap: 20px;
+}
+
+.link-on-hardwords {
+  background-color: #a71f1f;
+}

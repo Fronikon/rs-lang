@@ -1,21 +1,22 @@
-import WordCard from "./WordCard/WordCard";
-import { useDispatch } from 'react-redux';
-import { useEffect } from "react";
-import { asyncActions } from './../../../redux/asyncActions';
-import { StoreType } from "../../..";
-import { WordType } from "../../../types/types";
-import { ThunkDispatch } from "redux-thunk";
+import WordCard from "../../WordCard/WordCard";
+import { WordType } from "../../../../types/types";
+import { BASE_URL } from '../../../../api/api';
+import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { BASE_URL } from './../../../api/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoreType } from "../../../..";
+import { useEffect } from 'react';
+import { asyncActions } from '../../../../redux/asyncActions';
 
 type PropsType = {
   currentGroup: number
   currentPage: number
-  wordCards: WordType[]
   isLogin: boolean
 }
 
-const WordCards: React.FC<PropsType> = ({currentGroup, currentPage, wordCards, isLogin}) => {
+const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage}) => {
+  const wordCards = useSelector((state: StoreType): WordType[] => state.textbook.wordCards);
+
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
 
   useEffect(() => {

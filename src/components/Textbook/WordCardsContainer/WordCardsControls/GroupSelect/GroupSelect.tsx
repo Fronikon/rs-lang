@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { actions } from "../../../../redux/actions";
+import { actions } from "../../../../../redux/actions";
 import styles from './GroupSelect.module.css';
 import { colorsGroup } from './colors';
 import { getSelectOptions } from "../utils";

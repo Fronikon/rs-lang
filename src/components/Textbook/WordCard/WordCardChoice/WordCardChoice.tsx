@@ -1,10 +1,10 @@
 import cn from "classnames";
-import { wordsApi } from "../../../../../api/api";
-import { Difficulties } from "../../../../../types/enums";
+import { wordsApi } from "../../../../api/api";
+import { Difficulties } from "../../../../types/enums";
 import styles from "./WordCardChoice.module.css";
-import { asyncActions } from './../../../../../redux/asyncActions';
+import { asyncActions } from '../../../../redux/asyncActions';
 import { ThunkDispatch } from 'redux-thunk';
-import { StoreType } from "../../../../..";
+import { StoreType } from "../../../..";
 import { useDispatch } from 'react-redux';
 import { AnyAction } from "redux";
 
@@ -25,6 +25,7 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, isLearned, isH
       await wordsApi.postUserWord(wordId, value);
     }
     dispatch(asyncActions.getWords());
+    dispatch(asyncActions.getHardWords());
   };
 
   const onDeleteWord = async (value: string) => {
@@ -34,6 +35,7 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, isLearned, isH
       await wordsApi.deleteUserWord(wordId);
     }
     dispatch(asyncActions.getWords());
+    dispatch(asyncActions.getHardWords());
   };
 
   return (

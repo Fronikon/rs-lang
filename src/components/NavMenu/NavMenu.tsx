@@ -9,7 +9,7 @@ const NavMenu: React.FC = () => {
   const dispatch = useDispatch();
 
   const closeNavMenu: MouseEventHandler = (e) => {
-    const target = e.target as HTMLElement
+    const target = e.target as HTMLElement;
 
     if(target.classList.contains(styles.shadow) ||
       target.tagName === 'A') {

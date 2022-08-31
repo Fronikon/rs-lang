@@ -1,31 +1,18 @@
 import { useSelector } from 'react-redux';
-import WordCards from './WordCards/WordCards';
-import styles from "./Textbook.module.css";
-import TextbookControls from './WordCardsControls/TextbookControls';
 import { StoreType } from '../..';
-import { WordType } from '../../types/types';
+import { Route, Routes } from 'react-router-dom';
+import HardWordCardsContainer from './HardWordCardsContainer/HardWordCardsContainer';
+import WordCardsContainer from './WordCardsContainer/WordCardsContainer';
 
 const Textbook = () => {
-  const wordCards = useSelector((state: StoreType): WordType[] => state.textbook.wordCards),
-    currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup),
-    currentPage = useSelector((state: StoreType): number => state.textbook.currentPage),
-    isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+  const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
 
   return (
     <section className='container'>
-      <div className={styles.inner}>
-        <h3 className={styles.title}>Учебник</h3>
-        <TextbookControls
-          currentPage={currentPage}
-          currentGroup={currentGroup}
-        />
-        <WordCards
-          wordCards={wordCards}
-          currentPage={currentPage}
-          currentGroup={currentGroup}
-          isLogin={isLogin}
-        />
-      </div>
+      <Routes>
+        <Route path="/" element={<WordCardsContainer isLogin={isLogin} />} />
+        <Route path="hardwords" element={<HardWordCardsContainer isLogin={isLogin}/>} />
+      </Routes>
     </section>
   );
 };

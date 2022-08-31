@@ -1,7 +1,7 @@
 import styles from "./WordCard.module.css";
 import VoiceButton from './VoiceButton/VoiceButton';
 import WordCardChoice from "./WordCardChoice/WordCardChoice";
-import { Difficulties } from "../../../../types/enums";
+import { Difficulties } from "../../../types/enums";
 import cn from 'classnames';
 
 type WordCardPropsType = {

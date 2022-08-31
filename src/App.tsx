@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Greeting />} />
           <Route path="/auth" element={<Authorization />} />
-          <Route path='/textbook' element={<Textbook />} />
+          <Route path='/textbook/*' element={<Textbook />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
