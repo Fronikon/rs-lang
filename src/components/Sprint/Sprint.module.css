@@ -363,12 +363,16 @@
 
 /* ------------------------------------Result------------------------------------ */
 
+.line {
+  position: relative;
+  left: 30px;
+}
+
 .result_game_wrapper {
   background: white;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   text-align: center;
   margin: 177px 0;
 }
@@ -381,11 +385,7 @@
 }
 
 .results_wrapper {
-  margin-left: 25px;
-}
-
-.right {
-  margin-left: 25px;
+  margin-left: 30px;
 }
 
 .counter {
@@ -433,6 +433,7 @@
   margin-right: 23px;
   height: 250px;
   overflow-y: scroll;
+  position: relative;
 }
 
 ::-webkit-scrollbar {
