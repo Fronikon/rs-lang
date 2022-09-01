@@ -2,6 +2,30 @@
   padding: 20px;
 }
 
+.audioEnd__closeButton {
+  display: block;
+
+  width: 30px;
+  height: 30px;
+  margin-bottom: 150px;
+  margin-left: auto;
+
+  background-image: url("../../../../assets/logo/close.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+
+  transition: all 400ms;
+}
+
+.audioEnd__closeButton:hover {
+  transform: scale(1.2);
+}
+
+.audioEnd__closeButton:active {
+  transform: scale(1);
+}
+
 .audioEnd__container {
   width: 540px;
   margin: 0 auto;
@@ -9,40 +33,6 @@
 
   background-color: #fff;
   border-radius: 10px;
-}
-
-.audioEnd__closeButton {
-  position: relative;
-
-  display: flex;
-
-  width: 30px;
-  height: 30px;
-  margin-bottom: 150px;
-  margin-left: auto;
-
-  text-align: end;
-
-  background-color: transparent;
-  border: none;
-
-  transition: color 400ms;
-}
-
-.audioEnd__closeButton::after {
-  content: "+";
-
-  position: absolute;
-  bottom: -22px;
-  left: -6px;
-  transform: rotate(45deg);
-
-  font-size: 70px;
-  color: #fff;
-}
-
-.audioEnd__closeButton:hover::after {
-  color: #f00;
 }
 
 .audioEnd__title {

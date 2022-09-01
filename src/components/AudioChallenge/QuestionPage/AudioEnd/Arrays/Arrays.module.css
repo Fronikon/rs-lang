@@ -37,3 +37,20 @@
   font-size: 20px;
   line-height: 30px;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 60px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c5c3c3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}

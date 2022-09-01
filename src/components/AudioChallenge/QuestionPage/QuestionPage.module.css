@@ -26,31 +26,15 @@
 }
 
 .questionPage__closeButton {
-  position: relative;
-
   width: 30px;
   height: 30px;
 
-  background-color: transparent;
+  background-image: url("../../../assets/logo/close.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   border: none;
 
-  transition: color 400ms;
-}
-
-.questionPage__closeButton::after {
-  content: "+";
-
-  position: absolute;
-  bottom: -22px;
-  left: -6px;
-  transform: rotate(45deg);
-
-  font-size: 70px;
-  color: #fff;
-}
-
-.questionPage__closeButton:hover::after {
-  color: #f00;
+  transition: all 400ms;
 }
 
 .questionPage__main {
@@ -206,7 +190,8 @@
 .questionPage__button:hover,
 .questionPage__button_small:hover,
 .questionPage__item:hover,
-.questionPage__skipButton:hover {
+.questionPage__skipButton:hover,
+.questionPage__closeButton:hover {
   cursor: pointer;
 
   transform: scale(1.2);
@@ -215,6 +200,7 @@
 .questionPage__button:active,
 .questionPage__button_small:active,
 .questionPage__item:active,
-.questionPage__skipButton:active {
+.questionPage__skipButton:active,
+.questionPage__closeButton:active {
   transform: scale(1);
 }

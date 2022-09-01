@@ -20,6 +20,7 @@ function setRandomNumbersArray(currentAudioNumber: number) {
     }
   }
   return randomNumbersArray.sort();
+  
 }
 
 const QuestionPage: React.FC<{currentGroup: number, currentPAge: number}> = ({currentGroup, currentPAge}) => {
@@ -34,7 +35,6 @@ const QuestionPage: React.FC<{currentGroup: number, currentPAge: number}> = ({cu
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
   const [nextWord, setNextWord] = useState<boolean>(false);
   const [isEnd, setIsEnd] = useState<boolean>(false);
-  const [isRight, setIsRight] = useState<boolean>(false);
 
   useEffect(() => {
     wordsApi.getWords(currentGroup, currentPAge)
@@ -42,7 +42,6 @@ const QuestionPage: React.FC<{currentGroup: number, currentPAge: number}> = ({cu
         setNextWord(false);
         setPageArray(data);
         setIsShowResult(false);
-        setIsRight(false);
 
         const rand = Math.floor(Math.random() * unUsedNumbersArray.length);
         const temp = unUsedNumbersArray[rand];
@@ -86,7 +85,6 @@ const QuestionPage: React.FC<{currentGroup: number, currentPAge: number}> = ({cu
     setIsShowResult(true);
     const target = el.target as HTMLButtonElement;
     if (target.innerText === pageArray[currentAudioNumber].wordTranslate) {
-      setIsRight(true);
       setRightAnswersArray([...rightAnswersArray, pageArray[currentAudioNumber]]);    
     } else if (target.innerText === 'Не знаю' || target.innerText === '--->') {
       setWrongAnswersArray([...wrongAnswersArray, pageArray[currentAudioNumber]]);
