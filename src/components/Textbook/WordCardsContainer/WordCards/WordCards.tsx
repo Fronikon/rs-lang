@@ -3,7 +3,7 @@ import { WordType } from "../../../../types/types";
 import { BASE_URL } from '../../../../api/api';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { StoreType } from "../../../..";
 import { useEffect } from 'react';
 import { asyncActions } from '../../../../redux/asyncActions';
@@ -14,11 +14,10 @@ type PropsType = {
   currentGroup: number
   currentPage: number
   isLogin: boolean
+  wordCards: WordType[]
 }
 
-const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage}) => {
-  const wordCards = useSelector((state: StoreType): WordType[] => state.textbook.wordCards);
-
+const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wordCards}) => {
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 

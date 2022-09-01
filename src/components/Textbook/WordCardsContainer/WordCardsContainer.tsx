@@ -3,6 +3,9 @@ import WordCards from "./WordCards/WordCards";
 import { useSelector } from 'react-redux';
 import { StoreType } from "../../..";
 import TextbookControls from "./WordCardsControls/WordCardsControls";
+import { WordType } from './../../../types/types';
+import { useEffect, useState } from 'react';
+import { Difficulties } from "../../../types/enums";
 
 type PropsType = {
   isLogin: boolean
@@ -10,7 +13,19 @@ type PropsType = {
 
 const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
   const currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup),
-    currentPage = useSelector((state: StoreType): number => state.textbook.currentPage);
+    currentPage = useSelector((state: StoreType): number => state.textbook.currentPage),
+    wordCards = useSelector((state: StoreType): WordType[] => state.textbook.wordCards);
+
+  const [isLearnedCurrentPage, setIsLearnedCurrentPage] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (wordCards.every((item) => item.difficulty === Difficulties.learned || item.difficulty === Difficulties.learnedHard)) {
+      setIsLearnedCurrentPage(true);
+    } else {
+      setIsLearnedCurrentPage(false);
+    }
+  }, [wordCards]);
+  
 
   return (
     <div className={textbookStyles.inner}>
@@ -19,11 +34,13 @@ const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
         currentPage={currentPage}
         currentGroup={currentGroup}
         isLogin={isLogin}
+        isLearnedCurrentPage={isLearnedCurrentPage}
       />
       <WordCards
         currentPage={currentPage}
         currentGroup={currentGroup}
         isLogin={isLogin}
+        wordCards={wordCards}
       />
     </div>
   );

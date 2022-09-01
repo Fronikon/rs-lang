@@ -8,6 +8,7 @@ type PropsType = {
   currentPage: number
   currentGroup: number
   isLogin: boolean
+  isLearnedCurrentPage: boolean
 }
 
 const WordCardsControls: React.FC<PropsType> = (props) => (
@@ -15,6 +16,7 @@ const WordCardsControls: React.FC<PropsType> = (props) => (
     <div className={styles['control-page']}>
       <GroupSelect currentGroup={props.currentGroup} />
       <PageSelect currentPage={props.currentPage} />
+      {props.isLearnedCurrentPage && <div className={styles.statusPage}>✓</div>}
     </div>
     {props.isLogin && <Link to={'hardwords'}>
       <button className={cn(styles['link-on-hardwords'], 'button')}>Сложные слова</button>
