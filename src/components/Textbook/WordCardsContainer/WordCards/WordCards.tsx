@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoreType } from "../../../..";
 import { useEffect } from 'react';
 import { asyncActions } from '../../../../redux/asyncActions';
+import { useSearchParams } from "react-router-dom";
+import { actions } from "../../../../redux/actions";
 
 type PropsType = {
   currentGroup: number
@@ -18,10 +20,34 @@ const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage}) =>
   const wordCards = useSelector((state: StoreType): WordType[] => state.textbook.wordCards);
 
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
+    const group = searchParams.get('group');
+    const page = searchParams.get('page');
+    
+    if (group) {
+      let numGroup = Number(group) - 1;
+      if (numGroup < 0 || numGroup > 5) numGroup = 0;
+      dispatch(actions.setGroup(numGroup));
+    }
+    if (page) {
+      let numPage = Number(page) - 1;
+      if (numPage < 0 || numPage > 29) numPage = 0;
+      dispatch(actions.setPage(numPage));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setSearchParams({
+      group: String(currentGroup + 1),
+      page: String(currentPage + 1)
+    });
+
     dispatch(asyncActions.getWords());
-  }, [dispatch, currentGroup, currentPage]);
+  }, [dispatch, setSearchParams, currentGroup, currentPage]);
 
   return (
     <div>
