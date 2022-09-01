@@ -7,3 +7,9 @@ export enum ActionTypes {
   getWords = 'GET-WORDS',
   switchIsLogin = 'SWITCH-IS-LOGIN'
 }
+
+export const GameStatusData = {
+  start: 'START',
+  inProcess: 'IN-PROCESS',
+  finish: 'RESULT'
+};

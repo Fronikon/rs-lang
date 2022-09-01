@@ -2,159 +2,127 @@
 /* eslint-disable no-console */
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { wordsApi } from '../../../../api/api';
 import { WordType } from '../../../../types/types';
 import styles from './QuestionPage.module.css';
 import { BASE_URL } from '../../../../api/api';
-
-function setRandomNumbersArray(currentAudioNumber: number) {
-  const randomNumbersArray: number[] = [currentAudioNumber];
-  let count = 0;
-  while (count !== 4) {
-    const randomNumber = Math.floor(Math.random() * 20);
-    if (!randomNumbersArray.includes(randomNumber)) {
-      randomNumbersArray.push(randomNumber);
-      count++;
-    }
-  }
-  return randomNumbersArray.sort();
-}
+import { GameStatusData } from '../../../../types/enums';
+import WordQuest from './WordQuest/WordQuest';
+import QuestionPageHeader from './QuestionPageHeader/QuestionPageHeader';
+import QuestionPageQuestionWord from './QuestionPageQuestionWord/QuestionPageQuestionWord';
 
 type PropsType = {
-  currentGroup: number
-  currentPAge: number
+  pageArray: WordType[]
+  setGameStatus: React.Dispatch<React.SetStateAction<string>>
 }
 
-const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
-  const [currentArray, setCurrentArray] = useState<WordType[]>([]);
-  const [currentAudio, setCurrentAudio] = useState<string>('');
-  const [currentAudioNumber, setCurrentAudioNumber] = useState<number>(0);
-  const [rightAnswersArray, setRightAnswersArray] = useState<WordType[]>([]);
-  const [wrongAnswersArray, setWrongAnswersArray] = useState<WordType[]>([]);
-  const [pageArray, setPageArray] = useState<WordType[]>([]);
-  const [unUsedNumbersArray, setUnUsedNumbersArray] = useState<number[]>([
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
+const QuestionPage: React.FC<PropsType> = ({pageArray, setGameStatus}) => {
+  const [numberCurrentWord, setNumberCurrentWord] = useState<number>(0);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
-  const [nextWord, setNextWord] = useState<boolean>(false);
+  const [listCurrenWords, setListCurrenWords] = useState<WordType[]>([]);
+  const [wrongWordId, setWrongWordId] = useState<string>('');
+  const [rightWordId, setRightWordId] = useState<string>('');
+  const [rightAnswerWords, setRightAnswerWords] = useState<WordType[]>([]);
+  const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
 
   useEffect(() => {
-    wordsApi.getWords(currentGroup, currentPAge)
-      .then((data) => {
-        setNextWord(false);
-        setPageArray(data);
-        setIsShowResult(false);
+    console.log('right', rightAnswerWords);
+    console.log('wrong', wrongAnswerWords);
+  }, [rightAnswerWords, wrongAnswerWords]);
 
-        const temp = unUsedNumbersArray[Math.floor(Math.random() * unUsedNumbersArray.length)];
-        console.log('temp : ', temp );
-        setCurrentAudioNumber(temp);
-        setCurrentAudio(data[temp].audio);
-        console.log('pageArray[temp]: ', data[temp]);
+  useEffect(() => {
+    const getRandomNumber = (): number => {
+      const randomNumber = Math.floor(Math.random() * pageArray.length);
+      if (randomNumbers.includes(randomNumber)) return getRandomNumber();
+      return randomNumber;
+    };
 
-        const copyUnUsedNumbersArray: number[] = Object.assign([], unUsedNumbersArray);
-        copyUnUsedNumbersArray.splice(temp, 1);
-        setUnUsedNumbersArray(copyUnUsedNumbersArray);
-        
-        const copyArray: WordType[] = [];
-        const randomNumbersArray = setRandomNumbersArray(temp);
-        console.log('randomNumbersArray: ', randomNumbersArray);        
-        randomNumbersArray.forEach(el => {
-          copyArray.push(data[el]);
-        });
-        setCurrentArray(copyArray);
-      });
-  }, [nextWord]);
+    const randomNumbers: number[] = [numberCurrentWord];
+
+    while (randomNumbers.length < 5) {
+      randomNumbers.push(getRandomNumber());
+    }
+
+    const words = randomNumbers.map((wordIndex) => pageArray[wordIndex]);
+    const shuffledWords = words.sort(() => Math.round(Math.random() * 100) - 50);
+
+    setRightWordId(pageArray[numberCurrentWord].id);
+    setListCurrenWords([...shuffledWords]);
+  }, [numberCurrentWord]);
 
   const onClickPlayVoice = () => {
-    if (currentAudio !== '') {
-      playVoice(currentAudioNumber);
-    }
-  };
-
-  function playVoice(num: number) {
     const audio = new Audio();
-    audio.src = BASE_URL + currentAudio;
+    audio.src = BASE_URL + pageArray[numberCurrentWord].audio;
     audio.autoplay = true;
-  }
+  };
 
-  const checkWord = (el: React.MouseEvent) => {
+  const checkWord = (wordId: string) => {
     setIsShowResult(true);
-    const target = el.target as HTMLSpanElement;
-    const right = document.getElementById(pageArray[currentAudioNumber].id)?.firstChild as HTMLSpanElement;
-
-    if (target.innerText === pageArray[currentAudioNumber].wordTranslate) {
-      setRightAnswersArray([...rightAnswersArray, pageArray[currentAudioNumber]]);    
-      target.className = `${cn(styles.right)}`;
-    } else if (target.innerText === 'Не знаю' || target.innerText === '--->') {
-      setWrongAnswersArray([...wrongAnswersArray, pageArray[currentAudioNumber]]);
-      right.className = `${cn(styles.right)}`;
+    if (wordId !== rightWordId) {
+      setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord]]);
+      setWrongWordId(wordId);
     } else {
-      setWrongAnswersArray([...wrongAnswersArray, pageArray[currentAudioNumber]]);
-      target.className = `${cn(styles.wrong)}`;
-      right.className = `${cn(styles.right)}`;
+      setRightAnswerWords([...rightAnswerWords, pageArray[numberCurrentWord]]);
     }
   };
 
-  const next = (el: React.MouseEvent) => {
-    if (isShowResult) setNextWord(true);
-    else checkWord(el);
+  const next = () => {
+    if (numberCurrentWord < 19) {
+      if (wrongWordId) {
+        setWrongWordId('');
+      }
+      setIsShowResult(false);
+      setNumberCurrentWord(numberCurrentWord + 1);
+    } else {
+      setGameStatus(GameStatusData.finish);
+    }
   };
 
-  useEffect (() => {
-    console.log('Hi');
-  }, [isShowResult, rightAnswersArray]);
-
-  const WordQuest: React.FC<{wordTranslate: string , id: string}> = (props) => {
-    return (
-      <button className={cn(styles.questionPage__item, isShowResult && styles['normal'])}
-        onClick={checkWord}
-        id={props.id}
-        disabled={isShowResult}
-      >
-        {props.wordTranslate}      
-      </button>
-    );
+  const doNotKnow = () => {
+    setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord]]);
+    setIsShowResult(true);
   };
   
   return (
     <div className={cn(styles.questionPage__container)}>
-      <div className={cn(styles.questionPage__headerContainer)}>
-        <div className={cn(styles.questionPage__counter)}>{rightAnswersArray.length}/20</div>
-        <Link to="/audio">
-          <button className={cn(styles.questionPage__closeButton)} type='button'></button>
-        </Link>
-      </div>
+      <QuestionPageHeader
+        count={numberCurrentWord}
+      />
+      {isShowResult ? <QuestionPageQuestionWord
+        img={BASE_URL + pageArray[numberCurrentWord].image}
+        wordName={pageArray[numberCurrentWord].word}
+        onClickPlayVoice={onClickPlayVoice}
+      /> :
+        <button
+          className={cn(styles.questionPage__button)}
+          onClick={onClickPlayVoice}
+          type='button'>
+        </button>}
 
-      <div className={cn(styles.questionPage__main)}>
-        {/* <img 
-          src={BASE_URL + pageArray[currentAudioNumber].image}
-          className={cn(styles.questionPage__image)}
-          alt={pageArray[currentAudioNumber].word}
-        /> */}
-        <div className={cn(styles.questionPage__main_container)}>
-          <button
-            className={cn(styles.questionPage__button_small)}
-            onClick={onClickPlayVoice}
-            type='button'>
-          </button>
-          {/* <span className={cn(styles.questionPage__word)}>{pageArray[currentAudioNumber].word}</span> */}
-        </div>        
-      </div>
-      <button
-        className={cn(styles.questionPage__button)}
-        onClick={onClickPlayVoice}
-        type='button'>
-      </button>
-      
       <ul className={cn(styles.questionPage__list)}>
-        {currentArray.map((el) => <WordQuest wordTranslate={el.wordTranslate} key={el.id} id={el.id}/>)}
+        {listCurrenWords.map((el) => (
+          <WordQuest
+            wordTranslate={el.wordTranslate}
+            checkWord={checkWord}
+            isShowResult={isShowResult}
+            isWrong={el.id === wrongWordId}
+            isRight={el.id === rightWordId}
+            wordId={el.id}
+            key={el.id}
+          />
+        ))}
       </ul>
-      <button className={cn(styles.questionPage__skipButton, isShowResult && styles['next'])}
-        type='button'
-        onClick={next}
-      >
-        {isShowResult ? '--->' : 'Не знаю'}
-      </button>
+      {
+        isShowResult ?
+          <button className={cn(styles.questionPage__skipButton, styles['next'])}
+            type='button'
+            onClick={() => next()}
+          >{'--->'}</button>
+          :
+          <button className={cn(styles.questionPage__skipButton)}
+            type='button'
+            onClick={() => doNotKnow()}
+          >{'Не знаю'}</button>
+      }
     </div>
   );
 };
