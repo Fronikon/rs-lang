@@ -90,7 +90,6 @@ const Sprint: React.FC = () => {
 
       <Result
         timerEnd={timerEnd}
-        setTimerEnd={setTimerEnd}
         trueArray={trueArray}
         falseArray={falseArray}
       />

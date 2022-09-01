@@ -6,14 +6,12 @@ import { BASE_URL } from '../api/api';
 
 type TimerEnd = {
   timerEnd: boolean;
-  setTimerEnd: React.Dispatch<React.SetStateAction<boolean>>;
   trueArray: WordType[];
   falseArray: WordType[];
 };
 
 export const Result: React.FC<TimerEnd> = ({
   timerEnd,
-  setTimerEnd,
   trueArray,
   falseArray,
 }) => {
