@@ -115,6 +115,7 @@ const Game: React.FC<TPoints> = ({
             className={cn(styles.checkbox)}
             type="checkbox"
             checked={inARow % 4 >= 1}
+            readOnly
           />
           <div className={cn(styles.check)}></div>
         </label>
@@ -123,6 +124,7 @@ const Game: React.FC<TPoints> = ({
             className={cn(styles.checkbox)}
             type="checkbox"
             checked={inARow % 4 >= 2}
+            readOnly
           />
           <div className={cn(styles.check)}></div>
         </label>
@@ -131,6 +133,7 @@ const Game: React.FC<TPoints> = ({
             className={cn(styles.checkbox)}
             type="checkbox"
             checked={inARow % 4 >= 3}
+            readOnly
           />
           <div className={cn(styles.check)}></div>
         </label>

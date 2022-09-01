@@ -1,7 +1,8 @@
 import cn from 'classnames';
-import styles from './Sprint.module.css';
-import Megaphone from '../../assets/logo/megaphone.svg';
-import { WordType } from '../../types/types';
+import styles from './Sprint/Sprint.module.css';
+import Megaphone from '../assets/logo/megaphone.svg';
+import { WordType } from '../types/types';
+import { BASE_URL } from '../api/api';
 
 type TimerEnd = {
   timerEnd: boolean;
@@ -17,9 +18,17 @@ export const Result: React.FC<TimerEnd> = ({
   falseArray,
 }) => {
 
-  const wrongWords = falseArray.map((word) => (
-    <div className={cn(styles.word)} key={word.id}>
-      <img className={cn(styles.word_icon)} src={Megaphone} alt="megaphone" />
+  const audioPlay = (baseURL:string, url: string) => {
+    const audio = new Audio();
+    audio.src = baseURL + url;
+    audio.play();
+  };
+
+  const wrongWords = falseArray.map((word, i) => (
+    <div className={cn(styles.word)} key={i}>
+      <div className={cn(styles.megaphone_wrapper)} onClick={() => audioPlay(BASE_URL, word.audio)} >
+        <img className={cn(styles.word_icon)} src={Megaphone} alt="megaphone" />
+      </div>
       <p className={cn(styles.eng_bold_word)}>{word.word}</p>—
       <p className={cn(styles.rus_standart_word)}>{word.wordTranslate}</p>
     </div>
@@ -27,7 +36,12 @@ export const Result: React.FC<TimerEnd> = ({
 
   const rightWords = trueArray.map((word) => (
     <div className={cn(styles.word)} key={word.id}>
-      <img className={cn(styles.word_icon)} src={Megaphone} alt="megaphone" />
+      <img
+        className={cn(styles.word_icon)}
+        src={Megaphone}
+        alt="megaphone"
+        onClick={() => audioPlay(BASE_URL, word.audio)}
+      />
       <p className={cn(styles.eng_bold_word)}>{word.word}</p>—
       <p className={cn(styles.rus_standart_word)}>{word.wordTranslate}</p>
     </div>

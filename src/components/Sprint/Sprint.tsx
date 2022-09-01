@@ -5,7 +5,7 @@ import Dropdown from './Dropdown';
 import { useState } from 'react';
 import Timer from './Timer';
 import Game from './Game';
-import { Result } from './Result';
+import { Result } from '../Result';
 import { WordType } from '../../types/types';
 import FirstFox from '../../assets/images/first_fox.png';
 
