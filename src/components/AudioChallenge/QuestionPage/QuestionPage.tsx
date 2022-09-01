@@ -3,10 +3,11 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { wordsApi } from '../../../../api/api';
-import { WordType } from '../../../../types/types';
+import { wordsApi } from '../../../api/api';
+import { WordType } from '../../../types/types';
 import styles from './QuestionPage.module.css';
-import { BASE_URL } from '../../../../api/api';
+import { BASE_URL } from '../../../api/api';
+import AudioEnd from './AudioEnd/AudioEnd';
 
 function setRandomNumbersArray(currentAudioNumber: number) {
   const randomNumbersArray: number[] = [currentAudioNumber];
@@ -21,12 +22,7 @@ function setRandomNumbersArray(currentAudioNumber: number) {
   return randomNumbersArray.sort();
 }
 
-type PropsType = {
-  currentGroup: number
-  currentPAge: number
-}
-
-const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
+const QuestionPage: React.FC<{currentGroup: number, currentPAge: number}> = ({currentGroup, currentPAge}) => {
   const [currentArray, setCurrentArray] = useState<WordType[]>([]);
   const [currentAudio, setCurrentAudio] = useState<string>('');
   const [currentAudioNumber, setCurrentAudioNumber] = useState<number>(0);
@@ -37,6 +33,8 @@ const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
   const [nextWord, setNextWord] = useState<boolean>(false);
+  const [isEnd, setIsEnd] = useState<boolean>(false);
+  const [isRight, setIsRight] = useState<boolean>(false);
 
   useEffect(() => {
     wordsApi.getWords(currentGroup, currentPAge)
@@ -44,34 +42,41 @@ const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
         setNextWord(false);
         setPageArray(data);
         setIsShowResult(false);
+        setIsRight(false);
 
-        const temp = unUsedNumbersArray[Math.floor(Math.random() * unUsedNumbersArray.length)];
-        console.log('temp : ', temp );
+        const rand = Math.floor(Math.random() * unUsedNumbersArray.length);
+        const temp = unUsedNumbersArray[rand];
+        console.log('temp: ', temp);
         setCurrentAudioNumber(temp);
         setCurrentAudio(data[temp].audio);
-        console.log('pageArray[temp]: ', data[temp]);
 
         const copyUnUsedNumbersArray: number[] = Object.assign([], unUsedNumbersArray);
-        copyUnUsedNumbersArray.splice(temp, 1);
+        copyUnUsedNumbersArray.splice(rand, 1);
         setUnUsedNumbersArray(copyUnUsedNumbersArray);
         
         const copyArray: WordType[] = [];
         const randomNumbersArray = setRandomNumbersArray(temp);
-        console.log('randomNumbersArray: ', randomNumbersArray);        
         randomNumbersArray.forEach(el => {
           copyArray.push(data[el]);
         });
         setCurrentArray(copyArray);
       });
+    // playVoice();
   }, [nextWord]);
 
   const onClickPlayVoice = () => {
     if (currentAudio !== '') {
-      playVoice(currentAudioNumber);
+      playVoice();
     }
   };
 
-  function playVoice(num: number) {
+  useEffect(() => {
+    console.log('rightAnswersArray: ', rightAnswersArray);
+    console.log('wrongAnswersArray: ', wrongAnswersArray);
+    console.log('unUsedNumbersArray: ', unUsedNumbersArray);
+  }, [rightAnswersArray, wrongAnswersArray, unUsedNumbersArray]);
+
+  function playVoice() {
     const audio = new Audio();
     audio.src = BASE_URL + currentAudio;
     audio.autoplay = true;
@@ -79,34 +84,27 @@ const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
 
   const checkWord = (el: React.MouseEvent) => {
     setIsShowResult(true);
-    const target = el.target as HTMLSpanElement;
-    const right = document.getElementById(pageArray[currentAudioNumber].id)?.firstChild as HTMLSpanElement;
-
+    const target = el.target as HTMLButtonElement;
     if (target.innerText === pageArray[currentAudioNumber].wordTranslate) {
+      setIsRight(true);
       setRightAnswersArray([...rightAnswersArray, pageArray[currentAudioNumber]]);    
-      target.className = `${cn(styles.right)}`;
     } else if (target.innerText === 'Не знаю' || target.innerText === '--->') {
       setWrongAnswersArray([...wrongAnswersArray, pageArray[currentAudioNumber]]);
-      right.className = `${cn(styles.right)}`;
     } else {
       setWrongAnswersArray([...wrongAnswersArray, pageArray[currentAudioNumber]]);
-      target.className = `${cn(styles.wrong)}`;
-      right.className = `${cn(styles.right)}`;
+      target.className = `${cn(styles.questionPage__item, styles['wrong'])}`;
     }
   };
 
-  const next = (el: React.MouseEvent) => {
-    if (isShowResult) setNextWord(true);
-    else checkWord(el);
-  };
-
-  useEffect (() => {
-    console.log('Hi');
-  }, [isShowResult, rightAnswersArray]);
+  function getClassForButton(id: string) {
+    if (id === pageArray[currentAudioNumber].id) return 'right';
+    else return 'normal';
+  }
 
   const WordQuest: React.FC<{wordTranslate: string , id: string}> = (props) => {
+    const style = getClassForButton(props.id) as string;
     return (
-      <button className={cn(styles.questionPage__item, isShowResult && styles['normal'])}
+      <button className={cn(styles.questionPage__item, isShowResult && styles[style])}
         onClick={checkWord}
         id={props.id}
         disabled={isShowResult}
@@ -115,46 +113,73 @@ const QuestionPage: React.FC<PropsType> = ({currentGroup, currentPAge}) => {
       </button>
     );
   };
-  
-  return (
-    <div className={cn(styles.questionPage__container)}>
-      <div className={cn(styles.questionPage__headerContainer)}>
-        <div className={cn(styles.questionPage__counter)}>{rightAnswersArray.length}/20</div>
-        <Link to="/audio">
-          <button className={cn(styles.questionPage__closeButton)} type='button'></button>
-        </Link>
-      </div>
 
+  const Answer: React.FC = () => {
+    return (
       <div className={cn(styles.questionPage__main)}>
-        {/* <img 
+        <img 
           src={BASE_URL + pageArray[currentAudioNumber].image}
           className={cn(styles.questionPage__image)}
           alt={pageArray[currentAudioNumber].word}
-        /> */}
+        />
         <div className={cn(styles.questionPage__main_container)}>
           <button
             className={cn(styles.questionPage__button_small)}
             onClick={onClickPlayVoice}
             type='button'>
           </button>
-          {/* <span className={cn(styles.questionPage__word)}>{pageArray[currentAudioNumber].word}</span> */}
+          <span className={cn(styles.questionPage__word)}>{pageArray[currentAudioNumber].word}</span>
         </div>        
       </div>
+
+    );
+  };
+
+  const Button: React.FC = () => {
+    return (
       <button
         className={cn(styles.questionPage__button)}
         onClick={onClickPlayVoice}
         type='button'>
       </button>
-      
-      <ul className={cn(styles.questionPage__list)}>
-        {currentArray.map((el) => <WordQuest wordTranslate={el.wordTranslate} key={el.id} id={el.id}/>)}
-      </ul>
-      <button className={cn(styles.questionPage__skipButton, isShowResult && styles['next'])}
-        type='button'
-        onClick={next}
-      >
-        {isShowResult ? '--->' : 'Не знаю'}
-      </button>
+
+    );
+  };
+
+  const next = (el: React.MouseEvent) => {
+    if (!isShowResult) checkWord(el);    
+    else if (unUsedNumbersArray.length !== 0) setNextWord(true);
+    else setIsEnd(true);
+  };
+  
+  const Question: React.FC = () => {
+    return (
+      <div className={cn(styles.questionPage__container)}>
+        <div className={cn(styles.questionPage__headerContainer)}>
+          <div className={cn(styles.questionPage__counter)}>{20 - unUsedNumbersArray.length}/20</div>
+          <Link to="/audio" className={cn(styles.questionPage__closeButton)}></Link>
+        </div>
+  
+        { isShowResult ? <Answer /> : <Button /> }
+        
+        <ul className={cn(styles.questionPage__list)}>
+          {currentArray.map((el) => <WordQuest wordTranslate={el.wordTranslate} key={el.id} id={el.id}/>)}
+        </ul>
+        <button className={cn(styles.questionPage__skipButton, isShowResult && styles['next'])}
+          type='button'
+          onClick={next}
+        >
+          {isShowResult ? '--->' : 'Не знаю'}
+        </button>
+      </div>
+    );  
+  };
+  
+  return (
+    <div className={cn(styles.questionPage)}>
+      { isEnd
+        ? <AudioEnd rightAnswerArray={rightAnswersArray} wrongAnswerArray={wrongAnswersArray} />
+        : <Question /> }
     </div>
   );
 };
