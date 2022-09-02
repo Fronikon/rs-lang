@@ -1,7 +1,11 @@
 import styles from "./WordCard.module.css";
 import VoiceButton from './VoiceButton/VoiceButton';
+import WordCardChoice from "./WordCardChoice/WordCardChoice";
+import { Difficulties } from "../../../types/enums";
+import cn from 'classnames';
 
 type WordCardPropsType = {
+  id: string
   img: string
   audio: string
   audioMeaning: string
@@ -13,6 +17,8 @@ type WordCardPropsType = {
   textMeaningTranslate: string
   textExample: string
   textExampleTranslate: string
+  difficulty?: Difficulties
+  isLogin: boolean
 }
 
 type WordCardMeaningPropsType = {
@@ -73,6 +79,9 @@ const WordCardExample: React.FC<WordCardExamplePropsType> = (props) => (
 );
 
 const WordCard: React.FC<WordCardPropsType> = (props) => {
+  const isLearned = props.difficulty === Difficulties.learned || props.difficulty === Difficulties.learnedHard;
+  const isHard = props.difficulty === Difficulties.hard || props.difficulty === Difficulties.learnedHard;
+
   return (
     <div className={styles['word-card']}>
       <img className={styles.img} src={props.img} alt="word" />
@@ -87,11 +96,23 @@ const WordCard: React.FC<WordCardPropsType> = (props) => {
         />
         <WordCardMeaning
           textMeaning={props.textMeaning}
-          textMeaningTranslate={props.textMeaningTranslate} />
+          textMeaningTranslate={props.textMeaningTranslate}
+        />
         <WordCardExample
           textExample={props.textExample}
-          textExampleTranslate={props.textExampleTranslate} />
+          textExampleTranslate={props.textExampleTranslate}
+        />
+        {props.isLogin && <WordCardChoice
+          wordId={props.id}
+          difficulty={props.difficulty}
+          isLearned={isLearned}
+          isHard={isHard}
+        />}
       </div>
+      {props.isLogin && <div className={styles['statuses-word']}>
+        {isLearned && <div className={cn(styles['status-word'], styles['learned'])}></div>}
+        {isHard && <div className={cn(styles['status-word'], styles['hard'])}></div>}
+      </div>}
     </div>
   );
 };

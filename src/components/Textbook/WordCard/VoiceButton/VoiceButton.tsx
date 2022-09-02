@@ -1,8 +1,8 @@
 import styles from "./VoiceButton.module.css";
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { StoreType } from "../../../../..";
-import { actions } from "../../../../../redux/actions";
+import { StoreType } from "../../../..";
+import { actions } from "../../../../redux/actions";
 
 type PropsType = {
   audio: string

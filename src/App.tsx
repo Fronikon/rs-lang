@@ -9,6 +9,7 @@ import Textbook from './components/Textbook/Textbook';
 import About from './components/About/About';
 import Sprint from './components/Sprint/Sprint';
 import Authorization from './components/Autorization/Authorization';
+import AudioChallenge from './components/AudioChallenge/AudioChallenge';
 import styles from './App.module.css';
 import { useSelector } from 'react-redux';
 import { StoreType } from '.';
@@ -24,10 +25,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Greeting />} />
           <Route path="/auth" element={<Authorization />} />
-          <Route path="/textbook" element={<Textbook />} />
+          <Route path='/textbook/*' element={<Textbook />} />
           <Route path="/about" element={<About />} />
           <Route path="/sprint" element={<Sprint />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/audio//*" element={<AudioChallenge />} />
         </Routes>
       </div>
       <Footer />
