@@ -22,7 +22,7 @@ const AudioStart: React.FC<PropsType> = (props) => {
             currentGroup={props.currentGroup} />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

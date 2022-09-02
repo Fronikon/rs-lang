@@ -2,13 +2,13 @@
 /* eslint-disable no-console */
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
-import { WordType } from '../../../../types/types';
 import styles from './QuestionPage.module.css';
-import { BASE_URL } from '../../../../api/api';
-import { GameStatusData } from '../../../../types/enums';
 import WordQuest from './WordQuest/WordQuest';
 import QuestionPageHeader from './QuestionPageHeader/QuestionPageHeader';
 import QuestionPageQuestionWord from './QuestionPageQuestionWord/QuestionPageQuestionWord';
+import { WordType } from '../../../types/types';
+import { BASE_URL } from '../../../api/api';
+import { GameStatusData } from '../../../types/enums';
 
 type PropsType = {
   pageArray: WordType[]

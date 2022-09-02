@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import { StoreType } from '../..';
 import styles from './AudioChallenge.module.css';
 import AudioStart from './AudioStart/AudioStart';
-import QuestionPage from './AudioStart/QuestionPage/QuestionPage';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { WordType } from '../../types/types';
 import { wordsApi } from '../../api/api';
 import { GameStatusData } from '../../types/enums';
+import QuestionPage from './QuestionPage/QuestionPage';
 
 const AudioChallenge: React.FC = () => {
   const currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup);
