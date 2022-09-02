@@ -12,7 +12,6 @@
       "no-console": 1,
       "semi": 1,
       "indent": ["warn", 2],
-      "max-len": ["warn", { "code": 120 }],
       "no-multiple-empty-lines": ["warn", { "max": 2, "maxEOF": 0 }],
       "@typescript-eslint/no-explicit-any": 2
   }

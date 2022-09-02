@@ -1,3 +1,5 @@
+import { Difficulties } from "./enums";
+
 export type AuthInputValueType = {
   [index: string]: string
   username: string
@@ -25,8 +27,7 @@ export type LabelFormPropsType = {
   setError: React.Dispatch<React.SetStateAction<AuthInputValueType>>
 }
 
-export type WordType = {
-  id: string,
+export interface generalWordType {
   group: number,
   page: number,
   word: string,
@@ -40,6 +41,33 @@ export type WordType = {
   wordTranslate: string,
   textMeaningTranslate: string,
   textExampleTranslate: string
+}
+
+export interface WordType extends generalWordType {
+  id: string,
+  difficulty?: Difficulties
+}
+
+export interface UsersWordType extends generalWordType {
+  _id: string,
+  userWord?: {
+    difficulty?: Difficulties
+  }
+}
+
+type WordTotalCountType = {
+  count: number
+}
+
+export type UserWordFilterResultType = {
+  paginatedResults: UsersWordType[],
+  totalCount: WordTotalCountType[]
+}
+
+export type UserWordOptionsType = {
+  id: string,
+  difficulty: Difficulties,
+  wordId: string
 }
 
 export interface IUser {
