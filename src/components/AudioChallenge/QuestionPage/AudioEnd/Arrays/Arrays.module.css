@@ -39,12 +39,11 @@
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 60px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 ::-webkit-scrollbar-thumb {
