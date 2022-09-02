@@ -5,6 +5,7 @@ export enum ActionTypes {
   setAudio = 'SET-AUDIO',
   setGroup = 'SET-GROUP',
   setPage = 'SET-PAGE',
+  getWords = 'GET-WORDS',
   switchIsLogin = 'SWITCH-IS-LOGIN'
 }
 
@@ -13,3 +14,9 @@ export enum Difficulties {
   learnedHard = 'learned-hard',
   hard = 'hard',
 }
+
+export const GameStatusData = {
+  start: 'START',
+  inProcess: 'IN-PROCESS',
+  finish: 'RESULT'
+};
