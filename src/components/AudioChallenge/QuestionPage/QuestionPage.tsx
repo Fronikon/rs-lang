@@ -13,16 +13,19 @@ import { GameStatusData } from '../../../types/enums';
 type PropsType = {
   pageArray: WordType[]
   setGameStatus: React.Dispatch<React.SetStateAction<string>>
+  rightAnswerWords: WordType[]
+  setRightAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
+  wrongAnswerWords: WordType[]
+  setWrongAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
 }
 
-const QuestionPage: React.FC<PropsType> = ({pageArray, setGameStatus}) => {
+const QuestionPage: React.FC<PropsType> = ({
+  pageArray, setGameStatus, rightAnswerWords, setRightAnswerWords, wrongAnswerWords, setWrongAnswerWords}) => {
   const [numberCurrentWord, setNumberCurrentWord] = useState<number>(0);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
   const [listCurrenWords, setListCurrenWords] = useState<WordType[]>([]);
   const [wrongWordId, setWrongWordId] = useState<string>('');
   const [rightWordId, setRightWordId] = useState<string>('');
-  const [rightAnswerWords, setRightAnswerWords] = useState<WordType[]>([]);
-  const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
 
   useEffect(() => {
     console.log('right', rightAnswerWords);

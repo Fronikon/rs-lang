@@ -22,29 +22,25 @@
 }
 
 .questionPage__closeButton {
+  cursor: pointer;
+
   position: relative;
 
   width: 30px;
   height: 30px;
 
   background-color: transparent;
+  background-image: url("../../../../assets/logo/close.png");
+  background-repeat: no-repeat;
   border: none;
 
-  transition: color 400ms;
+  transition: all 400ms;
 }
 
-.questionPage__closeButton::after {
-  content: "+";
-
-  position: absolute;
-  bottom: -22px;
-  left: -6px;
-  transform: rotate(45deg);
-
-  font-size: 70px;
-  color: #fff;
+.questionPage__closeButton:hover {
+  transform: scale(1.2);
 }
 
-.questionPage__closeButton:hover::after {
-  color: #f00;
+.questionPage__closeButton:active {
+  transform: scale(1);
 }

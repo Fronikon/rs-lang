@@ -9,6 +9,7 @@ import { WordType } from '../../types/types';
 import { wordsApi } from '../../api/api';
 import { GameStatusData } from '../../types/enums';
 import QuestionPage from './QuestionPage/QuestionPage';
+import AudioEnd from './QuestionPage/AudioEnd/AudioEnd';
 
 const AudioChallenge: React.FC = () => {
   const currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup);
@@ -16,6 +17,8 @@ const AudioChallenge: React.FC = () => {
   const currentPage = Math.floor(Math.random() * 30);
   const [gameStatus, setGameStatus] = useState<string>(GameStatusData.start);
   const [pageArray, setPageArray] = useState<WordType[]>([]);
+  const [rightAnswerWords, setRightAnswerWords] = useState<WordType[]>([]);
+  const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
 
   useEffect(() => {
     if (gameStatus === GameStatusData.inProcess) {
@@ -32,12 +35,22 @@ const AudioChallenge: React.FC = () => {
       {gameStatus === GameStatusData.start &&
       <AudioStart
         setGameStatus={setGameStatus}
-        currentGroup={currentGroup}/>}
+        currentGroup={currentGroup}
+      />}
       {gameStatus === GameStatusData.inProcess && pageArray.length > 0 &&
       <QuestionPage
         setGameStatus={setGameStatus}
-        pageArray={pageArray}/>}
-      {gameStatus === GameStatusData.finish && <div>Result</div>}
+        pageArray={pageArray}
+        rightAnswerWords={rightAnswerWords}
+        setRightAnswerWords={setRightAnswerWords}
+        wrongAnswerWords={wrongAnswerWords}
+        setWrongAnswerWords={setWrongAnswerWords}
+      />}
+      {gameStatus === GameStatusData.finish &&
+      <AudioEnd
+        rightAnswerWords={rightAnswerWords}
+        wrongAnswerWords={wrongAnswerWords}
+      />}
     </main>
   );
 };
