@@ -2,71 +2,12 @@
   padding: 20px;
 }
 
-.questionPage__headerContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.questionPage__counter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100px;
-  height: 100px;
-
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  line-height: 29px;
-  color: #fff;
-
-  background-color: rgb(0 0 0 / 33%);
-  border: 5px solid #fff;
-  border-radius: 50%;
-}
-
-.questionPage__closeButton {
-  width: 30px;
-  height: 30px;
-
-  background-image: url("../../../assets/logo/close.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  border: none;
-
-  transition: all 400ms;
-}
-
-.questionPage__main {
-  display: flex;
-  flex-direction: column;
-
-  width: 360px;
-  margin: 170px auto 96px;
-}
-
-.questionPage__image {
-  display: block;
-
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  margin-bottom: 26px;
-
-  border-radius: 50%;
-}
-
-.questionPage__main_container {
-  display: flex;
-  align-items: center;
-}
-
 .questionPage__button,
 .questionPage__button_small {
   display: flex;
 
   background-color: rgb(0 0 0 / 33%);
-  background-image: url("../../../assets/logo/volume.png");
+  background-image: url("../../../../assets/logo/volume.png");
   background-repeat: no-repeat;
   background-position: center center;
   border: none;
@@ -81,25 +22,6 @@
   margin: 170px auto;
 }
 
-.questionPage__button_small {
-  width: 40px;
-  height: 40px;
-
-  background-size: 20px 20px;
-}
-
-.questionPage__word {
-  display: block;
-
-  width: 280px;
-
-  font-family: Inter, sans-serif;
-  font-size: 40px;
-  line-height: 48px;
-  color: #fff;
-  text-align: center;
-}
-
 .questionPage__list {
   display: flex;
   gap: 70px;
@@ -111,56 +33,6 @@
   font-size: 40px;
   line-height: 48px;
   color: #fff;
-}
-
-.questionPage__item {
-  position: relative;
-
-  color: #fff;
-
-  background-color: transparent;
-  border: none;
-
-  transition: all 400ms;
-}
-
-.normal {
-  color: rgb(255 255 255 / 33%);
-}
-
-.right {
-  position: relative;
-
-  color: #0f0;
-}
-
-.wrong {
-  position: relative;
-
-  color: #f00;
-}
-
-.right::before,
-.wrong::before {
-  content: "";
-
-  position: absolute;
-  top: 17px;
-  left: -30px;
-
-  width: 20px;
-  height: 20px;
-
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.right::before {
-  background-image: url("../../../assets/logo/right.png");
-}
-
-.wrong::before {
-  background-image: url("../../../assets/logo/wrong.png");
 }
 
 .questionPage__skipButton {
@@ -183,15 +55,10 @@
   transition: all 400ms;
 }
 
-.next {
-  background-color: rgb(0 0 0 / 33%);
-}
-
 .questionPage__button:hover,
 .questionPage__button_small:hover,
 .questionPage__item:hover,
-.questionPage__skipButton:hover,
-.questionPage__closeButton:hover {
+.questionPage__skipButton:hover {
   cursor: pointer;
 
   transform: scale(1.2);
@@ -200,7 +67,6 @@
 .questionPage__button:active,
 .questionPage__button_small:active,
 .questionPage__item:active,
-.questionPage__skipButton:active,
-.questionPage__closeButton:active {
+.questionPage__skipButton:active {
   transform: scale(1);
 }
