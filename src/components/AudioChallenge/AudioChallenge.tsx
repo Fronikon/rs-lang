@@ -21,6 +21,10 @@ const AudioChallenge: React.FC = () => {
   const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
 
   useEffect(() => {
+    if (gameStatus === GameStatusData.start) {
+      setRightAnswerWords([]);
+      setWrongAnswerWords([]);
+    }
     if (gameStatus === GameStatusData.inProcess) {
       wordsApi.getWords(currentGroup, currentPage)
         .then((data: WordType[]) => {
@@ -50,6 +54,7 @@ const AudioChallenge: React.FC = () => {
       <AudioEnd
         rightAnswerWords={rightAnswerWords}
         wrongAnswerWords={wrongAnswerWords}
+        setGameStatus={setGameStatus}
       />}
     </main>
   );

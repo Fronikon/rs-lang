@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-console */
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import styles from './QuestionPage.module.css';
@@ -27,10 +25,10 @@ const QuestionPage: React.FC<PropsType> = ({
   const [wrongWordId, setWrongWordId] = useState<string>('');
   const [rightWordId, setRightWordId] = useState<string>('');
 
-  useEffect(() => {
-    console.log('right', rightAnswerWords);
-    console.log('wrong', wrongAnswerWords);
-  }, [rightAnswerWords, wrongAnswerWords]);
+  // useEffect(() => {
+  //   console.log('right', rightAnswerWords);
+  //   console.log('wrong', wrongAnswerWords);
+  // }, [rightAnswerWords, wrongAnswerWords]);
 
   useEffect(() => {
     const getRandomNumber = (): number => {
@@ -89,6 +87,7 @@ const QuestionPage: React.FC<PropsType> = ({
     <div className={cn(styles.questionPage__container)}>
       <QuestionPageHeader
         count={numberCurrentWord}
+        setGameStatus={setGameStatus}
       />
       {isShowResult ? <QuestionPageQuestionWord
         img={BASE_URL + pageArray[numberCurrentWord].image}
