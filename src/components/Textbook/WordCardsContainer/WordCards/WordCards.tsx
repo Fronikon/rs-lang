@@ -5,10 +5,13 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { useDispatch } from 'react-redux';
 import { StoreType } from "../../../..";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { asyncActions } from '../../../../redux/asyncActions';
 import { useSearchParams } from "react-router-dom";
 import { actions } from "../../../../redux/actions";
+import Loader from '../../../Loader/Loader';
+import styles from '../../../Loader/Loader.module.css';
+import cn from 'classnames';
 
 type PropsType = {
   currentGroup: number
@@ -20,8 +23,10 @@ type PropsType = {
 const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wordCards}) => {
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const group = searchParams.get('group');
     const page = searchParams.get('page');
     
@@ -35,22 +40,29 @@ const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wor
       if (numPage < 0 || numPage > 29) numPage = 0;
       dispatch(actions.setPage(numPage));
     }
+    setLoading(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     setSearchParams({
       group: String(currentGroup + 1),
       page: String(currentPage + 1)
     });
 
     dispatch(asyncActions.getWords());
+    setLoading(false);
   }, [dispatch, setSearchParams, currentGroup, currentPage]);
 
   return (
     <div>
-      {wordCards.map((wordCard) => <WordCard
+      {loading ? (
+        <div className={cn(styles.loader_wrapper)}>
+          <Loader />
+        </div>
+      ) : (wordCards.map((wordCard) => <WordCard
         id={wordCard.id}
         img={BASE_URL + wordCard.image}
         audio={BASE_URL + wordCard.audio}
@@ -66,7 +78,7 @@ const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wor
         difficulty={wordCard.difficulty}
         isLogin={isLogin}
         key={wordCard.id}
-      />)}
+      />))}
     </div>
   );
 };

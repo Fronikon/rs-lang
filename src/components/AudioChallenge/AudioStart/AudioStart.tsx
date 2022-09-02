@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { GameStatusData } from '../../../types/enums';
-import GroupSelect from '../../Textbook/WordCardsControls/GroupSelect/GroupSelect';
+import GroupSelect from '../../Textbook/WordCardsContainer/WordCardsControls/GroupSelect/GroupSelect';
 import styles from './AudioStart.module.css';
 
 type PropsType = {
