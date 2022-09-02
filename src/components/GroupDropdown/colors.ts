@@ -1,0 +1,1 @@
+export const colorsGroup = ['#B31F43', '#039473', '#AD5D9A', '#F86E6C', '#3BAFDA', '#5F4A8B'];

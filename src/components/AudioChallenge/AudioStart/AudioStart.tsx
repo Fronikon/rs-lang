@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import { GameStatusData } from '../../../types/enums';
-import GroupSelect from '../../Textbook/WordCardsContainer/WordCardsControls/GroupSelect/GroupSelect';
+import GroupDropdown from '../../GroupDropdown/GroupDropdown';
 import styles from './AudioStart.module.css';
 
 type PropsType = {
   setGameStatus: React.Dispatch<React.SetStateAction<string>>
-  currentGroup: number
+  group: number
+  changeGroup: (group: number) => void
 }
 
 const AudioStart: React.FC<PropsType> = (props) => {
@@ -18,8 +19,7 @@ const AudioStart: React.FC<PropsType> = (props) => {
           <button
             onClick={() => props.setGameStatus(GameStatusData.inProcess)}
             className={cn(styles.start__button)}>Начать</button>
-          <GroupSelect
-            currentGroup={props.currentGroup} />
+          <GroupDropdown group={props.group} callback={props.changeGroup}/>
         </div>
       </div>
     </main>

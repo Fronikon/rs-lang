@@ -1,6 +1,4 @@
 import cn from 'classnames';
-import { useSelector } from 'react-redux';
-import { StoreType } from '../..';
 import styles from './AudioChallenge.module.css';
 import AudioStart from './AudioStart/AudioStart';
 import { useState } from 'react';
@@ -12,13 +10,13 @@ import QuestionPage from './QuestionPage/QuestionPage';
 import AudioEnd from './QuestionPage/AudioEnd/AudioEnd';
 
 const AudioChallenge: React.FC = () => {
-  const currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup);
-  // const currentPage = useSelector((state: StoreType): number => state.textbook.currentPage);
-  const currentPage = Math.floor(Math.random() * 30);
+  const [group, setGroup] = useState<number>(0);
   const [gameStatus, setGameStatus] = useState<string>(GameStatusData.start);
   const [pageArray, setPageArray] = useState<WordType[]>([]);
   const [rightAnswerWords, setRightAnswerWords] = useState<WordType[]>([]);
   const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
+
+  const changeGroup = (group: number) => setGroup(group);
 
   useEffect(() => {
     if (gameStatus === GameStatusData.start) {
@@ -26,7 +24,8 @@ const AudioChallenge: React.FC = () => {
       setWrongAnswerWords([]);
     }
     if (gameStatus === GameStatusData.inProcess) {
-      wordsApi.getWords(currentGroup, currentPage)
+      const currentPage = Math.floor(Math.random() * 30);
+      wordsApi.getWords(group, currentPage)
         .then((data: WordType[]) => {
           setPageArray([...data]);
         });
@@ -39,7 +38,8 @@ const AudioChallenge: React.FC = () => {
       {gameStatus === GameStatusData.start &&
       <AudioStart
         setGameStatus={setGameStatus}
-        currentGroup={currentGroup}
+        group={group}
+        changeGroup={changeGroup}
       />}
       {gameStatus === GameStatusData.inProcess && pageArray.length > 0 &&
       <QuestionPage
