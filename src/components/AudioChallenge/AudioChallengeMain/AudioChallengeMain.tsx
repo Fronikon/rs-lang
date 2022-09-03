@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
-import styles from './QuestionPage.module.css';
+import styles from './AudioChallengeMain.module.css';
 import WordQuest from './WordQuest/WordQuest';
-import QuestionPageHeader from './QuestionPageHeader/QuestionPageHeader';
-import QuestionPageQuestionWord from './QuestionPageQuestionWord/QuestionPageQuestionWord';
+import QuestionPageHeader from './AudioChallengeMainHeader/AudioChallengeMain';
+import QuestionPageQuestionWord from './QuestionWord/QuestionWord';
 import { WordType } from '../../../types/types';
 import { BASE_URL } from '../../../api/api';
 import { GameStatusData } from '../../../types/enums';
@@ -17,7 +17,7 @@ type PropsType = {
   setWrongAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
 }
 
-const QuestionPage: React.FC<PropsType> = ({
+const AudioChallengeMain: React.FC<PropsType> = ({
   pageArray, setGameStatus, rightAnswerWords, setRightAnswerWords, wrongAnswerWords, setWrongAnswerWords}) => {
   const [numberCurrentWord, setNumberCurrentWord] = useState<number>(0);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
@@ -124,4 +124,4 @@ const QuestionPage: React.FC<PropsType> = ({
   );
 };
 
-export default QuestionPage;
+export default AudioChallengeMain;

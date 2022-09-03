@@ -1,4 +1,4 @@
-.audio__container {
+.result__container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,7 +13,7 @@
   border-radius: 10px;
 }
 
-.audio__title {
+.result__title {
   margin: 0;
 
   font-family: Roboto, sans-serif;
@@ -23,7 +23,7 @@
   text-align: center;
 }
 
-.audio__description {
+.result__description {
   margin: 0;
   padding: 20px 51px;
 

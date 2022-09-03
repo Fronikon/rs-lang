@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { GameStatusData } from '../../../../types/enums';
-import styles from './QuestionPageHeader.module.css';
+import styles from './AudioChallengeMain.module.css';
 
 type QuestionPageHeaderPropsType = {
   count: number
