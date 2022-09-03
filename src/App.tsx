@@ -1,5 +1,8 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import { Greeting } from './components/Greeting/Greeting';
 import NavMenu from './components/NavMenu/NavMenu';
 import Header from './components/Header/Header';
@@ -11,11 +14,43 @@ import Sprint from './components/Sprint/Sprint';
 import Authorization from './components/Autorization/Authorization';
 import AudioChallenge from './components/AudioChallenge/AudioChallenge';
 import styles from './App.module.css';
-import { useSelector } from 'react-redux';
 import { StoreType } from '.';
+import { getRefreshToken } from './api/api';
+
+type Response = {
+  "message": "string",
+  "token": "string",
+  "refreshToken": "string",
+  "userId": "string",
+  "name": "string"
+}
+
+const user: Response = JSON.parse((localStorage.getItem('user') as string));
+
+const checkAuth = async() => {
+  console.log('localStorage.getItem(user): ', localStorage.getItem('user'));
+
+  if (!localStorage.getItem('token')) return console.log('Вы не авторизованы');  
+  else {
+    const refresh = await getRefreshToken(user.userId, user.refreshToken).then((response) => {
+      console.log('refresh status: ', response.status);
+      if (response.status === 200) {
+        return response.json().then((res) => {
+          localStorage.setItem('user', JSON.stringify(res));
+          return res.token;        
+        });
+      }
+    });
+    if (refresh) console.log('Вы авторизованы');
+    else console.log('Время сессии истекло');
+  }
+};
 
 function App() {
   const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
+  // const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+
+  checkAuth();
 
   return (
     <>

@@ -50,8 +50,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
         if (response.status === 200) {
           dispatch(actions.switchIsLogin());
           response.json().then((res) => {
-            localStorage.setItem('token', res.token);
-            localStorage.setItem('userId', res.userId);
+            localStorage.setItem('user', JSON.stringify(res));
           });
         }
         const message = getMessageLogin(response.status);

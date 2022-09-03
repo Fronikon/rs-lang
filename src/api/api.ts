@@ -125,15 +125,12 @@ export const createUser = async (user: IUser): Promise<Response> => {
   return response;
 };
 
-// *********************************************
-export const refreshToken = async (userId: IUser): Promise<Response> => {
-  const response = await fetch(`${BASE_URL}/users/${userId}/tokens`, {
+export const getRefreshToken = async (userId: string, refreshToken: string): Promise<Response> => {
+  return await fetch(`${BASE_URL}/users/${userId}/tokens`, {
     method: 'GET',
-    body: JSON.stringify(userId)
-  }).then(response => {
-    if (response.status === 200) return response.json();
-  }).then(data => data);
-  localStorage.setItem('token', response.token);
-  localStorage.setItem('refreshToken', response.refreshToken);
-  return response;
+    headers: {
+      'Authorization': `Bearer ${refreshToken}`,
+      'Accept': 'application/json',
+    },
+  });  
 };
