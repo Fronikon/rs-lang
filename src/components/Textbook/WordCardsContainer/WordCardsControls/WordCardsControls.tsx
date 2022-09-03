@@ -42,8 +42,16 @@ const WordCardsControls: React.FC<PropsType> = (props) => {
       </div>
       {props.isLogin &&
       <div className={styles['link-container']}>
-        <button onClick={() => toSprint()} className={cn('button')}>Спринт</button>
-        <button onClick={() => toAudio()} className={cn('button')}>Аудиовызов</button>
+        <button
+          onClick={() => toSprint()}
+          className={cn('button', props.isLearnedCurrentPage && 'button_inactive')}
+          disabled={props.isLearnedCurrentPage}
+        >Спринт</button>
+        <button
+          onClick={() => toAudio()}
+          className={cn('button', props.isLearnedCurrentPage && 'button_inactive')}
+          disabled={props.isLearnedCurrentPage}
+        >Аудиовызов</button>
         <Link to={'hardwords'}>
           <button className={cn(styles['link-on-hardwords'], 'button')}>Сложные слова</button>
         </Link>
