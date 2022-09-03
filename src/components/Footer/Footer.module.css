@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
 
-  height: 100px;
+  height: var(--footer-height);
 
   background: #241d30;
 }
@@ -20,7 +20,35 @@
   margin-left: 51px;
 }
 
-.year {
+.creation_year {
   font-size: 36px;
   color: #fff;
+}
+
+@media (max-width: 1284px) {
+  .student {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .student {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 842px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    height: 230px;
+  }
+  .students {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .student {
+    font-size: 16px;
+  }
 }

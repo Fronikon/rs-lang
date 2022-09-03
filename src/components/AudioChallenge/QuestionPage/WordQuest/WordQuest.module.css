@@ -16,13 +16,13 @@
 .right {
   position: relative;
 
-  color: #0f0;
+  color: var(--green-primary);
 }
 
 .wrong {
   position: relative;
 
-  color: #f00;
+  color: var(--red-primary);
 }
 
 .right::before,

@@ -57,7 +57,7 @@ const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wor
   }, [dispatch, setSearchParams, currentGroup, currentPage]);
 
   return (
-    <div>
+    <div className={cn(styles.cardsContainer)}>
       {loading ? (
         <div className={cn(styles.loader_wrapper)}>
           <Loader />
@@ -78,7 +78,8 @@ const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wor
         difficulty={wordCard.difficulty}
         isLogin={isLogin}
         key={wordCard.id}
-      />))}
+      />
+      ))}
     </div>
   );
 };

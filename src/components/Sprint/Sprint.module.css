@@ -62,7 +62,7 @@
 .chapter {
   cursor: pointer;
   position: relative;
-  background-color: #B31F43;
+  background-color: var(--red-primary);
   border: 1px solid white;
   display: flex;
   justify-content: center;
@@ -106,7 +106,7 @@
 }
 
 .dropdown_item:nth-child(1) {
-  background-color: #B31F43;
+  background-color: var(--red-primary);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -134,7 +134,7 @@
 }
 
 .red {
-  background-color: #B31F43;
+  background-color: var(--red-primary);
 }
 
 .green {
@@ -193,8 +193,8 @@
 }
 
 .green_points {
-  color: #1FA74D;
-  border: 1px solid #1FA74D;
+  color: var(--green-primary);
+  border: 1px solid var(--green-primary);
 }
 
 .orange_points {
@@ -203,8 +203,8 @@
 }
 
 .red_points {
-  color: #A71F1F;
-  border: 1px solid #A71F1F;
+  color: var(--red-primary);
+  border: 1px solid var(--red-primary);
 }
 
 .purple_points {
@@ -276,7 +276,7 @@
 
 .checkbox:checked + .check:after {
   display: block;
-  background-color: #1FA74D;
+  background-color: var(--green-primary);
 }
 
 .picture {
@@ -297,7 +297,7 @@
 }
 
 .true {
-  background: #1FA74D;
+  background: var(--green-primary);
   border-radius: 10px;
   border: none;
   box-shadow: 0 5px 5px black;
@@ -317,7 +317,7 @@
 }
 
 .false {
-  background: #A71F1F;
+  background: var(--red-primary);
   border-radius: 10px;
   border: none;
   box-shadow: 0 5px 5px black;
@@ -405,7 +405,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #A71F1F;
+  background-color: var(--red-primary);
   border-radius: 40%;
   color: white;
   margin-left: 6px;
@@ -417,7 +417,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1FA74D;
+  background-color: var(--green-primary);
   border-radius: 40%;
   color: white;
   margin-left: 6px;
@@ -476,4 +476,10 @@
 
 .none {
   display: none;
+}
+
+@media (max-width: 1280px) {
+  .timer {
+    left: 40%;
+  }
 }

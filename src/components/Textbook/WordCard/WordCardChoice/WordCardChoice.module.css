@@ -8,9 +8,9 @@
 }
 
 .know {
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
 }
 
 .unknown {
-  background-color: #a71f1f;
+  background-color: var(--red-primary);
 }

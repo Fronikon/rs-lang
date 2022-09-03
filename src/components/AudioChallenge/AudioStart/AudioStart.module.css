@@ -51,7 +51,7 @@
   line-height: 29px;
   color: #fff;
 
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
   border: none;
   border-radius: 10px;
   box-shadow: 0 5px 5px black;
