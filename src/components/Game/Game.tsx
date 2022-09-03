@@ -11,8 +11,10 @@ import styles from './Game.module.css';
 import GameStart from './GameStart/GameStart';
 import Result from './Result/Result';
 import AudioChallengeMain from './../AudioChallenge/AudioChallengeMain/AudioChallengeMain';
+import { SprintMain } from './../Sprint/Sprint';
 
 type PropsType = {
+  gameTipe: string
   title: string
   description: string
 }
@@ -75,14 +77,25 @@ const Game: React.FC<PropsType> = (props) => {
       }
       {
         gameStatus === GameStatusData.inProcess && pageArray.length > 0 &&
-        <AudioChallengeMain
-          setGameStatus={setGameStatus}
-          pageArray={pageArray}
-          rightAnswerWords={rightAnswerWords}
-          setRightAnswerWords={setRightAnswerWords}
-          wrongAnswerWords={wrongAnswerWords}
-          setWrongAnswerWords={setWrongAnswerWords}
-        />
+        (
+          props.gameTipe === 'sprint' ?
+            <SprintMain
+              setGameStatus={setGameStatus}
+              pageArray={pageArray}
+              rightAnswerWords={rightAnswerWords}
+              setRightAnswerWords={setRightAnswerWords}
+              wrongAnswerWords={wrongAnswerWords}
+              setWrongAnswerWords={setWrongAnswerWords}
+            /> :
+            <AudioChallengeMain
+              setGameStatus={setGameStatus}
+              pageArray={pageArray}
+              rightAnswerWords={rightAnswerWords}
+              setRightAnswerWords={setRightAnswerWords}
+              wrongAnswerWords={wrongAnswerWords}
+              setWrongAnswerWords={setWrongAnswerWords}
+            />
+        )
       }
       {
         gameStatus === GameStatusData.finish &&

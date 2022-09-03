@@ -5,65 +5,50 @@ import SecondFox from '../../assets/images/second_fox.png';
 import ThirdFox from '../../assets/images/third_fox.png';
 import ForthFox from '../../assets/images/forth_fox.png';
 import { useEffect, useState } from 'react';
-import { wordsApi } from '../../api/api';
 import {WordType} from '../../types/types';
 
-type TPoints = {
+type PropsType = {
+  pageArray: WordType[];
   points: number;
   setPoints: React.Dispatch<React.SetStateAction<number>>;
   trueArray: WordType[];
   setTrueArray: React.Dispatch<React.SetStateAction<WordType[]>>;
   falseArray: WordType[];
   setFalseArray: React.Dispatch<React.SetStateAction<WordType[]>>;
-  groupNumber: number;
-  scale: number;
-  setScale: React.Dispatch<React.SetStateAction<number>>;
-  inARow: number;
-  setInARow: React.Dispatch<React.SetStateAction<number>>;
-  fox: string;
-  setFox: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Game: React.FC<TPoints> = ({
+const GameInner: React.FC<PropsType> = ({
+  pageArray,
   points,
   setPoints,
   trueArray,
   setTrueArray,
   falseArray,
   setFalseArray,
-  groupNumber,
-  scale,
-  setScale,
-  inARow,
-  setInARow,
-  fox,
-  setFox,
 }) => {
   const [ruWord, setRuWord] = useState('');
   const [engWord, setEngWord] = useState('');
   const [currentArr, setCurrentArr] = useState<WordType[]>([]);
   const [pointsColor, setPointsColor] = useState('green_points');
+  const [fox, setFox] = useState(FirstFox);
+  const [scale, setScale] = useState(10);
+  const [inARow, setInARow] = useState(0);
 
   useEffect(() => {
     const randomNumber = Math.round(Math.random());
     const randomWord1 = Math.floor(Math.random() * 20);
     const randomWord2 = Math.floor(Math.random() * 20);
-    const randomPage = Math.floor(Math.random() * 30);
 
     if (randomNumber === 1) {
-      wordsApi.getWords(groupNumber, randomPage).then((data) => {
-        setEngWord(data[randomWord1].word);
-        setRuWord(data[randomWord1].wordTranslate);
-        setCurrentArr([data[randomWord1], data[randomWord1]]);
-      });
+      setEngWord(pageArray[randomWord1].word);
+      setRuWord(pageArray[randomWord1].wordTranslate);
+      setCurrentArr([pageArray[randomWord1], pageArray[randomWord1]]);
     } else {
-      wordsApi.getWords(groupNumber, randomPage).then((data) => {
-        setEngWord(data[randomWord1].word);
-        setRuWord(data[randomWord2].wordTranslate);
-        setCurrentArr([data[randomWord1], data[randomWord2]]);
-      });
+      setEngWord(pageArray[randomWord1].word);
+      setRuWord(pageArray[randomWord2].wordTranslate);
+      setCurrentArr([pageArray[randomWord1], pageArray[randomWord2]]);
     }
-  }, [groupNumber, trueArray, falseArray]);
+  }, [trueArray, falseArray, pageArray]);
 
   useEffect(() => {
     if (inARow === 0) {
@@ -154,4 +139,4 @@ const Game: React.FC<TPoints> = ({
   );
 };
 
-export default Game;
+export default GameInner;

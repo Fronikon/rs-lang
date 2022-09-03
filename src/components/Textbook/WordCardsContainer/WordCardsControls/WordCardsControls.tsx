@@ -22,6 +22,7 @@ const WordCardsControls: React.FC<PropsType> = (props) => {
   };
   
   const toSprint = () => {
+    dispatch(actions.switchIsStartGameFromTextbook());
     navigate('/sprint');
   };
   const toAudio = () => {
