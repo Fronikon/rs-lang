@@ -12,7 +12,6 @@ export enum ActionTypes {
 
 export enum Difficulties {
   learned = 'learned',
-  learnedHard = 'learned-hard',
   hard = 'hard',
 }
 

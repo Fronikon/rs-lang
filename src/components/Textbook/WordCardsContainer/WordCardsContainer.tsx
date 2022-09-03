@@ -19,7 +19,7 @@ const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
   const [isLearnedCurrentPage, setIsLearnedCurrentPage] = useState<boolean>(false);
 
   useEffect(() => {
-    if (wordCards.every((item) => item.difficulty === Difficulties.learned || item.difficulty === Difficulties.learnedHard)) {
+    if (wordCards.every((item) => item.difficulty === Difficulties.learned || item.difficulty === Difficulties.hard)) {
       setIsLearnedCurrentPage(true);
     } else {
       setIsLearnedCurrentPage(false);

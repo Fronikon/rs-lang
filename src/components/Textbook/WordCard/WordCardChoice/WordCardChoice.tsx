@@ -10,29 +10,19 @@ import { AnyAction } from "redux";
 
 type PropsType = {
   wordId: string
-  isLearned: boolean
-  isHard: boolean
   difficulty?: Difficulties
 }
 
-const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, isLearned, isHard}) => {
+const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty}) => {
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
 
   const changeDifficultyUserWord = async (value: string, oppositeValue: string) => {
     if (difficulty === oppositeValue) {
-      await wordsApi.updateUserWord(wordId, Difficulties.learnedHard);
+      await wordsApi.updateUserWord(wordId, value);
+    } else if(difficulty === value) {
+      await wordsApi.deleteUserWord(wordId);
     } else {
       await wordsApi.postUserWord(wordId, value);
-    }
-    dispatch(asyncActions.getWords());
-    dispatch(asyncActions.getHardWords());
-  };
-
-  const onDeleteWord = async (value: string) => {
-    if (difficulty === Difficulties.learnedHard) {
-      await wordsApi.updateUserWord(wordId, value);
-    } else {
-      await wordsApi.deleteUserWord(wordId);
     }
     dispatch(asyncActions.getWords());
     dispatch(asyncActions.getHardWords());
@@ -42,20 +32,16 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, isLearned, isH
     <div className={styles['word-card__choice']}>
       <button
         onClick={
-          isLearned ?
-            () => onDeleteWord(Difficulties.hard) :
-            () => changeDifficultyUserWord(Difficulties.learned, Difficulties.hard)
+          () => changeDifficultyUserWord(Difficulties.learned, Difficulties.hard)
         }
-        className={cn(styles['word-card__button'], 'button', styles.know)}
-      >{isLearned ? 'Я забыл' : 'Я выучил'}</button>
+        className={cn(styles['word-card__button'], 'button', styles.learned)}
+      >{difficulty === Difficulties.learned ? 'Я забыл' : 'Я выучил'}</button>
       <button
         onClick={
-          isHard ?
-            () => onDeleteWord(Difficulties.learned) :
-            () => changeDifficultyUserWord(Difficulties.hard, Difficulties.learned)
+          () => changeDifficultyUserWord(Difficulties.hard, Difficulties.learned)
         }
-        className={cn(styles['word-card__button'], 'button', styles.unknown)}
-      >{isHard ? 'Мне не сложно' : 'Мне сложно'}</button>
+        className={cn(styles['word-card__button'], 'button', styles.hard)}
+      >{difficulty === Difficulties.hard ? 'Мне не сложно' : 'Мне сложно'}</button>
     </div>
   );
 };

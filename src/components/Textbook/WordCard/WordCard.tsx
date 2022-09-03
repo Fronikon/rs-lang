@@ -79,9 +79,6 @@ const WordCardExample: React.FC<WordCardExamplePropsType> = (props) => (
 );
 
 const WordCard: React.FC<WordCardPropsType> = (props) => {
-  const isLearned = props.difficulty === Difficulties.learned || props.difficulty === Difficulties.learnedHard;
-  const isHard = props.difficulty === Difficulties.hard || props.difficulty === Difficulties.learnedHard;
-
   return (
     <div className={styles['word-card']}>
       <img className={styles.img} src={props.img} alt="word" />
@@ -105,13 +102,11 @@ const WordCard: React.FC<WordCardPropsType> = (props) => {
         {props.isLogin && <WordCardChoice
           wordId={props.id}
           difficulty={props.difficulty}
-          isLearned={isLearned}
-          isHard={isHard}
         />}
       </div>
       {props.isLogin && <div className={styles['statuses-word']}>
-        {isLearned && <div className={cn(styles['status-word'], styles['learned'])}></div>}
-        {isHard && <div className={cn(styles['status-word'], styles['hard'])}></div>}
+        {props.difficulty === Difficulties.learned && <div className={cn(styles['status-word'], styles['learned'])}></div>}
+        {props.difficulty === Difficulties.hard && <div className={cn(styles['status-word'], styles['hard'])}></div>}
       </div>}
     </div>
   );
