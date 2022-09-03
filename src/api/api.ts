@@ -1,4 +1,4 @@
-import { IUser, UserWordFilterResultType, UserWordOptionsType, WordType } from "../types/types";
+import { IUser, serverResponse, UserWordFilterResultType, UserWordOptionsType, WordType } from "../types/types";
 
 export const BASE_URL = 'https://rs-lang-team47.herokuapp.com/';
 
@@ -125,11 +125,11 @@ export const createUser = async (user: IUser): Promise<Response> => {
   return response;
 };
 
-export const getRefreshToken = async (userId: string, refreshToken: string): Promise<Response> => {
-  return await fetch(`${BASE_URL}/users/${userId}/tokens`, {
+export const getRefreshToken = async (user: serverResponse): Promise<Response> => {
+  return await fetch(`${BASE_URL}users/${user.userId}/tokens`, {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${refreshToken}`,
+      'Authorization': `Bearer ${user.refreshToken}`,
       'Accept': 'application/json',
     },
   });  

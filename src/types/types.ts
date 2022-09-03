@@ -80,3 +80,11 @@ export type AuthDataType = {
   message: string
   code?: number
 }
+
+export type serverResponse = {
+  "message": "string",
+  "token": "string",
+  "refreshToken": "string",
+  "userId": "string",
+  "name": "string"
+}

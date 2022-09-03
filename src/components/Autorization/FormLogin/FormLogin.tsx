@@ -51,6 +51,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
           dispatch(actions.switchIsLogin());
           response.json().then((res) => {
             localStorage.setItem('user', JSON.stringify(res));
+            localStorage.setItem('timeLogin', JSON.stringify(Date.now()));
           });
         }
         const message = getMessageLogin(response.status);

@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Greeting } from './components/Greeting/Greeting';
 import NavMenu from './components/NavMenu/NavMenu';
@@ -16,41 +15,38 @@ import AudioChallenge from './components/AudioChallenge/AudioChallenge';
 import styles from './App.module.css';
 import { StoreType } from '.';
 import { getRefreshToken } from './api/api';
-
-type Response = {
-  "message": "string",
-  "token": "string",
-  "refreshToken": "string",
-  "userId": "string",
-  "name": "string"
-}
-
-const user: Response = JSON.parse((localStorage.getItem('user') as string));
-
-const checkAuth = async() => {
-  console.log('localStorage.getItem(user): ', localStorage.getItem('user'));
-
-  if (!localStorage.getItem('token')) return console.log('Вы не авторизованы');  
-  else {
-    const refresh = await getRefreshToken(user.userId, user.refreshToken).then((response) => {
-      console.log('refresh status: ', response.status);
-      if (response.status === 200) {
-        return response.json().then((res) => {
-          localStorage.setItem('user', JSON.stringify(res));
-          return res.token;        
-        });
-      }
-    });
-    if (refresh) console.log('Вы авторизованы');
-    else console.log('Время сессии истекло');
-  }
-};
+import { serverResponse } from './types/types';
+import { actions } from './redux/actions';
 
 function App() {
   const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
-  // const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+  const [isCheckLogin, setIsCheckLogin] = useState<boolean>(false);
+  const user: serverResponse = JSON.parse((localStorage.getItem('user') as string));
+  const timeLogin = Number(localStorage.getItem('timeLogin'));
+  const limitTime = 4 * 60 * 60 * 1000 - 5 * 60 * 1000; // 3h 55m
+  const dispatch = useDispatch();
 
-  checkAuth();
+  useEffect(() => {
+    setIsCheckLogin(true);
+    if (isCheckLogin) {
+      if (!user) return;
+      else if ((Date.now() - timeLogin) < limitTime) dispatch(actions.switchIsLogin());
+      else {
+        (function refresh() {
+          getRefreshToken(user).then((response) => {
+            if (response.status === 200) {
+              dispatch(actions.switchIsLogin());
+              return response.json().then((res) => {
+                localStorage.setItem('user', JSON.stringify(res));
+                localStorage.setItem('timeLogin', JSON.stringify(Date.now()));
+              });
+            }
+          });
+        })();
+      } 
+    }
+  }, [isCheckLogin]);
+
 
   return (
     <>
