@@ -22,6 +22,9 @@ export type setPageAction = {
   type: ActionTypes.setPage
   page: number
 }
+export type switchIsStartGameFromTextbookActions = {
+  type: ActionTypes.switchIsStartGameFromTextbook
+}
 export type switchIsLogin = {type: ActionTypes.switchIsLogin}
 
 export const actions = {
@@ -31,5 +34,6 @@ export const actions = {
   setAudio: (newAudio: null | HTMLAudioElement): setAudioAction => ({type: ActionTypes.setAudio, newAudio}),
   setGroup: (group: number): setGroupAction => ({type: ActionTypes.setGroup, group}),
   setPage: (page: number): setPageAction => ({type: ActionTypes.setPage, page}),
+  switchIsStartGameFromTextbook: (): switchIsStartGameFromTextbookActions => ({type: ActionTypes.switchIsStartGameFromTextbook}),
   switchIsLogin: (): switchIsLogin => ({type: ActionTypes.switchIsLogin})
 };

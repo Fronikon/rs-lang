@@ -8,15 +8,37 @@ import { wordsApi } from '../../api/api';
 import { GameStatusData } from '../../types/enums';
 import QuestionPage from './QuestionPage/QuestionPage';
 import AudioEnd from './QuestionPage/AudioEnd/AudioEnd';
+import { useSelector } from 'react-redux';
+import { StoreType } from '../..';
+import { useDispatch } from 'react-redux';
+import { actions } from './../../redux/actions';
 
 const AudioChallenge: React.FC = () => {
   const [group, setGroup] = useState<number>(0);
+  const [page, setPage] = useState<number>(0);
+
   const [gameStatus, setGameStatus] = useState<string>(GameStatusData.start);
   const [pageArray, setPageArray] = useState<WordType[]>([]);
+
   const [rightAnswerWords, setRightAnswerWords] = useState<WordType[]>([]);
   const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
 
-  const changeGroup = (group: number) => setGroup(group);
+  const isStartGameFromTextbook = useSelector((state: StoreType) => state.textbook.isStartGameFromTextbook);
+  const currentPage = useSelector((state: StoreType) => state.textbook.currentPage);
+  const currentGroup = useSelector((state: StoreType) => state.textbook.currentGroup);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isStartGameFromTextbook) {
+      setPage(currentPage);
+      setGroup(currentGroup);
+      setGameStatus(GameStatusData.inProcess);
+    } else {
+      setPage(Math.floor(Math.random() * 30));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (gameStatus === GameStatusData.start) {
@@ -24,13 +46,15 @@ const AudioChallenge: React.FC = () => {
       setWrongAnswerWords([]);
     }
     if (gameStatus === GameStatusData.inProcess) {
-      const currentPage = Math.floor(Math.random() * 30);
-      wordsApi.getWords(group, currentPage)
+      if (isStartGameFromTextbook) {
+        dispatch(actions.switchIsStartGameFromTextbook());
+      }
+      wordsApi.getWords(group, page)
         .then((data: WordType[]) => {
           setPageArray([...data]);
         });
     }
-  }, [gameStatus]);
+  }, [dispatch, gameStatus]);
   
 
   return (
@@ -39,7 +63,7 @@ const AudioChallenge: React.FC = () => {
       <AudioStart
         setGameStatus={setGameStatus}
         group={group}
-        changeGroup={changeGroup}
+        changeGroup={(group: number) => setGroup(group)}
       />}
       {gameStatus === GameStatusData.inProcess && pageArray.length > 0 &&
       <QuestionPage

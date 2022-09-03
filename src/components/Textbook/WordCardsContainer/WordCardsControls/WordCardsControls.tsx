@@ -1,6 +1,6 @@
 import styles from './WordCardsControls.module.css';
 import PageSelect from './PageSelect/PageSelect';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { actions } from '../../../../redux/actions';
 import { useDispatch } from 'react-redux';
@@ -15,9 +15,18 @@ type PropsType = {
 
 const WordCardsControls: React.FC<PropsType> = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const changeGroup = (group: number) => {
     dispatch(actions.setGroup(group));
+  };
+  
+  const toSprint = () => {
+    navigate('/sprint');
+  };
+  const toAudio = () => {
+    dispatch(actions.switchIsStartGameFromTextbook());
+    navigate('/audio');
   };
 
   return (
@@ -32,12 +41,8 @@ const WordCardsControls: React.FC<PropsType> = (props) => {
       </div>
       {props.isLogin &&
       <div className={styles['link-container']}>
-        <Link to={'/sprint'}>
-          <button className={cn('button')}>Спринт</button>
-        </Link>
-        <Link to={'/audio'}>
-          <button className={cn('button')}>Аудиовызов</button>
-        </Link>
+        <button onClick={() => toSprint()} className={cn('button')}>Спринт</button>
+        <button onClick={() => toAudio()} className={cn('button')}>Аудиовызов</button>
         <Link to={'hardwords'}>
           <button className={cn(styles['link-on-hardwords'], 'button')}>Сложные слова</button>
         </Link>

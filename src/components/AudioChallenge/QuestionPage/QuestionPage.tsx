@@ -25,11 +25,6 @@ const QuestionPage: React.FC<PropsType> = ({
   const [wrongWordId, setWrongWordId] = useState<string>('');
   const [rightWordId, setRightWordId] = useState<string>('');
 
-  // useEffect(() => {
-  //   console.log('right', rightAnswerWords);
-  //   console.log('wrong', wrongAnswerWords);
-  // }, [rightAnswerWords, wrongAnswerWords]);
-
   useEffect(() => {
     const getRandomNumber = (): number => {
       const randomNumber = Math.floor(Math.random() * pageArray.length);
