@@ -1,4 +1,4 @@
-import { IUser, serverResponse, UserWordFilterResultType, UserWordOptionsType, WordType } from "../types/types";
+import { IUser, UserWordFilterResultType, UserWordOptionsType, WordType } from "../types/types";
 
 export const BASE_URL = 'https://rs-lang-team47.herokuapp.com/';
 
@@ -26,6 +26,7 @@ export const wordsApi = {
     const token = window.localStorage.getItem('token');
     const userId = window.localStorage.getItem('userId');
 
+    // eslint-disable-next-line max-len
     const url = `${BASE_URL}users/${userId}/aggregatedWords?filter={"$or":[{"userWord.difficulty":"hard"},{"userWord.difficulty":"learned-hard"}]}&wordsPerPage=3600`;
     const options = {
       headers: {
@@ -125,11 +126,27 @@ export const createUser = async (user: IUser): Promise<Response> => {
   return response;
 };
 
-export const getRefreshToken = async (user: serverResponse): Promise<Response> => {
-  return await fetch(`${BASE_URL}users/${user.userId}/tokens`, {
+export const getRefreshToken = async () => {
+  const refreshToken = window.localStorage.getItem('refreshToken');
+  const userId = window.localStorage.getItem('userId');
+
+  return await fetch(`${BASE_URL}users/${userId}/tokens`, {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${user.refreshToken}`,
+      'Authorization': `Bearer ${refreshToken}`,
+      'Accept': 'application/json',
+    },
+  });  
+};
+
+export const getStatistics = async () => {
+  const token = window.localStorage.getItem('token');
+  const userId = window.localStorage.getItem('userId');
+
+  return await fetch(`${BASE_URL}users/${userId}/statistics`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
       'Accept': 'application/json',
     },
   });  

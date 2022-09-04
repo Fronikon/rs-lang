@@ -81,10 +81,23 @@ export type AuthDataType = {
   code?: number
 }
 
-export type serverResponse = {
-  "message": "string",
-  "token": "string",
-  "refreshToken": "string",
-  "userId": "string",
-  "name": "string"
+export type StatisticsType = {
+  learnedWords: number
+  optional: {
+    lastVisit: Date
+    sprint: {
+      countNewWordsPerDay: number
+      countLearnedWordsPerDay: number
+      seriesSucсessAnswersPerDay: number
+      countAnswersPerDay: number
+      countSucсessAnswersPerDay: number
+    }
+    audiochallenge: {
+      countNewWordsPerDay: number
+      countLearnedWordsPerDay: number
+      seriesSucсessAnswersPerDay: number
+      countAnswersPerDay: number
+      countSucсessAnswersPerDay: number
+    }
+  }
 }
