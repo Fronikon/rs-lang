@@ -75,6 +75,7 @@ const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wor
         textMeaningTranslate={wordCard.textMeaningTranslate}
         textExample={wordCard.textExample}
         textExampleTranslate={wordCard.textExampleTranslate}
+        optional={wordCard.optional}
         difficulty={wordCard.difficulty}
         isLogin={isLogin}
         key={wordCard.id}

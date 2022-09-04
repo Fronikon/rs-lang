@@ -1,4 +1,4 @@
-import { IUser, UserWordFilterResultType, UserWordOptionsType, WordType } from "../types/types";
+import { IUser, UserWordFilterResultType, UserWordOptionalType, UserWordOptionsType, WordType } from "../types/types";
 
 export const BASE_URL = 'https://rs-lang-team47.herokuapp.com/';
 
@@ -26,7 +26,7 @@ export const wordsApi = {
     const token = window.localStorage.getItem('token');
     const userId = window.localStorage.getItem('userId');
 
-    const url = `${BASE_URL}users/${userId}/aggregatedWords?filter={"$or":[{"userWord.difficulty":"hard"},{"userWord.difficulty":"learned-hard"}]}&wordsPerPage=3600`;
+    const url = `${BASE_URL}users/${userId}/aggregatedWords?filter={"userWord.difficulty":"hard"}&wordsPerPage=3600`;
     const options = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -36,7 +36,7 @@ export const wordsApi = {
     return fetch(url, options).then((res) => res.json());
   },
 
-  async updateUserWord(wordId: string, difficulty: string) {
+  async updateUserWord(wordId: string, difficulty: string, optional: UserWordOptionalType) {
     const token = window.localStorage.getItem('token');
     const userId = window.localStorage.getItem('userId');
 
@@ -50,14 +50,14 @@ export const wordsApi = {
       },
       body: JSON.stringify({
         difficulty,
-        optional: {}
+        optional
       })
     };
 
     return fetch(url, options);
   },
 
-  async postUserWord(wordId: string, difficulty: string) {
+  async postUserWord(wordId: string, difficulty: string, optional: UserWordOptionalType) {
     const token = window.localStorage.getItem('token');
     const userId = window.localStorage.getItem('userId');
 
@@ -71,7 +71,7 @@ export const wordsApi = {
       },
       body: JSON.stringify({
         difficulty,
-        optional: {}
+        optional
       })
     };
 

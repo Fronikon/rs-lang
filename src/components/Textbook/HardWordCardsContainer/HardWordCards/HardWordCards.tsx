@@ -37,6 +37,7 @@ const HardWordCards: React.FC<PropsType> = ({isLogin}) => {
             textMeaningTranslate={wordCard.textMeaningTranslate}
             textExample={wordCard.textExample}
             textExampleTranslate={wordCard.textExampleTranslate}
+            optional={wordCard.userWord?.optional}
             difficulty={wordCard.userWord?.difficulty}
             isLogin={isLogin}
             key={wordCard._id}
