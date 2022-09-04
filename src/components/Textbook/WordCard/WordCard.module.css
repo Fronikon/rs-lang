@@ -27,7 +27,7 @@
 .word-name b {
   margin-left: 10px;
 
-  color: #1fa74d;
+  color: var(--green-primary);
 }
 
 .translate {
@@ -51,9 +51,32 @@
 }
 
 .hard {
-  background-color: #a71f1f;
+  background-color: var(--red-primary);
 }
 
 .learned {
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
+}
+
+@media (max-width: 1424px) {
+
+  .word-card {
+    height: 740px;
+    width: 460px;
+    flex-direction: column;
+  }
+
+  .img {
+    width: 460px;
+    height: 400px;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  
+  .word-card:nth-child(odd) {
+    margin-right: 0;
+  }
+  
 }

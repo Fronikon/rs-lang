@@ -54,3 +54,22 @@
 
   text-align: center;
 }
+
+@media (max-width: 1130px) {
+  .cards {
+    gap: 50px;
+    margin-bottom: 150px;
+  }
+
+  .card {
+    width: 300px;
+  }
+}
+
+@media (max-width: 830px) {
+  .cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

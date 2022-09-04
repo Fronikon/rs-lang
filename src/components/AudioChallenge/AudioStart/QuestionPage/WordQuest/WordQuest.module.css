@@ -41,9 +41,9 @@
 }
 
 .right::before {
-  background-image: url("../../../../assets/logo/right.png");
+  background-image: url("../../../../../assets/logo/right.png");
 }
 
 .wrong::before {
-  background-image: url("../../../../assets/logo/wrong.png");
+  background-image: url("../../../../../assets/logo/wrong.png");
 }

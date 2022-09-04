@@ -8,9 +8,9 @@
 }
 
 .learned {
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
 }
 
 .hard {
-  background-color: #a71f1f;
+  background-color: var(--red-primary);
 }

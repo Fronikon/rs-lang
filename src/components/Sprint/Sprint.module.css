@@ -43,9 +43,8 @@
 }
 
 .green_points {
-  color: #1fa74d;
-
-  border: 1px solid #1fa74d;
+  color: var(--green-primary);
+  border: 1px solid var(--green-primary);
 }
 
 .orange_points {
@@ -55,9 +54,8 @@
 }
 
 .red_points {
-  color: #a71f1f;
-
-  border: 1px solid #a71f1f;
+  color: var(--red-primary);
+  border: 1px solid var(--red-primary);
 }
 
 .purple_points {
@@ -143,8 +141,7 @@
 
 .checkbox:checked + .check::after {
   display: block;
-
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
 }
 
 .picture {
@@ -167,6 +164,14 @@
 }
 
 .true {
+  background: var(--green-primary);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
   cursor: pointer;
 
   display: flex;
@@ -191,6 +196,14 @@
 }
 
 .false {
+  background: var(--red-primary);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 5px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
   cursor: pointer;
 
   display: flex;
