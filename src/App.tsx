@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer';
 import Textbook from './components/Textbook/Textbook';
 import About from './components/About/About';
 import Sprint from './components/Sprint/Sprint';
+import Statistics from './components/Statistics/Statistics';
 import Authorization from './components/Autorization/Authorization';
 import AudioChallenge from './components/AudioChallenge/AudioChallenge';
 import styles from './App.module.css';
@@ -45,6 +46,7 @@ function App() {
         })();
       } 
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCheckLogin]);
 
 
@@ -59,8 +61,9 @@ function App() {
           <Route path='/textbook/*' element={<Textbook />} />
           <Route path="/about" element={<About />} />
           <Route path="/sprint" element={<Sprint />} />
+          <Route path="/audio" element={<AudioChallenge />} />
+          <Route path="/statistics" element={<Statistics />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/audio//*" element={<AudioChallenge />} />
         </Routes>
       </div>
       <Footer />
