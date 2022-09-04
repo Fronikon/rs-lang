@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import styles from './WordQuest.module.css';
-import generalStyles from '../QuestionPage.module.css';
+import generalStyles from '../AudioChallengeMain.module.css';
 
 type WordQuestPropsType = {
   wordId: string

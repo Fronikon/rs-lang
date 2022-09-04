@@ -1,4 +1,5 @@
 import { ActionTypes } from "../../types/enums";
+import { AnyAction } from 'redux';
 
 const authState = {
   isLogin: false
@@ -6,11 +7,7 @@ const authState = {
 
 type authStateType = typeof authState
 
-type ActionType = {
-  type: string,
-}
-
-const authReducer = (state: authStateType = authState, action: ActionType): authStateType => {
+const authReducer = (state: authStateType = authState, action: AnyAction): authStateType => {
   switch (action.type) {
   case ActionTypes.switchIsLogin: {
     return {...state, isLogin: !state.isLogin};

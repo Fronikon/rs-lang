@@ -29,7 +29,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sprint" element={<Sprint />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/audio//*" element={<AudioChallenge />} />
+          <Route path="/audio" element={<AudioChallenge />} />
         </Routes>
       </div>
       <Footer />

@@ -6,12 +6,12 @@ export enum ActionTypes {
   setGroup = 'SET-GROUP',
   setPage = 'SET-PAGE',
   getWords = 'GET-WORDS',
-  switchIsLogin = 'SWITCH-IS-LOGIN'
+  switchIsLogin = 'SWITCH-IS-LOGIN',
+  switchIsStartGameFromTextbook = 'IS-START-GAME-FROM-TEXTBOOK'
 }
 
 export enum Difficulties {
-  learned = 'learned',
-  learnedHard = 'learned-hard',
+  common = 'common',
   hard = 'hard',
 }
 

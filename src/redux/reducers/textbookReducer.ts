@@ -1,19 +1,19 @@
 import { ActionTypes } from "../../types/enums";
 import { UsersWordType, WordType } from "../../types/types";
-import { setAudioAction, getWordsAction, setGroupAction, setPageAction, setHardWordsAction } from "../actions";
+import { AnyAction } from 'redux';
 
 const initialState = {
   wordCards: [] as WordType[],
   hardWordCards: [] as UsersWordType[],
   currentAudio: null as null | HTMLAudioElement,
   currentGroup: 0 as number,
-  currentPage: 0 as number
+  currentPage: 0 as number,
+  isStartGameFromTextbook: false as boolean
 };
 
 type initialStateType = typeof initialState
-type ActionType = getWordsAction | setAudioAction | setGroupAction | setPageAction | setHardWordsAction
 
-const textbookReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
+const textbookReducer = (state: initialStateType = initialState, action: AnyAction): initialStateType => {
   switch (action.type) {
   case ActionTypes.setWords: {
     return {...state, wordCards: action.words};
@@ -29,6 +29,9 @@ const textbookReducer = (state: initialStateType = initialState, action: ActionT
   }
   case ActionTypes.setPage: {
     return {...state, currentPage: action.page};
+  }
+  case ActionTypes.switchIsStartGameFromTextbook: {
+    return {...state, isStartGameFromTextbook: !state.isStartGameFromTextbook};
   }
   default: {
     return state;

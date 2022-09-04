@@ -5,65 +5,53 @@ import SecondFox from '../../assets/images/second_fox.png';
 import ThirdFox from '../../assets/images/third_fox.png';
 import ForthFox from '../../assets/images/forth_fox.png';
 import { useEffect, useState } from 'react';
-import { wordsApi } from '../../api/api';
 import {WordType} from '../../types/types';
+import { GameStatusData } from './../../types/enums';
 
-type TPoints = {
+type PropsType = {
+  setGameStatus: React.Dispatch<React.SetStateAction<string>>
+  pageArray: WordType[];
   points: number;
   setPoints: React.Dispatch<React.SetStateAction<number>>;
   trueArray: WordType[];
   setTrueArray: React.Dispatch<React.SetStateAction<WordType[]>>;
   falseArray: WordType[];
   setFalseArray: React.Dispatch<React.SetStateAction<WordType[]>>;
-  groupNumber: number;
-  scale: number;
-  setScale: React.Dispatch<React.SetStateAction<number>>;
-  inARow: number;
-  setInARow: React.Dispatch<React.SetStateAction<number>>;
-  fox: string;
-  setFox: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Game: React.FC<TPoints> = ({
+const GameInner: React.FC<PropsType> = ({
+  setGameStatus,
+  pageArray,
   points,
   setPoints,
   trueArray,
   setTrueArray,
   falseArray,
   setFalseArray,
-  groupNumber,
-  scale,
-  setScale,
-  inARow,
-  setInARow,
-  fox,
-  setFox,
 }) => {
   const [ruWord, setRuWord] = useState('');
   const [engWord, setEngWord] = useState('');
+  const [numberCurrentWord, setNumberCurrentWord] = useState<number>(0);
   const [currentArr, setCurrentArr] = useState<WordType[]>([]);
   const [pointsColor, setPointsColor] = useState('green_points');
+  const [fox, setFox] = useState(FirstFox);
+  const [scale, setScale] = useState(10);
+  const [inARow, setInARow] = useState(0);
 
   useEffect(() => {
     const randomNumber = Math.round(Math.random());
-    const randomWord1 = Math.floor(Math.random() * 20);
-    const randomWord2 = Math.floor(Math.random() * 20);
-    const randomPage = Math.floor(Math.random() * 30);
+    const randomWord2 = Math.floor(Math.random() * pageArray.length);
 
     if (randomNumber === 1) {
-      wordsApi.getWords(groupNumber, randomPage).then((data) => {
-        setEngWord(data[randomWord1].word);
-        setRuWord(data[randomWord1].wordTranslate);
-        setCurrentArr([data[randomWord1], data[randomWord1]]);
-      });
+      setEngWord(pageArray[numberCurrentWord].word);
+      setRuWord(pageArray[numberCurrentWord].wordTranslate);
+      setCurrentArr([pageArray[numberCurrentWord], pageArray[numberCurrentWord]]);
     } else {
-      wordsApi.getWords(groupNumber, randomPage).then((data) => {
-        setEngWord(data[randomWord1].word);
-        setRuWord(data[randomWord2].wordTranslate);
-        setCurrentArr([data[randomWord1], data[randomWord2]]);
-      });
+      setEngWord(pageArray[numberCurrentWord].word);
+      setRuWord(pageArray[randomWord2].wordTranslate);
+      setCurrentArr([pageArray[numberCurrentWord], pageArray[randomWord2]]);
     }
-  }, [groupNumber, trueArray, falseArray]);
+  }, [numberCurrentWord, pageArray]);
 
   useEffect(() => {
     if (inARow === 0) {
@@ -85,27 +73,29 @@ const Game: React.FC<TPoints> = ({
     }
   }, [inARow, setScale, setFox, trueArray, falseArray]);
 
-  const trueBtnHandler = () => {
-    if (currentArr[0].word === currentArr[1].word) {
+  const answerCheck = (check: boolean) => {
+    if (check) {
       setInARow(inARow + 1);
       setTrueArray(trueArray.concat(currentArr[0]));
       setPoints(points + scale);
     } else {
       setInARow(0);
       setFalseArray(falseArray.concat(currentArr[0]));
+    }
+    if (numberCurrentWord < pageArray.length - 1) {
+      setNumberCurrentWord(numberCurrentWord + 1);
+    } else {
+      setGameStatus(GameStatusData.finish);
     }
   };
 
-  const falseBtnHandler = () => {
-    if (currentArr[0].word !== currentArr[1].word) {
-      setInARow(inARow + 1);
-      setTrueArray(trueArray.concat(currentArr[0]));
-      setPoints(points + scale);
-    } else {
-      setInARow(0);
-      setFalseArray(falseArray.concat(currentArr[0]));
-    }
+  const trueBtnHandler = () => {
+    answerCheck(currentArr[0].word === currentArr[1].word);
   };
+  const falseBtnHandler = () => {
+    answerCheck(currentArr[0].word !== currentArr[1].word);
+  };
+
   return (
     <div className={cn(styles.game_wrapper)}>
       <div className={cn(styles.points, styles[pointsColor])}>+{scale}</div>
@@ -154,4 +144,4 @@ const Game: React.FC<TPoints> = ({
   );
 };
 
-export default Game;
+export default GameInner;

@@ -47,6 +47,12 @@ a {
   box-shadow: 0 4px 0 rgb(5 5 5 / 80%);
 }
 
+.button_inactive {
+  cursor: inherit;
+
+  opacity: 0.5;
+}
+
 :root {
   --red-primary: #a71f1f;
   --green-primary: #1fa74d;

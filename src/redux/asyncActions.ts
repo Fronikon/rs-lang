@@ -17,6 +17,7 @@ export const asyncActions = {
           const userWord = userWords.find((userWord) => userWord.wordId === word.id);
           if (userWord) {
             word.difficulty = userWord.difficulty;
+            word.optional = userWord.optional;
           }
         });
       }
