@@ -6,7 +6,7 @@ import { actions } from '../../redux/actions';
 import { WordType } from '../../types/types';
 import { wordsApi } from '../../api/api';
 import { StoreType } from '../..';
-import { GameStatusData } from '../../types/enums';
+import { Difficulties, GameStatusData } from '../../types/enums';
 import styles from './Game.module.css';
 import GameStart from './GameStart/GameStart';
 import Result from './Result/Result';
@@ -32,6 +32,7 @@ const Game: React.FC<PropsType> = (props) => {
   const isStartGameFromTextbook = useSelector((state: StoreType) => state.textbook.isStartGameFromTextbook);
   const currentPage = useSelector((state: StoreType) => state.textbook.currentPage);
   const currentGroup = useSelector((state: StoreType) => state.textbook.currentGroup);
+  const isLogin = useSelector((state: StoreType) => state.auth.isLogin);
 
   const dispatch = useDispatch();
 
@@ -57,8 +58,64 @@ const Game: React.FC<PropsType> = (props) => {
       }
       wordsApi.getWords(group, page)
         .then((data: WordType[]) => {
-          setPageArray([...data]);
+          if (isLogin) {
+            wordsApi.getUserWords().then((userWords) => {
+              data.forEach((word) => {
+                const userWord = userWords.find((userWord) => userWord.wordId === word.id);
+                if (userWord) {
+                  word.difficulty = userWord.difficulty;
+                  word.optional = userWord.optional;
+                }
+              });
+              setPageArray([...data]);
+            });
+          } else {
+            setPageArray([...data]);
+          }
         });
+    }
+    if (gameStatus === GameStatusData.finish && isLogin) {
+      rightAnswerWords.forEach((word) => {
+        if (word.optional && word.difficulty) {
+          const sucsessAttempts = word.optional?.sucsessAttempts + 1;
+          const count = word.difficulty === Difficulties.hard ? 5 : 3;
+
+          if (sucsessAttempts >= count) {
+            const optional = {
+              ...word.optional,
+              sucsessAttempts: sucsessAttempts,
+              isLearned: true
+            };
+            wordsApi.updateUserWord(word.id, Difficulties.common, optional);
+          } else {
+            const optional = {
+              ...word.optional,
+              sucsessAttempts: sucsessAttempts,
+            };
+            wordsApi.updateUserWord(word.id, word.difficulty, optional);
+          }
+        } else {
+          const optional = {
+            isLearned: false,
+            sucsessAttempts: 1
+          };
+          wordsApi.postUserWord(word.id, Difficulties.common, optional);
+        }
+      });
+      wrongAnswerWords.forEach((word) => {
+        if (word.optional && word.difficulty) {
+          const optional = {
+            ...word.optional,
+            isLearned: false,
+            sucsessAttempts: 0,
+          };
+          if (word.optional.isLearned) {
+            wordsApi.updateUserWord(word.id, Difficulties.common, optional);
+          } else {
+            wordsApi.updateUserWord(word.id, word.difficulty, optional);
+          }
+        }
+      });
     }
   }, [dispatch, gameStatus]);
 

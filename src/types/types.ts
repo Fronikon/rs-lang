@@ -67,8 +67,8 @@ export type UserWordFilterResultType = {
 }
 
 export type UserWordOptionalType = {
-  isLearned?: boolean
-  sucsessAttempts?: number
+  isLearned: boolean
+  sucsessAttempts: number
 }
 
 export type UserWordOptionsType = {
