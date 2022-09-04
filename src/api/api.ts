@@ -22,6 +22,43 @@ export const wordsApi = {
     return fetch(url, options).then((res) => res.json());
   },
 
+  async getNotLearnedWords(group: number, page: number): Promise<WordType[]> {
+    const token = window.localStorage.getItem('token');
+    const userId = window.localStorage.getItem('userId');
+
+    const url = `${BASE_URL}users/${userId}/aggregatedWords?filter={"$and":[{"$or":[{"userWord.optional.isLearned":false},{"userWord":null}]},{"group":${group}},{"page":${page}}]}&wordsPerPage=20`;
+    const options = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    };
+
+    const res = await fetch(url, options);
+    const data: UserWordFilterResultType[] = await res.json();
+    const paginatedResults = data[0].paginatedResults;
+    const response: WordType[] = paginatedResults.map((item) => {
+      return {
+        id: item._id,
+        group: item.group,
+        page: item.page,
+        word: item.word,
+        image: item.image,
+        audio: item.audio,
+        audioMeaning: item.audioMeaning,
+        audioExample: item.textExample,
+        textMeaning: item.textMeaning,
+        textExample: item.textExample,
+        transcription: item.transcription,
+        wordTranslate: item.wordTranslate,
+        textMeaningTranslate: item.textMeaningTranslate,
+        textExampleTranslate: item.textExampleTranslate,
+        difficulty: item.userWord?.difficulty,
+        optional: item.userWord?.optional
+      };
+    });
+    return response;
+  },
+
   getHardWords(): Promise<UserWordFilterResultType[]> {
     const token = window.localStorage.getItem('token');
     const userId = window.localStorage.getItem('userId');

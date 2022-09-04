@@ -62,7 +62,7 @@ const AudioChallengeMain: React.FC<PropsType> = ({
   };
 
   const next = () => {
-    if (numberCurrentWord < 19) {
+    if (numberCurrentWord < pageArray.length - 1) {
       if (wrongWordId) {
         setWrongWordId('');
       }
@@ -81,6 +81,7 @@ const AudioChallengeMain: React.FC<PropsType> = ({
   return (
     <div className={cn(styles.questionPage__container)}>
       <QuestionPageHeader
+        limit={pageArray.length}
         count={numberCurrentWord}
         setGameStatus={setGameStatus}
       />

@@ -10,6 +10,7 @@ import Game from './../Game/Game';
 const Sprint: React.FC = () => {
   return (
     <Game
+      limit={60}
       gameTipe={'sprint'}
       title={'Спринт'}
       description={'Успей за отведенное время набрать как можно больше очков.За каждые четыре правильно угаданных слова количество получаемых очков увеличивается.'} />
@@ -36,6 +37,7 @@ export const SprintMain: React.FC<PropsType> = (props) => {
           setGameStatus={props.setGameStatus}
         />
         <GameInner
+          setGameStatus={props.setGameStatus}
           pageArray={props.pageArray}
           points={points}
           setPoints={setPoints}

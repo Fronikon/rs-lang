@@ -14,10 +14,30 @@ import AudioChallengeMain from './../AudioChallenge/AudioChallengeMain/AudioChal
 import { SprintMain } from './../Sprint/Sprint';
 
 type PropsType = {
+  limit: number
   gameTipe: string
   title: string
   description: string
 }
+
+const getLimitCountWords = async (
+  callback: (group: number, page: number) => Promise<WordType[]>,
+  group: number,
+  page: number,
+  limit: number,
+  array: WordType[] = []
+): Promise<WordType[]> => {
+  const data = await callback(group, page);
+  const newArray = data.concat(array);
+  if (newArray.length >= limit || page <= 0) {
+    if (newArray.length > limit) {
+      return newArray.slice(-limit);
+    }
+    return newArray;
+  } else {
+    return await getLimitCountWords(callback, group, page - 1, limit, newArray);
+  }
+};
 
 const Game: React.FC<PropsType> = (props) => {
   const [group, setGroup] = useState<number>(0);
@@ -55,24 +75,29 @@ const Game: React.FC<PropsType> = (props) => {
     if (gameStatus === GameStatusData.inProcess) {
       if (isStartGameFromTextbook) {
         dispatch(actions.switchIsStartGameFromTextbook());
-      }
-      wordsApi.getWords(group, page)
-        .then((data: WordType[]) => {
-          if (isLogin) {
-            wordsApi.getUserWords().then((userWords) => {
-              data.forEach((word) => {
-                const userWord = userWords.find((userWord) => userWord.wordId === word.id);
-                if (userWord) {
-                  word.difficulty = userWord.difficulty;
-                  word.optional = userWord.optional;
-                }
-              });
-              setPageArray([...data]);
-            });
-          } else {
+        getLimitCountWords(wordsApi.getNotLearnedWords, group, page, props.limit)
+          .then((data: WordType[]) => {
             setPageArray([...data]);
-          }
-        });
+          });
+      } else {
+        getLimitCountWords(wordsApi.getWords, group, page, props.limit)
+          .then((data: WordType[]) => {
+            if (isLogin) {
+              wordsApi.getUserWords().then((userWords) => {
+                data.forEach((word) => {
+                  const userWord = userWords.find((userWord) => userWord.wordId === word.id);
+                  if (userWord) {
+                    word.difficulty = userWord.difficulty;
+                    word.optional = userWord.optional;
+                  }
+                });
+                setPageArray([...data]);
+              });
+            } else {
+              setPageArray([...data]);
+            }
+          });
+      }
     }
     if (gameStatus === GameStatusData.finish && isLogin) {
       rightAnswerWords.forEach((word) => {
