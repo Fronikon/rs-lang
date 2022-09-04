@@ -87,11 +87,11 @@
 }
 
 .audioEnd__span_wrong {
-  background-color: #a71f1f;
+  background-color: var(--red-primary);
 }
 
 .audioEnd__span_right {
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
 }
 
 .audioEnd__rightList_container,

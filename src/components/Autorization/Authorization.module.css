@@ -63,5 +63,5 @@
   bottom: -10px;
 
   font-size: 18px;
-  color: #f00;
+  color: var(--green-primary);
 }
