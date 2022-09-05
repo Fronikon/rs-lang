@@ -17,6 +17,10 @@ type PropsType = {
   setTrueArray: React.Dispatch<React.SetStateAction<WordType[]>>;
   falseArray: WordType[];
   setFalseArray: React.Dispatch<React.SetStateAction<WordType[]>>;
+  seriesSucсess: number[]
+  setSeriesSucсess: React.Dispatch<React.SetStateAction<number[]>>
+  seriesRightAnswers: number
+  setSeriesRightAnswers: React.Dispatch<React.SetStateAction<number>>
 };
 
 const GameInner: React.FC<PropsType> = ({
@@ -28,6 +32,10 @@ const GameInner: React.FC<PropsType> = ({
   setTrueArray,
   falseArray,
   setFalseArray,
+  seriesSucсess,
+  setSeriesSucсess,
+  seriesRightAnswers,
+  setSeriesRightAnswers
 }) => {
   const [ruWord, setRuWord] = useState('');
   const [engWord, setEngWord] = useState('');
@@ -41,19 +49,24 @@ const GameInner: React.FC<PropsType> = ({
   const [wrong, setWrong] = useState(false);
 
   useEffect(() => {
-    const randomNumber = Math.round(Math.random());
-    const randomWord2 = Math.floor(Math.random() * pageArray.length);
-
-    if (randomNumber === 1) {
-      setEngWord(pageArray[numberCurrentWord].word);
-      setRuWord(pageArray[numberCurrentWord].wordTranslate);
-      setCurrentArr([pageArray[numberCurrentWord], pageArray[numberCurrentWord]]);
+    if (numberCurrentWord > pageArray.length - 1) {
+      setGameStatus(GameStatusData.finish);
+      setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
     } else {
-      setEngWord(pageArray[numberCurrentWord].word);
-      setRuWord(pageArray[randomWord2].wordTranslate);
-      setCurrentArr([pageArray[numberCurrentWord], pageArray[randomWord2]]);
+      const randomNumber = Math.round(Math.random());
+      const randomWord2 = Math.floor(Math.random() * pageArray.length);
+  
+      if (randomNumber === 1) {
+        setEngWord(pageArray[numberCurrentWord].word);
+        setRuWord(pageArray[numberCurrentWord].wordTranslate);
+        setCurrentArr([pageArray[numberCurrentWord], pageArray[numberCurrentWord]]);
+      } else {
+        setEngWord(pageArray[numberCurrentWord].word);
+        setRuWord(pageArray[randomWord2].wordTranslate);
+        setCurrentArr([pageArray[numberCurrentWord], pageArray[randomWord2]]);
+      }
     }
-  }, [numberCurrentWord, pageArray]);
+  }, [numberCurrentWord, pageArray, seriesRightAnswers]);
 
   useEffect(() => {
     if (inARow === 0) {
@@ -81,6 +94,7 @@ const GameInner: React.FC<PropsType> = ({
       setInARow(inARow + 1);
       setTrueArray(trueArray.concat(currentArr[0]));
       setPoints(points + scale);
+      setSeriesRightAnswers(seriesRightAnswers + 1);
       setTimeout(() => {
         setRight(false);
       }, 400);
@@ -88,15 +102,13 @@ const GameInner: React.FC<PropsType> = ({
       setWrong(true);
       setInARow(0);
       setFalseArray(falseArray.concat(currentArr[0]));
+      setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
+      setSeriesRightAnswers(0);
       setTimeout(() => {
         setWrong(false);
       }, 400);
     }
-    if (numberCurrentWord < pageArray.length - 1) {
-      setNumberCurrentWord(numberCurrentWord + 1);
-    } else {
-      setGameStatus(GameStatusData.finish);
-    }
+    setNumberCurrentWord(numberCurrentWord + 1);
   };
 
   const trueBtnHandler = () => {
