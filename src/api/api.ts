@@ -9,8 +9,8 @@ export const wordsApi = {
   },
 
   getUserWords(): Promise<UserWordOptionsType[]> {
-    const token = window.localStorage.getItem('token');
-    const userId = window.localStorage.getItem('userId');
+    const token = JSON.parse(window.localStorage.getItem('token') as string);
+    const userId = JSON.parse(window.localStorage.getItem('userId') as string);
 
     const url = `${BASE_URL}users/${userId}/words`;
     const options = {
@@ -23,8 +23,8 @@ export const wordsApi = {
   },
 
   async getNotLearnedWords(group: number, page: number): Promise<WordType[]> {
-    const token = window.localStorage.getItem('token');
-    const userId = window.localStorage.getItem('userId');
+    const token = JSON.parse(window.localStorage.getItem('token') as string);
+    const userId = JSON.parse(window.localStorage.getItem('userId') as string);
 
     const url = `${BASE_URL}users/${userId}/aggregatedWords?filter={"$and":[{"$or":[{"userWord.optional.isLearned":false},{"userWord":null}]},{"group":${group}},{"page":${page}}]}&wordsPerPage=20`;
     const options = {
@@ -60,8 +60,8 @@ export const wordsApi = {
   },
 
   getHardWords(): Promise<UserWordFilterResultType[]> {
-    const token = window.localStorage.getItem('token');
-    const userId = window.localStorage.getItem('userId');
+    const token = JSON.parse(window.localStorage.getItem('token') as string);
+    const userId = JSON.parse(window.localStorage.getItem('userId') as string);
 
     const url = `${BASE_URL}users/${userId}/aggregatedWords?filter={"userWord.difficulty":"hard"}&wordsPerPage=3600`;
     const options = {
@@ -74,8 +74,8 @@ export const wordsApi = {
   },
 
   async updateUserWord(wordId: string, difficulty: string, optional: UserWordOptionalType) {
-    const token = window.localStorage.getItem('token');
-    const userId = window.localStorage.getItem('userId');
+    const token = JSON.parse(window.localStorage.getItem('token') as string);
+    const userId = JSON.parse(window.localStorage.getItem('userId') as string);
 
     const url = `${BASE_URL}users/${userId}/words/${wordId}`;
     const options = {
@@ -95,8 +95,8 @@ export const wordsApi = {
   },
 
   async postUserWord(wordId: string, difficulty: string, optional: UserWordOptionalType) {
-    const token = window.localStorage.getItem('token');
-    const userId = window.localStorage.getItem('userId');
+    const token = JSON.parse(window.localStorage.getItem('token') as string);
+    const userId = JSON.parse(window.localStorage.getItem('userId') as string);
 
     const url = `${BASE_URL}users/${userId}/words/${wordId}`;
     const options = {
@@ -115,8 +115,8 @@ export const wordsApi = {
     return fetch(url, options);
   },
   async deleteUserWord(wordId: string) {
-    const token = window.localStorage.getItem('token');
-    const userId = window.localStorage.getItem('userId');
+    const token = JSON.parse(window.localStorage.getItem('token') as string);
+    const userId = JSON.parse(window.localStorage.getItem('userId') as string);
 
     const url = `${BASE_URL}users/${userId}/words/${wordId}`;
     const options = {
@@ -138,7 +138,7 @@ export const authApi = {
 
 };
 
-export const loginUser = async (user: IUser): Promise<Response> => {
+export const loginUser = async(user: IUser): Promise<Response> => {
   const response = await fetch(`${BASE_URL}signin`, {
     method: 'POST',
     headers: {
@@ -150,7 +150,7 @@ export const loginUser = async (user: IUser): Promise<Response> => {
   return response;
 };
 
-export const createUser = async (user: IUser): Promise<Response> => {
+export const createUser = async(user: IUser): Promise<Response> => {
   const response = await fetch(`${BASE_URL}users`, {
     method: 'POST',
     headers: {
@@ -162,15 +162,28 @@ export const createUser = async (user: IUser): Promise<Response> => {
   return response;
 };
 
-// *********************************************
-export const refreshToken = async (userId: IUser): Promise<Response> => {
-  const response = await fetch(`${BASE_URL}/users/${userId}/tokens`, {
+export const getRefreshToken = async() => {
+  const refreshToken = JSON.parse(window.localStorage.getItem('refreshToken') as string);
+  const userId = JSON.parse(window.localStorage.getItem('userId') as string);
+
+  return await fetch(`${BASE_URL}users/${userId}/tokens`, {
     method: 'GET',
-    body: JSON.stringify(userId)
-  }).then(response => {
-    if (response.status === 200) return response.json();
-  }).then(data => data);
-  localStorage.setItem('token', response.token);
-  localStorage.setItem('refreshToken', response.refreshToken);
-  return response;
+    headers: {
+      'Authorization': `Bearer ${refreshToken}`,
+      'Accept': 'application/json',
+    },
+  });  
+};
+
+export const getStatistics = async() => {
+  const token = JSON.parse(window.localStorage.getItem('token') as string);
+  const userId = JSON.parse(window.localStorage.getItem('userId') as string);
+
+  return await fetch(`${BASE_URL}users/${userId}/statistics`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json',
+    },
+  });  
 };

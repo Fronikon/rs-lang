@@ -88,3 +88,24 @@ export type AuthDataType = {
   message: string
   code?: number
 }
+
+export type StatisticsType = {
+  learnedWords: number
+  optional: {
+    lastVisit: number
+    sprint: {
+      countNewWordsPerDay: number
+      countLearnedWordsPerDay: number
+      seriesSucсessAnswersPerDay: number
+      countAnswersPerDay: number
+      countSucсessAnswersPerDay: number
+    }
+    audiochallenge: {
+      countNewWordsPerDay: number
+      countLearnedWordsPerDay: number
+      seriesSucсessAnswersPerDay: number
+      countAnswersPerDay: number
+      countSucсessAnswersPerDay: number
+    }
+  }
+}

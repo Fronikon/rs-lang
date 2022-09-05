@@ -37,6 +37,9 @@ const NavMenu: React.FC = () => {
           <li className={styles['nav-menu__link']}>
             <Link to="/audio">Аудиовызов</Link>
           </li>
+          <li className={styles['nav-menu__link']}>
+            <Link to="/statistics">Статистика</Link>
+          </li>
         </ul>
       </div>
     </div>

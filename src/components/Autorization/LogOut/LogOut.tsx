@@ -11,7 +11,7 @@ const LogOut: React.FC = () => {
   function clickButton(event: { preventDefault: () => void; }) {
     event.preventDefault();
     dispatch(actions.switchIsLogin());
-    localStorage.setItem('token', 'null');
+    localStorage.clear();
     navigate("/");
   }
 
