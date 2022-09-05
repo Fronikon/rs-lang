@@ -1,6 +1,8 @@
 import cn from 'classnames';
+import { StatDatasType } from '../../../types/types';
 import { GameStatisticsType } from '../../../types/types';
 import styles from '../Statistics.module.css';
+import StatContainer from './StatContainer/StatContainer';
 
 type PropsType = {
   audiochallenge: GameStatisticsType
@@ -17,59 +19,41 @@ const UserStat: React.FC<PropsType> = ({ audiochallenge, sprint }) => {
   const percentSprint = Math.round(sprint.countSucсessAnswersPerDay * 100 / sprint.countAnswersPerDay);
   const percentAudio = Math.round(audiochallenge.countSucсessAnswersPerDay * 100 / audiochallenge.countAnswersPerDay);
 
+  const statData: StatDatasType[] = [
+    {
+      key: 'stat0',
+      title: 'Общая за день',
+      list: [
+        {key: 'item0', text: 'Количество новых слов', data: `${countNewWordsPerDay}`},
+        {key: 'item1', text: 'Процент правильных ответов', data: `${percent || 0}%`},
+        {key: 'item2', text: 'Количество изученных слов', data: `${countLearnedWordsPerDay}`}
+      ]
+    },
+    {
+      key: 'stat1',
+      title: 'Спринт за день',
+      list: [
+        {key: 'item3', text: 'Количество новых слов', data: `${sprint.countNewWordsPerDay}`},
+        {key: 'item4', text: 'Процент правильных ответов', data: `${percentSprint || 0}%`},
+        {key: 'item5', text:'Самая длинная серия правильных ответов',
+          data: `${sprint.seriesSucсessAnswersPerDay}`}
+      ]
+    },
+    {
+      key: 'stat2',
+      title: 'Аудиовызов за день',
+      list: [
+        {key: 'item6', text: 'Количество новых слов', data: `${audiochallenge.countNewWordsPerDay}`},
+        {key: 'item7', text: 'Процент правильных ответов', data: `${percentAudio || 0}%`},
+        {key: 'item8', text: 'Самая длинная серия правильных ответов',
+          data: `${audiochallenge.seriesSucсessAnswersPerDay}`}
+      ]
+    }
+  ];
+        
   return (
     <ul className={cn(styles.statistics)}>
-      <li className={cn(styles.statistics__container)}>
-        <h3 className={cn(styles.statistics__title)}>Общая</h3>
-        <ul className={cn(styles.statistics__list)}>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Количество новых слов</p>
-            <p className={cn(styles.statistics__data)}>{countNewWordsPerDay}</p>
-          </li>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Процент правильных ответов</p>
-            <p className={cn(styles.statistics__data)}>{percent || 0}%</p>
-          </li>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Количество изученных слов</p>
-            <p className={cn(styles.statistics__data)}>{countLearnedWordsPerDay}</p>
-          </li>
-        </ul>
-      </li>
-      <li className={cn(styles.statistics__container)}>
-        <h3 className={cn(styles.statistics__title)}>Спринт</h3>
-        <ul className={cn(styles.statistics__list)}>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Количество новых слов</p>
-            <p className={cn(styles.statistics__data)}>{sprint.countNewWordsPerDay}</p>
-          </li>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Процент правильных ответов</p>
-            <p className={cn(styles.statistics__data)}>{percentSprint || 0}%</p>
-          </li>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Самая длинная серия правильных ответов</p>
-            <p className={cn(styles.statistics__data)}>{sprint.seriesSucсessAnswersPerDay}</p>
-          </li>
-        </ul>
-      </li>
-      <li className={cn(styles.statistics__container)}>
-        <h3 className={cn(styles.statistics__title)}>Аудиовызов</h3>
-        <ul className={cn(styles.statistics__list)}>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Количество новых слов</p>
-            <p className={cn(styles.statistics__data)}>{audiochallenge.countNewWordsPerDay}</p>
-          </li>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Процент правильных ответов</p>
-            <p className={cn(styles.statistics__data)}>{percentAudio || 0}%</p>
-          </li>
-          <li className={cn(styles.statistics__item)}>
-            <p className={cn(styles.statistics__text)}>Самая длинная серия правильных ответов</p>
-            <p className={cn(styles.statistics__data)}>{audiochallenge.seriesSucсessAnswersPerDay}</p>
-          </li>
-        </ul>
-      </li>
+      {statData.map(li => <StatContainer key={li.key} title={li.title} list={li.list} />)}
     </ul>
   );
 };

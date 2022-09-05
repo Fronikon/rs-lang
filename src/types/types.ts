@@ -106,6 +106,18 @@ export type StatisticsType = {
   }
 }
 
+export type StatItemsType = {
+  key: string
+  text: string
+  data: string
+}
+
+export type StatDatasType = {
+  key: string
+  title: string
+  list: StatItemsType[]
+}
+
 export interface ResponseStatisticsType extends StatisticsType {
   id?: string
 }
