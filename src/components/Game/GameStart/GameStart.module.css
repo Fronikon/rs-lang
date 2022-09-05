@@ -3,12 +3,12 @@
   align-items: center;
   justify-content: center;
 
-  height: calc(100vh - 100px - 100px);
+  height: var(--content-height);
 }
 
 .game_start__container {
   box-sizing: border-box;
-  width: 650px;
+  max-width: 650px;
   padding: 25px 50px;
 
   background: rgb(0 0 0 / 33%);

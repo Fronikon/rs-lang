@@ -20,14 +20,16 @@ const Statistics: React.FC = () => {
 
 
   return (
-    <main>
-      <h2 className={cn(styles.statistics__main_title)}>Статистика</h2>
-      {!statistics.optional || !isLogin ?
-        <p className={cn(styles.statistics__description)}>Нет данных для статистики</p> :
-        <UserStat 
-          audiochallenge={statistics.optional.audiochallenge}
-          sprint={statistics.optional.sprint}
-        />}
+    <main className={'container'}>
+      <div className={styles.content}>
+        <h2 className={cn(styles.statistics__main_title)}>Статистика за день</h2>
+        {!statistics.optional || !isLogin ?
+          <p className={cn(styles.statistics__description)}>Нет данных для статистики</p> :
+          <UserStat
+            audiochallenge={statistics.optional.audiochallenge}
+            sprint={statistics.optional.sprint}
+          />}
+      </div>
     </main>
   );
 };

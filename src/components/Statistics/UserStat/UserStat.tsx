@@ -20,7 +20,7 @@ const UserStat: React.FC<PropsType> = ({ audiochallenge, sprint }) => {
   return (
     <ul className={cn(styles.statistics)}>
       <li className={cn(styles.statistics__container)}>
-        <h3 className={cn(styles.statistics__title)}>Общая за день</h3>
+        <h3 className={cn(styles.statistics__title)}>Общая</h3>
         <ul className={cn(styles.statistics__list)}>
           <li className={cn(styles.statistics__item)}>
             <p className={cn(styles.statistics__text)}>Количество новых слов</p>
@@ -37,7 +37,7 @@ const UserStat: React.FC<PropsType> = ({ audiochallenge, sprint }) => {
         </ul>
       </li>
       <li className={cn(styles.statistics__container)}>
-        <h3 className={cn(styles.statistics__title)}>Спринт за день</h3>
+        <h3 className={cn(styles.statistics__title)}>Спринт</h3>
         <ul className={cn(styles.statistics__list)}>
           <li className={cn(styles.statistics__item)}>
             <p className={cn(styles.statistics__text)}>Количество новых слов</p>
@@ -54,7 +54,7 @@ const UserStat: React.FC<PropsType> = ({ audiochallenge, sprint }) => {
         </ul>
       </li>
       <li className={cn(styles.statistics__container)}>
-        <h3 className={cn(styles.statistics__title)}>Аудиовызов за день</h3>
+        <h3 className={cn(styles.statistics__title)}>Аудиовызов</h3>
         <ul className={cn(styles.statistics__list)}>
           <li className={cn(styles.statistics__item)}>
             <p className={cn(styles.statistics__text)}>Количество новых слов</p>

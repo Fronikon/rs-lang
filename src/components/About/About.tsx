@@ -5,8 +5,8 @@ import cards from './constants';
 
 const About: React.FC = () => {
   return (
-    <main className={cn(styles.main)}>
-      <h2 className={cn(styles.h2)}>Наша команда</h2>
+    <main className={cn(styles.main, 'container')}>
+      <h2 className={cn(styles.title)}>Наша команда</h2>
       <section className={cn(styles.cards)}>
         {
           cards.map((card) => (

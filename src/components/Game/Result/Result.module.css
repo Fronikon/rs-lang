@@ -1,16 +1,17 @@
 .result {
-  padding: 20px;
+  position: relative;
+  padding: 20px 0;
 }
 
 .result__closeButton {
+  position: absolute;
+  right: 0px;
   cursor: pointer;
 
   display: block;
 
   width: 30px;
   height: 30px;
-  margin-bottom: 150px;
-  margin-left: auto;
 
   background-color: transparent;
   background-image: url("../../../assets/logo/close.png");

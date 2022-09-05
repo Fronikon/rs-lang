@@ -8,47 +8,40 @@
   background: #241d30;
 }
 
+.students {
+  display: flex;
+  gap: 1em 3em;
+}
+
 .student {
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 1.5em;
   color: #fff;
   text-decoration: none;
 }
 
-.student:nth-child(2) {
-  margin-right: 50px;
-  margin-left: 51px;
-}
-
 .creation_year {
-  font-size: 36px;
+  font-size: 2em;
   color: #fff;
 }
 
-@media (max-width: 1284px) {
-  .student {
-    font-size: 26px;
+@media (max-width: 1000px) {
+  .students {
+    gap: 1em;
   }
 }
 
-@media (max-width: 1080px) {
-  .student {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 842px) {
+@media (max-width: 900px) {
   .footer {
     display: flex;
     flex-direction: column;
+
     height: 230px;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
   }
+
   .students {
-    display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  .student {
-    font-size: 16px;
   }
 }

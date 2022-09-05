@@ -12,6 +12,7 @@ import GameStart from './GameStart/GameStart';
 import Result from './Result/Result';
 import AudioChallengeMain from './../AudioChallenge/AudioChallengeMain/AudioChallengeMain';
 import { SprintMain } from './../Sprint/Sprint';
+import cn from 'classnames';
 
 type PropsType = {
   limit: number
@@ -197,7 +198,7 @@ const Game: React.FC<PropsType> = (props) => {
 
 
   return (
-    <main className={styles['game-container']}>
+    <main className={cn(styles['game-container'], 'container')}>
       {
         gameStatus === GameStatusData.start &&
         <GameStart

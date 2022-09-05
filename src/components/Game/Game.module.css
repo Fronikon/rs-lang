@@ -1,5 +1,5 @@
 .game-container {
-  min-height: calc(100vh - 200px);
+  min-height: var(--content-height);
 
   background: linear-gradient(180deg, #0067cd 0%, #6e3ebc 100%);
 }
