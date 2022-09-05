@@ -24,6 +24,10 @@ type PropsType = {
   setRightAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
   wrongAnswerWords: WordType[]
   setWrongAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
+  seriesSucсess: number[]
+  setSeriesSucсess: React.Dispatch<React.SetStateAction<number[]>>
+  seriesRightAnswers: number
+  setSeriesRightAnswers: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const SprintMain: React.FC<PropsType> = (props) => {
@@ -35,6 +39,9 @@ export const SprintMain: React.FC<PropsType> = (props) => {
       <div className={styles['game-container']}>
         <Timer
           setGameStatus={props.setGameStatus}
+          setSeriesSucсess={props.setSeriesSucсess}
+          seriesSucсess={props.seriesSucсess}
+          seriesRightAnswers={props.seriesRightAnswers}
         />
         <GameInner
           setGameStatus={props.setGameStatus}
@@ -45,6 +52,10 @@ export const SprintMain: React.FC<PropsType> = (props) => {
           setTrueArray={props.setRightAnswerWords}
           falseArray={props.wrongAnswerWords}
           setFalseArray={props.setWrongAnswerWords}
+          setSeriesSucсess={props.setSeriesSucсess}
+          seriesSucсess={props.seriesSucсess}
+          setSeriesRightAnswers={props.setSeriesRightAnswers}
+          seriesRightAnswers={props.seriesRightAnswers}
         />
       </div>
     </div>

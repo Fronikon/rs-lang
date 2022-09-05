@@ -22,10 +22,13 @@ export type setPageAction = {
   type: ActionTypes.setPage
   page: number
 }
+export type switchIsLogin = {
+  type: ActionTypes.switchIsLogin
+  status: boolean
+}
 export type switchIsStartGameFromTextbookActions = {
   type: ActionTypes.switchIsStartGameFromTextbook
 }
-export type switchIsLogin = {type: ActionTypes.switchIsLogin}
 
 export const actions = {
   switchIsNavMenuOpen: (): switchIsNavMenuOpenAction => ({type: ActionTypes.switchIsNavMenuOpen}),
@@ -35,5 +38,5 @@ export const actions = {
   setGroup: (group: number): setGroupAction => ({type: ActionTypes.setGroup, group}),
   setPage: (page: number): setPageAction => ({type: ActionTypes.setPage, page}),
   switchIsStartGameFromTextbook: (): switchIsStartGameFromTextbookActions => ({type: ActionTypes.switchIsStartGameFromTextbook}),
-  switchIsLogin: (): switchIsLogin => ({type: ActionTypes.switchIsLogin})
+  switchIsLogin: (status: boolean): switchIsLogin => ({type: ActionTypes.switchIsLogin, status})
 };

@@ -15,10 +15,24 @@ type PropsType = {
   setRightAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
   wrongAnswerWords: WordType[]
   setWrongAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
+  seriesSucсess: number[]
+  setSeriesSucсess: React.Dispatch<React.SetStateAction<number[]>>
+  seriesRightAnswers: number
+  setSeriesRightAnswers: React.Dispatch<React.SetStateAction<number>>
 }
 
 const AudioChallengeMain: React.FC<PropsType> = ({
-  pageArray, setGameStatus, rightAnswerWords, setRightAnswerWords, wrongAnswerWords, setWrongAnswerWords}) => {
+  pageArray,
+  setGameStatus,
+  rightAnswerWords,
+  setRightAnswerWords,
+  wrongAnswerWords,
+  setWrongAnswerWords,
+  seriesSucсess,
+  setSeriesSucсess,
+  seriesRightAnswers,
+  setSeriesRightAnswers
+}) => {
   const [numberCurrentWord, setNumberCurrentWord] = useState<number>(0);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
   const [listCurrenWords, setListCurrenWords] = useState<WordType[]>([]);
@@ -26,23 +40,28 @@ const AudioChallengeMain: React.FC<PropsType> = ({
   const [rightWordId, setRightWordId] = useState<string>('');
 
   useEffect(() => {
-    const getRandomNumber = (): number => {
-      const randomNumber = Math.floor(Math.random() * pageArray.length);
-      if (randomNumbers.includes(randomNumber)) return getRandomNumber();
-      return randomNumber;
-    };
-
-    const randomNumbers: number[] = [numberCurrentWord];
-
-    while (randomNumbers.length < 5) {
-      randomNumbers.push(getRandomNumber());
+    if (numberCurrentWord > pageArray.length - 1) {
+      setGameStatus(GameStatusData.finish);
+      setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
+    } else {
+      const getRandomNumber = (): number => {
+        const randomNumber = Math.floor(Math.random() * pageArray.length);
+        if (randomNumbers.includes(randomNumber)) return getRandomNumber();
+        return randomNumber;
+      };
+  
+      const randomNumbers: number[] = [numberCurrentWord];
+  
+      while (randomNumbers.length < 5) {
+        randomNumbers.push(getRandomNumber());
+      }
+  
+      const words = randomNumbers.map((wordIndex) => pageArray[wordIndex]);
+      const shuffledWords = words.sort(() => Math.round(Math.random() * 100) - 50);
+  
+      setRightWordId(pageArray[numberCurrentWord].id);
+      setListCurrenWords([...shuffledWords]);
     }
-
-    const words = randomNumbers.map((wordIndex) => pageArray[wordIndex]);
-    const shuffledWords = words.sort(() => Math.round(Math.random() * 100) - 50);
-
-    setRightWordId(pageArray[numberCurrentWord].id);
-    setListCurrenWords([...shuffledWords]);
   }, [numberCurrentWord]);
 
   const onClickPlayVoice = () => {
@@ -56,24 +75,25 @@ const AudioChallengeMain: React.FC<PropsType> = ({
     if (wordId !== rightWordId) {
       setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord]]);
       setWrongWordId(wordId);
+      setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
+      setSeriesRightAnswers(0);
     } else {
       setRightAnswerWords([...rightAnswerWords, pageArray[numberCurrentWord]]);
+      setSeriesRightAnswers(seriesRightAnswers + 1);
     }
   };
 
   const next = () => {
-    if (numberCurrentWord < pageArray.length - 1) {
-      if (wrongWordId) {
-        setWrongWordId('');
-      }
-      setIsShowResult(false);
-      setNumberCurrentWord(numberCurrentWord + 1);
-    } else {
-      setGameStatus(GameStatusData.finish);
+    if (wrongWordId) {
+      setWrongWordId('');
     }
+    setIsShowResult(false);
+    setNumberCurrentWord(numberCurrentWord + 1);
   };
 
   const doNotKnow = () => {
+    setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
+    setSeriesRightAnswers(0);
     setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord]]);
     setIsShowResult(true);
   };
