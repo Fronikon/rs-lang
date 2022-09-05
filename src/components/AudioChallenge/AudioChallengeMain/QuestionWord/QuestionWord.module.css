@@ -1,0 +1,42 @@
+.questionPage__main {
+  display: flex;
+  flex-direction: column;
+
+  width: 360px;
+  margin: 50px auto;
+}
+
+.questionPage__image {
+  display: block;
+
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  margin-bottom: 26px;
+
+  border-radius: 50%;
+}
+
+.questionPage__main_container {
+  display: flex;
+  align-items: center;
+}
+
+.questionPage__button_small {
+  width: 40px;
+  height: 40px;
+
+  background-size: 20px 20px;
+}
+
+.questionPage__word {
+  display: block;
+
+  width: 280px;
+
+  font-family: Inter, sans-serif;
+  font-size: 40px;
+  line-height: 48px;
+  color: #fff;
+  text-align: center;
+}

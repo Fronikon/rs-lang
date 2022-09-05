@@ -1,0 +1,47 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: var(--footer-height);
+
+  background: #241d30;
+}
+
+.students {
+  display: flex;
+  gap: 1em 3em;
+}
+
+.student {
+  font-size: 1.5em;
+  color: #fff;
+  text-decoration: none;
+}
+
+.creation_year {
+  font-size: 2em;
+  color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .students {
+    gap: 1em;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+
+    height: 230px;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+
+  .students {
+    flex-direction: column;
+    align-items: center;
+  }
+}

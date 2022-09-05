@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: var(--footer-height);
+
+  background: #fff;
+  box-shadow: 0 5px 20px rgb(0 0 0 / 25%);
+}
+
+.title {
+  margin: 0;
+}
+
+.burger-menu {
+  z-index: 10;
+
+  width: 40px;
+  height: 40px;
+
+  transition: transform 500ms;
+}
+
+._active {
+  transform: rotate(90deg);
+}

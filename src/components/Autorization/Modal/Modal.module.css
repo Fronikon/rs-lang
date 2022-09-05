@@ -1,0 +1,34 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  overflow-y: scroll;
+
+  width: 100%;
+  height: 100vh;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal__content {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 10px 34px;
+
+  background-color: #fff;
+  border: 1px solid #a6bcda;
+  border-radius: 10px;
+  box-shadow: 0 4px 0 #a6bcda;
+}
+
+.modal__text {
+  margin: 0;
+
+  font-size: 40px;
+  line-height: 48px;
+  text-align: center;
+}

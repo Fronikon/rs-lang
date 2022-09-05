@@ -1,0 +1,12 @@
+.auth {
+  width: 35px;
+  height: 35px;
+
+  background-image: url("../../../assets/logo/auth.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+._active {
+  background-image: url("../../../assets/logo/auth-active.png");
+}

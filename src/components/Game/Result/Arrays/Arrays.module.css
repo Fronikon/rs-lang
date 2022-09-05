@@ -1,0 +1,55 @@
+.arrays__item {
+  display: flex;
+  align-items: center;
+
+  height: 30px;
+}
+
+.arrays__button {
+  cursor: pointer;
+
+  display: flex;
+
+  width: 20px;
+  height: 16px;
+  margin-right: 17px;
+
+  color: #000;
+
+  background-image: url("../../../../assets/logo/volume-black.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  border-radius: 50%;
+
+  transition: all 400ms;
+}
+
+.arrays__button:hover {
+  transform: scale(1.2);
+}
+
+.arrays__button:active {
+  transform: scale(1);
+}
+
+.arrays__span {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c5c3c3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}

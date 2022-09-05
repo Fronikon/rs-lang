@@ -1,0 +1,16 @@
+.word-card__choice {
+  display: flex;
+  gap: 20px;
+}
+
+.word-card__button {
+  padding: 0.3em 0.5em;
+}
+
+.learned {
+  background-color: var(--green-primary);
+}
+
+.hard {
+  background-color: var(--red-primary);
+}

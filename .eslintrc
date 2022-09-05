@@ -1,0 +1,18 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["import", "@typescript-eslint"],
+  "extends": [
+      "react-app",
+      "react-app/jest",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+      "no-debugger": 1,
+      "no-console": 1,
+      "semi": 1,
+      "indent": ["warn", 2],
+      "no-multiple-empty-lines": ["warn", { "max": 2, "maxEOF": 0 }],
+      "@typescript-eslint/no-explicit-any": 2
+  }
+}
