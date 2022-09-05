@@ -10,7 +10,7 @@ type authStateType = typeof authState
 const authReducer = (state: authStateType = authState, action: AnyAction): authStateType => {
   switch (action.type) {
   case ActionTypes.switchIsLogin: {
-    return {...state, isLogin: !state.isLogin};
+    return {...state, isLogin: action.status};
   }
   default: {
     return state;

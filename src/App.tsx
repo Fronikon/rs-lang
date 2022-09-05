@@ -20,22 +20,22 @@ import { actions } from './redux/actions';
 
 function App() {
   const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
-  const [isCheckLogin, setIsCheckLogin] = useState<boolean>(false);
+  const [isCheckLogin, setIsCheckLogin] = useState<boolean>(true);
   const token = JSON.parse((localStorage.getItem('token') as string));
   const timeLogin = Number(localStorage.getItem('timeLogin'));
   const limitTime = 4 * 60 * 60 * 1000 - 5 * 60 * 1000; // 3h 55m
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setIsCheckLogin(true);
     if (isCheckLogin) {
+      setIsCheckLogin(false);
       if (!token) return;
-      else if ((Date.now() - timeLogin) < limitTime) dispatch(actions.switchIsLogin());
+      else if ((Date.now() - timeLogin) < limitTime) dispatch(actions.switchIsLogin(true));
       else {
         (function refresh() {
           getRefreshToken().then((response) => {
             if (response.status === 200) {
-              dispatch(actions.switchIsLogin());
+              dispatch(actions.switchIsLogin(true));
               return response.json().then((res) => {
                 localStorage.setItem('userId', JSON.stringify(res.userId));
                 localStorage.setItem('token', JSON.stringify(res.token));
