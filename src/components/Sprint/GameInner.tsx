@@ -37,6 +37,8 @@ const GameInner: React.FC<PropsType> = ({
   const [fox, setFox] = useState(FirstFox);
   const [scale, setScale] = useState(10);
   const [inARow, setInARow] = useState(0);
+  const [right, setRight] = useState(false);
+  const [wrong, setWrong] = useState(false);
 
   useEffect(() => {
     const randomNumber = Math.round(Math.random());
@@ -75,12 +77,20 @@ const GameInner: React.FC<PropsType> = ({
 
   const answerCheck = (check: boolean) => {
     if (check) {
+      setRight(true);
       setInARow(inARow + 1);
       setTrueArray(trueArray.concat(currentArr[0]));
       setPoints(points + scale);
+      setTimeout(() => {
+        setRight(false);
+      }, 400);
     } else {
+      setWrong(true);
       setInARow(0);
       setFalseArray(falseArray.concat(currentArr[0]));
+      setTimeout(() => {
+        setWrong(false);
+      }, 400);
     }
     if (numberCurrentWord < pageArray.length - 1) {
       setNumberCurrentWord(numberCurrentWord + 1);
@@ -96,8 +106,29 @@ const GameInner: React.FC<PropsType> = ({
     answerCheck(currentArr[0].word !== currentArr[1].word);
   };
 
+  useEffect(() => {
+    const listener = (event: KeyboardEvent) => {
+      if (event.code === 'Digit1') {
+        trueBtnHandler();
+      }
+      if (event.code === 'Digit2') {
+        falseBtnHandler();
+      }
+    };
+    document.addEventListener('keydown', listener);
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  });
+
   return (
-    <div className={cn(styles.game_wrapper)}>
+    <div
+      className={cn(
+        styles.game_wrapper,
+        right && styles.right,
+        wrong && styles.wrong
+      )}
+    >
       <div className={cn(styles.points, styles[pointsColor])}>+{scale}</div>
       <div className={cn(styles.checkboxes)}>
         <label className={cn(styles.label)}>
