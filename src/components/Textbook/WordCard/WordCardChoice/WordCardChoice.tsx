@@ -1,38 +1,39 @@
 import cn from "classnames";
-import { wordsApi } from "../../../../api/api";
-import { Difficulties } from "../../../../types/enums";
-import styles from "./WordCardChoice.module.css";
-import { asyncActions } from '../../../../redux/asyncActions';
 import { ThunkDispatch } from 'redux-thunk';
-import { StoreType } from "../../../..";
 import { useDispatch } from 'react-redux';
 import { AnyAction } from "redux";
+import { wordsApi } from "../../../../api/api";
+import { Difficulties } from "../../../../types/enums";
+import { asyncActions } from '../../../../redux/asyncActions';
+import { StoreType } from "../../../..";
+import { UserWordOptionalType } from "../../../../types/types";
+import styles from "./WordCardChoice.module.css";
 
 type PropsType = {
   wordId: string
-  isLearned: boolean
-  isHard: boolean
   difficulty?: Difficulties
+  optional?: UserWordOptionalType
 }
 
-const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, isLearned, isHard}) => {
+const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, optional}) => {
   const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
 
-  const changeDifficultyUserWord = async (value: string, oppositeValue: string) => {
-    if (difficulty === oppositeValue) {
-      await wordsApi.updateUserWord(wordId, Difficulties.learnedHard);
+  const changeLearnedStatus = async () => {
+    if (optional && difficulty) {
+      await wordsApi.updateUserWord(wordId, Difficulties.common, {...optional, isLearned: !optional.isLearned});
     } else {
-      await wordsApi.postUserWord(wordId, value);
+      await wordsApi.postUserWord(wordId, Difficulties.common, {sucsessAttempts: 0, isLearned: true});
     }
     dispatch(asyncActions.getWords());
     dispatch(asyncActions.getHardWords());
   };
-
-  const onDeleteWord = async (value: string) => {
-    if (difficulty === Difficulties.learnedHard) {
-      await wordsApi.updateUserWord(wordId, value);
+  
+  const makeWordHard = async () => {
+    if (optional && difficulty) {
+      const localDif = difficulty === Difficulties.hard ? Difficulties.common : Difficulties.hard;
+      await wordsApi.updateUserWord(wordId, localDif, {...optional, isLearned: false});
     } else {
-      await wordsApi.deleteUserWord(wordId);
+      await wordsApi.postUserWord(wordId, Difficulties.hard, {sucsessAttempts: 0, isLearned: false});
     }
     dispatch(asyncActions.getWords());
     dispatch(asyncActions.getHardWords());
@@ -40,22 +41,28 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, isLearned, isH
 
   return (
     <div className={styles['word-card__choice']}>
-      <button
-        onClick={
-          isLearned ?
-            () => onDeleteWord(Difficulties.hard) :
-            () => changeDifficultyUserWord(Difficulties.learned, Difficulties.hard)
-        }
-        className={cn(styles['word-card__button'], 'button', styles.know)}
-      >{isLearned ? 'Я забыл' : 'Я выучил'}</button>
-      <button
-        onClick={
-          isHard ?
-            () => onDeleteWord(Difficulties.learned) :
-            () => changeDifficultyUserWord(Difficulties.hard, Difficulties.learned)
-        }
-        className={cn(styles['word-card__button'], 'button', styles.unknown)}
-      >{isHard ? 'Мне не сложно' : 'Мне сложно'}</button>
+      {
+        !optional?.isLearned ? <button
+          onClick={changeLearnedStatus}
+          className={cn(styles['word-card__button'], 'button', styles.learned)}
+        >Я выучил</button>
+          :
+          <button
+            onClick={changeLearnedStatus}
+            className={cn(styles['word-card__button'], 'button', styles.learned)}
+          >Я забыл</button>
+      }
+      {
+        difficulty !== Difficulties.hard ? <button
+          onClick={makeWordHard}
+          className={cn(styles['word-card__button'], 'button', styles.hard)}
+        >Мне сложно</button>
+          :
+          <button
+            onClick={makeWordHard}
+            className={cn(styles['word-card__button'], 'button', styles.hard)}
+          >Мне не сложно</button>
+      }
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import cn from 'classnames';
-import { BASE_URL } from '../../../../../api/api';
 import styles from './Arrays.module.css';
+import { BASE_URL } from './../../../../api/api';
 
 type PropsType = {
   audio: string,
@@ -8,7 +8,7 @@ type PropsType = {
   wordTranslate: string
 }
 
-const RightArray: React.FC<PropsType> = (props) => {
+const WrongArray: React.FC<PropsType> = (props) => {
   const onClickPlayVoice = () => {
     if (props.audio !== '') {
       playVoice();
@@ -21,7 +21,6 @@ const RightArray: React.FC<PropsType> = (props) => {
     audio.autoplay = true;
   }
     
-
   return (
     <li className={cn(styles.arrays__item)}>
       <button className={cn(styles.arrays__button)} onClick={onClickPlayVoice} type='button'></button>
@@ -30,4 +29,4 @@ const RightArray: React.FC<PropsType> = (props) => {
   );
 };
 
-export default RightArray;
+export default WrongArray;

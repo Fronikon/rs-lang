@@ -1,6 +1,6 @@
 import cn from 'classnames';
-import styles from './QuestionPageQuestionWord.module.css';
-import generalStyles from '../QuestionPage.module.css';
+import styles from './QuestionWord.module.css';
+import generalStyles from '../AudioChallengeMain.module.css';
 
 type QuestionPageQuestionWordPropsType = {
   img: string

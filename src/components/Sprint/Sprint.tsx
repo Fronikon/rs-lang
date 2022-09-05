@@ -1,99 +1,53 @@
 import cn from 'classnames';
 import styles from './Sprint.module.css';
-import Close from '../../assets/logo/close-sign.svg';
-import Dropdown from './Dropdown';
 import { useState } from 'react';
 import Timer from './Timer';
-import Game from './Game';
-import { Result } from '../Result';
+import GameInner from './GameInner';
 import { WordType } from '../../types/types';
-import FirstFox from '../../assets/images/first_fox.png';
+import Game from './../Game/Game';
+
 
 const Sprint: React.FC = () => {
-  const [selected, setSelected] = useState<string>('1 раздел');
-  const [color, setColor] = useState<string>('red');
-  const [isActive, setIsActive] = useState(false);
-  const [timerActive, setTimerActive] = useState(false);
-  const [timerEnd, setTimerEnd] = useState(false);
-  const [points, setPoints] = useState(0);
-  const [trueArray, setTrueArray] = useState<WordType[]>([]);
-  const [falseArray, setFalseArray] = useState<WordType[]>([]);
-  const [groupNumber, setGroupNumber] = useState(1);
-  const [scale, setScale] = useState(10);
-  const [inARow, setInARow] = useState(0);
-  const [fox, setFox] = useState(FirstFox);
+  return (
+    <Game
+      limit={60}
+      gameTipe={'sprint'}
+      title={'Спринт'}
+      description={'Успей за отведенное время набрать как можно больше очков.За каждые четыре правильно угаданных слова количество получаемых очков увеличивается.'} />
+  );
+};
 
-  const handleClick = () => {
-    setIsActive((current) => !current);
-    setTimerActive(true);
-  };
+type PropsType = {
+  pageArray: WordType[]
+  setGameStatus: React.Dispatch<React.SetStateAction<string>>
+  rightAnswerWords: WordType[]
+  setRightAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
+  wrongAnswerWords: WordType[]
+  setWrongAnswerWords: React.Dispatch<React.SetStateAction<WordType[]>>
+}
+
+export const SprintMain: React.FC<PropsType> = (props) => {
+  const [points, setPoints] = useState(0);
 
   return (
-    <main className={cn(styles.main)}>
-      <a href="/">
-        <img className={cn(styles.close)} src={Close} alt="close" />
-      </a>
-
-      <div className={isActive ? cn(styles.none) : cn(styles.start_wrapper)}>
-        <h2 className={cn(styles.heading)}>Спринт</h2>
-        <p className={cn(styles.description)}>
-          Успей за отведенное время набрать как можно больше очков. За каждые
-          четыре правильно угаданных слова количество получаемых очков
-          увеличивается.
-        </p>
-        <div className={cn(styles.buttons_wrapper)}>
-          <button className={cn(styles.start)} onClick={handleClick}>
-            <p className={cn(styles.start_text)}>Начать</p>
-          </button>
-          <Dropdown
-            selected={selected}
-            setSelected={setSelected}
-            color={color}
-            setColor={setColor}
-            setGroupNumber={setGroupNumber}
-          />
-        </div>
-      </div>
-
-      <div
-        className={
-          isActive
-            ? timerEnd
-              ? cn(styles.none)
-              : cn(styles.general_game_wrapper)
-            : cn(styles.none)
-        }
-      >
-        <p className={cn(styles.total)}>{points}</p>
+    <div className={styles.general_game_wrapper}>
+      <p className={cn(styles.total)}>{points}</p>
+      <div className={styles['game-container']}>
         <Timer
-          timerActive={timerActive}
-          setTimerActive={setTimerActive}
-          timerEnd={timerEnd}
-          setTimerEnd={setTimerEnd}
+          setGameStatus={props.setGameStatus}
         />
-        <Game
+        <GameInner
+          setGameStatus={props.setGameStatus}
+          pageArray={props.pageArray}
           points={points}
           setPoints={setPoints}
-          trueArray={trueArray}
-          setTrueArray={setTrueArray}
-          falseArray={falseArray}
-          setFalseArray={setFalseArray}
-          groupNumber={groupNumber}
-          scale={scale}
-          setScale={setScale}
-          inARow={inARow}
-          setInARow={setInARow}
-          fox={fox}
-          setFox={setFox}
+          trueArray={props.rightAnswerWords}
+          setTrueArray={props.setRightAnswerWords}
+          falseArray={props.wrongAnswerWords}
+          setFalseArray={props.setWrongAnswerWords}
         />
       </div>
-
-      <Result
-        timerEnd={timerEnd}
-        trueArray={trueArray}
-        falseArray={falseArray}
-      />
-    </main>
+    </div>
   );
 };
 

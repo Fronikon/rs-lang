@@ -1,29 +1,22 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import styles from './Sprint.module.css';
+import { GameStatusData } from './../../types/enums';
 
-type TimerType = {
-  timerActive: boolean;
-  setTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  timerEnd: boolean;
-  setTimerEnd: React.Dispatch<React.SetStateAction<boolean>>;
+type PropsType = {
+  setGameStatus: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Timer: React.FC<TimerType> = ({ timerActive, setTimerActive, timerEnd, setTimerEnd }
-) => {
+const Timer: React.FC<PropsType> = (props) => {
   const [time, setTime] = useState(60);
-
+  
   useEffect(() => {
-    if (time > 0 && timerActive) {
+    if (time > 0) {
       setTimeout(setTime, 1000, time - 1);
-    } else if (time === 0) {
-      setTimeout(() => {
-        setTimerEnd(true);
-      }, 1000);
     } else {
-      setTimerActive(false);
+      props.setGameStatus(GameStatusData.finish);
     }
-  }, [time, setTimerActive, timerActive, setTimerEnd]);
+  }, [time, props]);
 
   return <div className={cn(styles.timer)}>{time}</div>;
 };

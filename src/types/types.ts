@@ -46,12 +46,14 @@ export interface generalWordType {
 export interface WordType extends generalWordType {
   id: string,
   difficulty?: Difficulties
+  optional?: UserWordOptionalType
 }
 
 export interface UsersWordType extends generalWordType {
   _id: string,
   userWord?: {
     difficulty?: Difficulties
+    optional?: UserWordOptionalType
   }
 }
 
@@ -64,9 +66,15 @@ export type UserWordFilterResultType = {
   totalCount: WordTotalCountType[]
 }
 
+export type UserWordOptionalType = {
+  isLearned: boolean
+  sucsessAttempts: number
+}
+
 export type UserWordOptionsType = {
   id: string,
   difficulty: Difficulties,
+  optional?: UserWordOptionalType
   wordId: string
 }
 

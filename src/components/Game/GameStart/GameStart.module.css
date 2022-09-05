@@ -1,19 +1,21 @@
-.audio__container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.game_start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  height: calc(100vh - 100px - 100px);
+}
+
+.game_start__container {
   box-sizing: border-box;
   width: 650px;
-  height: 350px;
-  padding: 50px;
+  padding: 25px 50px;
 
   background: rgb(0 0 0 / 33%);
   border-radius: 10px;
 }
 
-.audio__title {
+.game_start__title {
   margin: 0;
 
   font-family: Roboto, sans-serif;
@@ -23,9 +25,9 @@
   text-align: center;
 }
 
-.audio__description {
+.game_start__description {
   margin: 0;
-  padding: 20px 51px;
+  padding: 25px 0;
 
   font-family: Roboto, sans-serif;
   font-size: 30px;
@@ -51,7 +53,7 @@
   line-height: 29px;
   color: #fff;
 
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
   border: none;
   border-radius: 10px;
   box-shadow: 0 5px 5px black;

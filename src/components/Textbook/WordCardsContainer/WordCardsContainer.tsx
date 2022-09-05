@@ -5,7 +5,6 @@ import { StoreType } from "../../..";
 import TextbookControls from "./WordCardsControls/WordCardsControls";
 import { WordType } from './../../../types/types';
 import { useEffect, useState } from 'react';
-import { Difficulties } from "../../../types/enums";
 
 type PropsType = {
   isLogin: boolean
@@ -19,7 +18,7 @@ const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
   const [isLearnedCurrentPage, setIsLearnedCurrentPage] = useState<boolean>(false);
 
   useEffect(() => {
-    if (wordCards.every((item) => item.difficulty === Difficulties.learned || item.difficulty === Difficulties.learnedHard)) {
+    if (wordCards.every((item) => item.optional?.isLearned)) {
       setIsLearnedCurrentPage(true);
     } else {
       setIsLearnedCurrentPage(false);

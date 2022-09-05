@@ -7,10 +7,10 @@
   padding: 0.3em 0.5em;
 }
 
-.know {
-  background-color: #1fa74d;
+.learned {
+  background-color: var(--green-primary);
 }
 
-.unknown {
-  background-color: #a71f1f;
+.hard {
+  background-color: var(--red-primary);
 }

@@ -6,13 +6,14 @@
   padding: 5px 0;
 }
 
-.control-page {
+.control-page,
+.link-container {
   display: flex;
   gap: 20px;
 }
 
 .link-on-hardwords {
-  background-color: #a71f1f;
+  background-color: var(--red-primary);
 }
 
 .statusPage {
@@ -28,6 +29,6 @@
   font-weight: bold;
   color: white;
 
-  background-color: #1fa74d;
+  background-color: var(--green-primary);
   border-radius: 50%;
 }
