@@ -27,15 +27,12 @@ const UserStat: React.FC = () => {
   });
 
   useEffect(() => {
-    const response: Promise<StatisticsType> = getStatistics().then(data => {
+    getStatistics().then(data => {
       console.log('data.status: ', data.status);
       if (data.status === 200) {
-        return data.json().then(res => res);
+        return data.json().then(res => setStatistics(res));
       }
     });
-    console.log('response: ', response);
-    // if (response) setStatistics(response);
-
   }, [statistics]);
 
   const optional = statistics.optional;
