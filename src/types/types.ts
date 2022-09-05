@@ -91,7 +91,7 @@ export type AuthDataType = {
 
 export type StatisticsType = {
   learnedWords: number
-  optional: {
+  optional?: {
     lastVisit: number
     sprint: {
       countNewWordsPerDay: number
