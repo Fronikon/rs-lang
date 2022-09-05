@@ -51,9 +51,15 @@ const AudioChallengeMain: React.FC<PropsType> = ({
       };
   
       const randomNumbers: number[] = [numberCurrentWord];
-  
-      while (randomNumbers.length < 5) {
-        randomNumbers.push(getRandomNumber());
+      
+      if (pageArray.length <= 5) {
+        while (randomNumbers.length < pageArray.length) {
+          randomNumbers.push(getRandomNumber());
+        }
+      } else {
+        while (randomNumbers.length < 5) {
+          randomNumbers.push(getRandomNumber());
+        }
       }
   
       const words = randomNumbers.map((wordIndex) => pageArray[wordIndex]);
