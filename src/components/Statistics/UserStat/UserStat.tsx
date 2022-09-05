@@ -28,7 +28,6 @@ const UserStat: React.FC = () => {
 
   useEffect(() => {
     getStatistics().then(data => {
-      console.log('data.status: ', data.status);
       if (data.status === 200) {
         return data.json().then(res => setStatistics(res));
       }
