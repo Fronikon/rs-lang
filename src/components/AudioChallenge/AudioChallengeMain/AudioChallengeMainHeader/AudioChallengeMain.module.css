@@ -1,4 +1,6 @@
 .questionPage__headerContainer {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
 }
@@ -24,13 +26,17 @@
 .questionPage__closeButton {
   cursor: pointer;
 
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
 
   width: 30px;
   height: 30px;
 
+  font-size: 2em;
+  color: rgb(185 185 185);
+
   background-color: transparent;
-  background-image: url("../../../../assets/logo/close.png");
   background-repeat: no-repeat;
   border: none;
 

@@ -13,9 +13,9 @@
   width: 30px;
   height: 30px;
 
+  font-size: 2em;
+  color: rgb(185, 185, 185);
   background-color: transparent;
-  background-image: url("../../../assets/logo/close.png");
-  background-repeat: no-repeat;
   border: none;
 
   transition: all 400ms;
@@ -30,7 +30,7 @@
 }
 
 .result__container {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
 

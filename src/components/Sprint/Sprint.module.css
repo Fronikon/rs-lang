@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
 
-  width: 100%;
+  padding: 50px 0;
 }
 
 .game_wrapper {
@@ -25,11 +25,11 @@
 }
 
 .right {
-  border: 8px solid var(--green-primary);
+  outline: 5px solid var(--green-primary);
 }
 
 .wrong {
-  border: 8px solid var(--red-primary);
+  outline: 5px solid var(--red-primary);
 }
 
 .points {
@@ -52,6 +52,7 @@
 
 .green_points {
   color: var(--green-primary);
+
   border: 1px solid var(--green-primary);
 }
 
@@ -63,6 +64,7 @@
 
 .red_points {
   color: var(--red-primary);
+
   border: 1px solid var(--red-primary);
 }
 
@@ -149,6 +151,7 @@
 
 .checkbox:checked + .check::after {
   display: block;
+
   background-color: var(--green-primary);
 }
 
@@ -172,14 +175,6 @@
 }
 
 .true {
-  background: var(--green-primary);
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 5px 5px black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
   cursor: pointer;
 
   display: flex;
@@ -188,6 +183,7 @@
 
   margin-top: 20px;
 
+  background: var(--green-primary);
   background: #1fa74d;
   border: none;
   border-radius: 10px;
@@ -204,14 +200,6 @@
 }
 
 .false {
-  background: var(--red-primary);
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 5px 5px black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
   cursor: pointer;
 
   display: flex;
@@ -220,6 +208,7 @@
 
   margin-top: 20px;
 
+  background: var(--red-primary);
   background: #a71f1f;
   border: none;
   border-radius: 10px;
@@ -236,7 +225,7 @@
 }
 
 .total {
-  margin-bottom: 20px;
+  margin: 0 0 20px;
 
   font-size: 60px;
   line-height: 73px;

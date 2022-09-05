@@ -18,7 +18,7 @@ const Result: React.FC<PropsType> = ({rightAnswerWords, wrongAnswerWords, setGam
 
   return (
     <section className={cn(styles.result)}>
-      <button className={cn(styles.result__closeButton)} onClick={close} type='button'></button>
+      <button className={cn(styles.result__closeButton)} onClick={close} type='button'>✖</button>
       <div className={cn(styles.result__container)}>
         <h2 className={cn(styles.result__title)}>Результат</h2>
         <div className={cn(styles.result__wrapper)}>
