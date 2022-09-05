@@ -1,8 +1,8 @@
-.h2 {
+.title {
   display: flex;
   justify-content: center;
 
-  margin: 70px auto;
+  margin: 30px auto;
 
   font-size: 60px;
   line-height: 73px;
@@ -11,21 +11,28 @@
 
 .cards {
   display: flex;
-  gap: 200px;
+  gap: 100px;
   justify-content: center;
 
-  margin-bottom: 248px;
+  margin-bottom: 30px;
 }
 
 .card {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  width: 300px;
 
   background-color: #fff;
-  border-radius: 5%;
+  border-radius: 5px;
   box-shadow: 5px 5px 5px black;
+}
+
+.card__content {
+  padding: 1em;
+
+  text-align: center;
 }
 
 .name {
@@ -38,6 +45,8 @@
 }
 
 .position {
+  display: inline;
+
   margin-top: 6px;
   margin-bottom: 8px;
 
@@ -49,20 +58,14 @@
 }
 
 .description {
-  width: 244px;
-  margin: 16px 24px 24px;
-
-  text-align: center;
+  font-size: 1.2em;
 }
 
 @media (max-width: 1130px) {
   .cards {
     gap: 50px;
-    margin-bottom: 150px;
-  }
 
-  .card {
-    width: 300px;
+    margin-bottom: 150px;
   }
 }
 

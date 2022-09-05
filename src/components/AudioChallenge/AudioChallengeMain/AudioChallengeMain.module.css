@@ -1,5 +1,5 @@
 .questionPage__container {
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .questionPage__button,
@@ -19,15 +19,18 @@
 .questionPage__button {
   width: 200px;
   height: 200px;
-  margin: 170px auto;
+  margin: 50px auto 100px;
+
+  outline: none;
 }
 
 .questionPage__list {
   display: flex;
-  gap: 70px;
+  flex-wrap: wrap;
+  gap: 50px;
   justify-content: center;
 
-  margin-bottom: 170px;
+  margin-bottom: 100px;
 
   font-family: Inter, sans-serif;
   font-size: 40px;
@@ -40,9 +43,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 294px;
-  height: 80px;
   margin: 0 auto;
+  padding: 10px 15px;
 
   font-family: Inter, sans-serif;
   font-size: 40px;

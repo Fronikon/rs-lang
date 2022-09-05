@@ -17,7 +17,7 @@ const QuestionPageHeader: React.FC<QuestionPageHeaderPropsType> = (props) => {
   return (
     <div className={cn(styles.questionPage__headerContainer)}>
       <div className={cn(styles.questionPage__counter)}>{props.count}/{props.limit}</div>
-      <button className={cn(styles.questionPage__closeButton)} onClick={close} type='button'></button>
+      <button className={cn(styles.questionPage__closeButton)} onClick={close} type='button'>✖</button>
     </div>
   );
 };

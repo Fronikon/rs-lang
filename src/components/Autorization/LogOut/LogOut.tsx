@@ -10,7 +10,7 @@ const LogOut: React.FC = () => {
 
   function clickButton(event: { preventDefault: () => void; }) {
     event.preventDefault();
-    dispatch(actions.switchIsLogin());
+    dispatch(actions.switchIsLogin(false));
     localStorage.clear();
     navigate("/");
   }

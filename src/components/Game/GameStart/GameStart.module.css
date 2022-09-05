@@ -1,14 +1,12 @@
 .game_start {
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  height: calc(100vh - 100px - 100px);
 }
 
 .game_start__container {
   box-sizing: border-box;
-  width: 650px;
+  max-width: 650px;
+  margin: 150px;
   padding: 25px 50px;
 
   background: rgb(0 0 0 / 33%);
@@ -46,6 +44,7 @@
 
   width: 158px;
   height: 65px;
+  margin-right: 20px;
 
   font-family: Inter, sans-serif;
   font-size: 24px;

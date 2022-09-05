@@ -89,24 +89,20 @@ export type AuthDataType = {
   code?: number
 }
 
+export type GameStatisticsType = {
+  countNewWordsPerDay: number
+  countLearnedWordsPerDay: number
+  seriesSucсessAnswersPerDay: number
+  countAnswersPerDay: number
+  countSucсessAnswersPerDay: number
+}
+
 export type StatisticsType = {
   learnedWords: number
   optional: {
     lastVisit: number
-    sprint: {
-      countNewWordsPerDay: number
-      countLearnedWordsPerDay: number
-      seriesSucсessAnswersPerDay: number
-      countAnswersPerDay: number
-      countSucсessAnswersPerDay: number
-    }
-    audiochallenge: {
-      countNewWordsPerDay: number
-      countLearnedWordsPerDay: number
-      seriesSucсessAnswersPerDay: number
-      countAnswersPerDay: number
-      countSucсessAnswersPerDay: number
-    }
+    sprint: GameStatisticsType
+    audiochallenge: GameStatisticsType
   }
 }
 
@@ -120,4 +116,8 @@ export type StatDatasType = {
   key: string
   title: string
   list: StatItemsType[]
+}
+
+export interface ResponseStatisticsType extends StatisticsType {
+  id?: string
 }

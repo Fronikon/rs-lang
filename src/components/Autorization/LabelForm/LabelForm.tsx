@@ -25,7 +25,7 @@ export const LabelForm: React.FC<LabelFormPropsType> = (props) => {
   return (
     <label className={cn(styles.author__label)}>{props.name}
       <input className={cn(styles.author__input)} type={props.inputType} name={props.inputName} value={props.inputValue}
-        onChange={changeInput} onBlur={validateInput} placeholder={props.placeholder}>   
+        onChange={changeInput} onBlur={validateInput} placeholder={props.placeholder} autoComplete="on">   
       </input>
       {props.errorName && <span className={cn(styles.err)}>{props.errorName}</span>}
     </label>

@@ -1,12 +1,14 @@
 .statistics__main_title {
-  margin: 0;
-  margin-bottom: 40px;
-  padding-top: 50px;
+  margin: 30px 0;
 
   font-family: Inter, sans-serif;
   font-size: 60px;
   line-height: 73px;
   text-align: center;
+}
+
+.content {
+  padding-bottom: 50px;
 }
 
 .statistics__description {
@@ -28,7 +30,7 @@
 
 .statistics__title {
   margin: 0;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 
   font-size: 40px;
   line-height: 48px;
@@ -36,6 +38,7 @@
 
 .statistics__list {
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
 
   padding: 0;
@@ -73,4 +76,18 @@
   font-weight: 700;
   line-height: 30px;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .statistics {
+    padding: 0;
+  }
+
+  .statistics__list {
+    justify-content: center;
+  }
+  .statistics__title {
+    text-align: center;
+  }
+
 }

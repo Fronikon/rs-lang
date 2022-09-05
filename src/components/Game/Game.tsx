@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../redux/actions';
 import { WordType } from '../../types/types';
-import { wordsApi } from '../../api/api';
+import { getStatistics, updateStatistics, wordsApi } from '../../api/api';
 import { StoreType } from '../..';
 import { Difficulties, GameStatusData } from '../../types/enums';
 import styles from './Game.module.css';
@@ -12,6 +12,7 @@ import GameStart from './GameStart/GameStart';
 import Result from './Result/Result';
 import AudioChallengeMain from './../AudioChallenge/AudioChallengeMain/AudioChallengeMain';
 import { SprintMain } from './../Sprint/Sprint';
+import cn from 'classnames';
 
 type PropsType = {
   limit: number
@@ -45,6 +46,8 @@ const Game: React.FC<PropsType> = (props) => {
 
   const [gameStatus, setGameStatus] = useState<string>(GameStatusData.start);
   const [pageArray, setPageArray] = useState<WordType[]>([]);
+  const [seriesSucсess, setSeriesSucсess] = useState<number[]>([]);
+  const [seriesRightAnswers, setSeriesRightAnswers] = useState<number>(0);
 
   const [rightAnswerWords, setRightAnswerWords] = useState<WordType[]>([]);
   const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
@@ -100,6 +103,11 @@ const Game: React.FC<PropsType> = (props) => {
       }
     }
     if (gameStatus === GameStatusData.finish && isLogin) {
+      let countNewWords = 0;
+      let countLearnedWords = 0;
+      const countAnswers = rightAnswerWords.length + wrongAnswerWords.length;
+      const countSucсessAnswers = rightAnswerWords.length;
+
       rightAnswerWords.forEach((word) => {
         if (word.optional && word.difficulty) {
           const sucsessAttempts = word.optional?.sucsessAttempts + 1;
@@ -112,6 +120,9 @@ const Game: React.FC<PropsType> = (props) => {
               isLearned: true
             };
             wordsApi.updateUserWord(word.id, Difficulties.common, optional);
+            if (!word.optional.isLearned) {
+              countLearnedWords += 1;
+            }
           } else {
             const optional = {
               ...word.optional,
@@ -125,6 +136,7 @@ const Game: React.FC<PropsType> = (props) => {
             sucsessAttempts: 1
           };
           wordsApi.postUserWord(word.id, Difficulties.common, optional);
+          countNewWords += 1;
         }
       });
       wrongAnswerWords.forEach((word) => {
@@ -141,12 +153,52 @@ const Game: React.FC<PropsType> = (props) => {
           }
         }
       });
+
+      getStatistics().then((data) => {
+        let statistics = {...data};
+        const currentSeries = seriesSucсess.sort((a,b) => b - a)[0];
+        const dataSeries = data.optional.sprint.seriesSucсessAnswersPerDay;
+
+        if (props.gameTipe === 'audioChallenge') {
+          statistics = {
+            ...data,
+            optional: {
+              ...data.optional,
+              audiochallenge: {
+                countNewWordsPerDay: countNewWords,
+                countLearnedWordsPerDay: countLearnedWords,
+                seriesSucсessAnswersPerDay: currentSeries > dataSeries ? currentSeries : dataSeries,
+                countAnswersPerDay: countAnswers,
+                countSucсessAnswersPerDay: countSucсessAnswers
+              }
+            }
+          };
+        } else if(props.gameTipe === 'sprint') {
+          statistics = {
+            ...data,
+            optional: {
+              ...data.optional,
+              sprint: {
+                countNewWordsPerDay: countNewWords,
+                countLearnedWordsPerDay: countLearnedWords,
+                seriesSucсessAnswersPerDay: currentSeries > dataSeries ? currentSeries : dataSeries,
+                countAnswersPerDay: countAnswers,
+                countSucсessAnswersPerDay: countSucсessAnswers
+              }
+            }
+          };
+        }
+        updateStatistics(statistics);
+      });
+
+      setSeriesRightAnswers(0);
+      setSeriesSucсess([]);
     }
   }, [dispatch, gameStatus]);
 
 
   return (
-    <main className={styles['game-container']}>
+    <main className={cn(styles['game-container'], 'container')}>
       {
         gameStatus === GameStatusData.start &&
         <GameStart
@@ -168,6 +220,10 @@ const Game: React.FC<PropsType> = (props) => {
               setRightAnswerWords={setRightAnswerWords}
               wrongAnswerWords={wrongAnswerWords}
               setWrongAnswerWords={setWrongAnswerWords}
+              setSeriesSucсess={setSeriesSucсess}
+              seriesSucсess={seriesSucсess}
+              setSeriesRightAnswers={setSeriesRightAnswers}
+              seriesRightAnswers={seriesRightAnswers}
             /> :
             <AudioChallengeMain
               setGameStatus={setGameStatus}
@@ -176,6 +232,10 @@ const Game: React.FC<PropsType> = (props) => {
               setRightAnswerWords={setRightAnswerWords}
               wrongAnswerWords={wrongAnswerWords}
               setWrongAnswerWords={setWrongAnswerWords}
+              setSeriesSucсess={setSeriesSucсess}
+              seriesSucсess={seriesSucсess}
+              setSeriesRightAnswers={setSeriesRightAnswers}
+              seriesRightAnswers={seriesRightAnswers}
             />
         )
       }

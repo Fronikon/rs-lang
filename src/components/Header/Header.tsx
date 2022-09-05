@@ -23,7 +23,7 @@ const Header: React.FC = () => {
       <div
         onClick={openNavMenu}
         className={cn(styles['burger-menu'], 'icon-button', isNavMenuOpen && styles['_active'])}>
-        <img src={burgerMenuLogo} alt="burger-menu" />
+        <img src={burgerMenuLogo} alt="burger-menu" width={40} height={40} />
       </div>
       <Link to="/">
         <h1 className={styles.title}>RS-LANG</h1>
