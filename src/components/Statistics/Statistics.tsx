@@ -1,15 +1,14 @@
 import cn from 'classnames';
-import { useSelector } from 'react-redux';
 import styles from './Statistics.module.css';
 import UserStat from './UserStat/UserStat';
 import { useEffect, useState } from 'react';
 import { getStatistics } from '../../api/api';
 import { StatisticsType } from '../../types/types';
 import { statisticsInitial } from './constant';
-import { StoreType } from '../../store/store';
+import { useCustomSelector } from '../../hooks/redax-hooks';
 
 const Statistics: React.FC = () => {
-  const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+  const isLogin = useCustomSelector((state): boolean => state.auth.isLogin);
   const [statistics, setStatistics] = useState<StatisticsType>(statisticsInitial);
 
   useEffect(() => {

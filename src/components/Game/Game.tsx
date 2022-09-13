@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { actions } from '../../redux/actions';
@@ -11,8 +10,7 @@ import Result from './Result/Result';
 import AudioChallengeMain from './../AudioChallenge/AudioChallengeMain/AudioChallengeMain';
 import { SprintMain } from './../Sprint/Sprint';
 import cn from 'classnames';
-import { StoreType } from '../../store/store';
-import { useCustomDispatch } from '../../hooks/redax-hooks';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redax-hooks';
 
 type PropsType = {
   limit: number
@@ -52,10 +50,10 @@ const Game: React.FC<PropsType> = (props) => {
   const [rightAnswerWords, setRightAnswerWords] = useState<WordType[]>([]);
   const [wrongAnswerWords, setWrongAnswerWords] = useState<WordType[]>([]);
 
-  const isStartGameFromTextbook = useSelector((state: StoreType) => state.textbook.isStartGameFromTextbook);
-  const currentPage = useSelector((state: StoreType) => state.textbook.currentPage);
-  const currentGroup = useSelector((state: StoreType) => state.textbook.currentGroup);
-  const isLogin = useSelector((state: StoreType) => state.auth.isLogin);
+  const isStartGameFromTextbook = useCustomSelector((state) => state.textbook.isStartGameFromTextbook);
+  const currentPage = useCustomSelector((state) => state.textbook.currentPage);
+  const currentGroup = useCustomSelector((state) => state.textbook.currentGroup);
+  const isLogin = useCustomSelector((state) => state.auth.isLogin);
 
   const dispatch = useCustomDispatch();
 

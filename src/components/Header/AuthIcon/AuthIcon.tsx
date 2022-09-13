@@ -1,11 +1,10 @@
 import cn from 'classnames';
 import styles from './AuthIcon.module.css';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { StoreType } from '../../../store/store';
+import { useCustomSelector } from '../../../hooks/redax-hooks';
 
 const AuthIcon: React.FC = () => {
-  const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+  const isLogin = useCustomSelector((state): boolean => state.auth.isLogin);
 
   return (
     <Link to="/auth">

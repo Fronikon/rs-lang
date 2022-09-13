@@ -1,13 +1,12 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { AuthInputDataType } from '../../types/types';
 import styles from './Authorization.module.css';
 import FormRegister from './FormRegister/FormRegister';
 import FormLogin from './FormLogin/FormLogin';
 import LogOut from './LogOut/LogOut';
 import Modal from './Modal/Modal';
-import { StoreType } from '../../store/store';
+import { useCustomSelector } from '../../hooks/redax-hooks';
 
 export const authDatas: AuthInputDataType[] = [
   {
@@ -39,7 +38,7 @@ export const authDatas: AuthInputDataType[] = [
 const Authorization: React.FC = () => {
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>('');
-  const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+  const isLogin = useCustomSelector((state): boolean => state.auth.isLogin);
 
   useEffect(() => {
     if (isModalActive) {
