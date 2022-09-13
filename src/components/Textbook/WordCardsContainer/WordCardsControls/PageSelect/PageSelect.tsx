@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { useDispatch } from "react-redux";
+import { useCustomDispatch } from "../../../../../hooks/redax-hooks";
 import { actions } from "../../../../../redux/actions";
 import { getSelectOptions } from "../utils";
 import styles from './PageSelect.module.css';
@@ -9,7 +9,7 @@ type PropsType = {
 }
 
 const PageSelect: React.FC<PropsType> = (props) => {
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(actions.setPage(Number(e.target.value)));

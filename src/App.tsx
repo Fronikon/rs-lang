@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCustomDispatch, useCustomSelector } from './hooks/redax-hooks';
+import styles from './App.module.css';
+import { getRefreshToken } from './api/api';
+import { actions } from './redux/actions';
+import { StoreType } from './store/store';
 
 import { Greeting } from './components/Greeting/Greeting';
 import NavMenu from './components/NavMenu/NavMenu';
@@ -13,18 +17,14 @@ import Sprint from './components/Sprint/Sprint';
 import Statistics from './components/Statistics/Statistics';
 import Authorization from './components/Autorization/Authorization';
 import AudioChallenge from './components/AudioChallenge/AudioChallenge';
-import styles from './App.module.css';
-import { StoreType } from '.';
-import { getRefreshToken } from './api/api';
-import { actions } from './redux/actions';
 
 function App() {
-  const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
+  const isNavMenuOpen = useCustomSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
   const [isCheckLogin, setIsCheckLogin] = useState<boolean>(true);
   const token = JSON.parse((localStorage.getItem('token') as string));
   const timeLogin = Number(localStorage.getItem('timeLogin'));
   const limitTime = 4 * 60 * 60 * 1000 - 5 * 60 * 1000; // 3h 55m
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   useEffect(() => {
     if (isCheckLogin) {

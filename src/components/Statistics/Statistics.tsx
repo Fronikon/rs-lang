@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
-import { StoreType } from '../..';
 import styles from './Statistics.module.css';
 import UserStat from './UserStat/UserStat';
 import { useEffect, useState } from 'react';
 import { getStatistics } from '../../api/api';
 import { StatisticsType } from '../../types/types';
 import { statisticsInitial } from './constant';
+import { StoreType } from '../../store/store';
 
 const Statistics: React.FC = () => {
   const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);

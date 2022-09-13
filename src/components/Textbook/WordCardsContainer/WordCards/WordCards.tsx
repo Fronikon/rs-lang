@@ -1,10 +1,6 @@
 import WordCard from "../../WordCard/WordCard";
 import { WordType } from "../../../../types/types";
 import { BASE_URL } from '../../../../api/api';
-import { ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from 'redux';
-import { useDispatch } from 'react-redux';
-import { StoreType } from "../../../..";
 import { useEffect, useState } from 'react';
 import { asyncActions } from '../../../../redux/asyncActions';
 import { useSearchParams } from "react-router-dom";
@@ -12,6 +8,7 @@ import { actions } from "../../../../redux/actions";
 import Loader from '../../../Loader/Loader';
 import styles from '../../../Loader/Loader.module.css';
 import cn from 'classnames';
+import { useCustomDispatch } from "../../../../hooks/redax-hooks";
 
 type PropsType = {
   currentGroup: number
@@ -21,7 +18,7 @@ type PropsType = {
 }
 
 const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wordCards}) => {
-  const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
+  const dispatch = useCustomDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
 

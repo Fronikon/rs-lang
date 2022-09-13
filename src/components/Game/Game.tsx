@@ -1,11 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { actions } from '../../redux/actions';
 import { WordType } from '../../types/types';
 import { getStatistics, updateStatistics, wordsApi } from '../../api/api';
-import { StoreType } from '../..';
 import { Difficulties, GameStatusData } from '../../types/enums';
 import styles from './Game.module.css';
 import GameStart from './GameStart/GameStart';
@@ -13,6 +11,8 @@ import Result from './Result/Result';
 import AudioChallengeMain from './../AudioChallenge/AudioChallengeMain/AudioChallengeMain';
 import { SprintMain } from './../Sprint/Sprint';
 import cn from 'classnames';
+import { StoreType } from '../../store/store';
+import { useCustomDispatch } from '../../hooks/redax-hooks';
 
 type PropsType = {
   limit: number
@@ -57,7 +57,7 @@ const Game: React.FC<PropsType> = (props) => {
   const currentGroup = useSelector((state: StoreType) => state.textbook.currentGroup);
   const isLogin = useSelector((state: StoreType) => state.auth.isLogin);
 
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   useEffect(() => {
     if (isStartGameFromTextbook) {

@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import styles from '../Authorization.module.css';
 import { AuthInputDataType, AuthInputValueType } from '../../../types/types';
@@ -8,6 +7,7 @@ import LabelForm from '../LabelForm/LabelForm';
 import { loginUser } from '../../../api/api';
 import { actions } from '../../../redux/actions';
 import validation from '../LabelForm/validation';
+import { useCustomDispatch } from '../../../hooks/redax-hooks';
 
 type PropsType = {
   setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>
@@ -26,7 +26,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   const getMessageLogin = (status: number) => {
     switch (status) {

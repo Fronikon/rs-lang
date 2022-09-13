@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { StoreType } from '../..';
 import { Route, Routes } from 'react-router-dom';
+import { StoreType } from '../../store/store';
 import HardWordCardsContainer from './HardWordCardsContainer/HardWordCardsContainer';
 import WordCardsContainer from './WordCardsContainer/WordCardsContainer';
 

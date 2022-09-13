@@ -7,7 +7,7 @@ import FormRegister from './FormRegister/FormRegister';
 import FormLogin from './FormLogin/FormLogin';
 import LogOut from './LogOut/LogOut';
 import Modal from './Modal/Modal';
-import { StoreType } from '../../index';
+import { StoreType } from '../../store/store';
 
 export const authDatas: AuthInputDataType[] = [
   {

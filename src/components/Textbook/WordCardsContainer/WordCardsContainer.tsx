@@ -1,10 +1,10 @@
 import textbookStyles from "../Textbook.module.css";
 import WordCards from "./WordCards/WordCards";
 import { useSelector } from 'react-redux';
-import { StoreType } from "../../..";
 import TextbookControls from "./WordCardsControls/WordCardsControls";
 import { WordType } from './../../../types/types';
 import { useEffect, useState } from 'react';
+import { StoreType } from "../../../store/store";
 
 type PropsType = {
   isLogin: boolean

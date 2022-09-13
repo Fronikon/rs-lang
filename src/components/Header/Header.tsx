@@ -1,15 +1,14 @@
 import cn from 'classnames';
 import burgerMenuLogo from '../../assets/logo/menu.png';
 import styles from './Header.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/actions';
-import { StoreType } from '../../index';
 import { Link } from 'react-router-dom';
 import AuthIcon from './AuthIcon/AuthIcon';
+import { useCustomDispatch, useCustomSelector } from '../../hooks/redax-hooks';
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
-  const isNavMenuOpen = useSelector((state: StoreType): boolean => state.navMenu.isNavMenuOpen);
+  const dispatch = useCustomDispatch();
+  const isNavMenuOpen = useCustomSelector((state): boolean => state.navMenu.isNavMenuOpen);
 
   const openNavMenu: React.MouseEventHandler<HTMLDivElement> = (e) => {
     dispatch(actions.switchIsNavMenuOpen());

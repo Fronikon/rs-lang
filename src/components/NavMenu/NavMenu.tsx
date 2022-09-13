@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import styles from './NavMenu.module.css';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { actions } from './../../redux/actions';
 import { MouseEventHandler } from 'react';
+import { useCustomDispatch } from '../../hooks/redax-hooks';
 
 const NavMenu: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   const closeNavMenu: MouseEventHandler = (e) => {
     const target = e.target as HTMLElement;

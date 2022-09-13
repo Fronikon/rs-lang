@@ -2,7 +2,7 @@ import { UserWordFilterResultType, UserWordOptionsType, WordType } from '../type
 import { wordsApi } from './../api/api';
 import { actions, getWordsAction, setHardWordsAction } from './actions';
 import { Dispatch } from 'react';
-import { StoreType } from '..';
+import { StoreType } from '../store/store';
 
 export const asyncActions = {
   getWords: () => {

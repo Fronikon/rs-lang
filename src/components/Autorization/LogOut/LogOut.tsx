@@ -1,12 +1,12 @@
 import cn from 'classnames';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useCustomDispatch } from '../../../hooks/redax-hooks';
 import { actions } from '../../../redux/actions';
 import styles from './LogOut.module.css';
 
 const LogOut: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   function clickButton(event: { preventDefault: () => void; }) {
     event.preventDefault();

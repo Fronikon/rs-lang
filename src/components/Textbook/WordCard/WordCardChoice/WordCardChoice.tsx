@@ -1,13 +1,10 @@
 import cn from "classnames";
-import { ThunkDispatch } from 'redux-thunk';
-import { useDispatch } from 'react-redux';
-import { AnyAction } from "redux";
 import { wordsApi } from "../../../../api/api";
 import { Difficulties } from "../../../../types/enums";
 import { asyncActions } from '../../../../redux/asyncActions';
-import { StoreType } from "../../../..";
 import { UserWordOptionalType } from "../../../../types/types";
 import styles from "./WordCardChoice.module.css";
+import { useCustomDispatch } from "../../../../hooks/redax-hooks";
 
 type PropsType = {
   wordId: string
@@ -16,7 +13,7 @@ type PropsType = {
 }
 
 const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, optional}) => {
-  const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
+  const dispatch = useCustomDispatch();
 
   const changeLearnedStatus = async () => {
     if (optional && difficulty) {

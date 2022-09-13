@@ -1,20 +1,17 @@
 import WordCard from "../../WordCard/WordCard";
 import { BASE_URL } from '../../../../api/api';
 import { useEffect } from 'react';
-import { ThunkDispatch } from 'redux-thunk';
-import { StoreType } from "../../../..";
-import { AnyAction } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
 import { asyncActions } from '../../../../redux/asyncActions';
 import { UsersWordType } from "../../../../types/types";
+import { useCustomDispatch, useCustomSelector } from "../../../../hooks/redax-hooks";
 
 type PropsType = {
   isLogin: boolean
 }
 
 const HardWordCards: React.FC<PropsType> = ({isLogin}) => {
-  const wordCards = useSelector((state: StoreType): UsersWordType[] => state.textbook.hardWordCards);
-  const dispatch: ThunkDispatch<StoreType, [], AnyAction> = useDispatch();
+  const wordCards = useCustomSelector((state): UsersWordType[] => state.textbook.hardWordCards);
+  const dispatch = useCustomDispatch();
 
   useEffect(() => {
     dispatch(asyncActions.getHardWords());
