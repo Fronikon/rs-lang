@@ -1,11 +1,10 @@
-import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { StoreType } from '../../store/store';
+import { useCustomSelector } from '../../hooks/redax-hooks';
 import HardWordCardsContainer from './HardWordCardsContainer/HardWordCardsContainer';
 import WordCardsContainer from './WordCardsContainer/WordCardsContainer';
 
 const Textbook = () => {
-  const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+  const isLogin = useCustomSelector((state): boolean => state.auth.isLogin);
 
   return (
     <section className='container'>

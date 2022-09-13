@@ -5,6 +5,7 @@
 :root {
   --red-primary: #a71f1f;
   --green-primary: #1fa74d;
+  --app-shadow-color: rgb(0 0 0 / 27.4%);
   --footer-height: 70px;
   --header-height: 70px;
   --content-height: calc(100vh - var(--footer-height) - var(--header-height));
@@ -37,6 +38,8 @@ a {
 }
 
 .container {
+  position: relative;
+
   padding: 0 50px;
 }
 

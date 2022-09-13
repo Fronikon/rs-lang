@@ -1,19 +1,20 @@
 import textbookStyles from "../Textbook.module.css";
 import WordCards from "./WordCards/WordCards";
-import { useSelector } from 'react-redux';
 import TextbookControls from "./WordCardsControls/WordCardsControls";
 import { WordType } from './../../../types/types';
 import { useEffect, useState } from 'react';
-import { StoreType } from "../../../store/store";
+import Loader from "../../Loader/Loader";
+import { useCustomSelector } from "../../../hooks/redax-hooks";
 
 type PropsType = {
   isLogin: boolean
 }
 
 const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
-  const currentGroup = useSelector((state: StoreType): number => state.textbook.currentGroup),
-    currentPage = useSelector((state: StoreType): number => state.textbook.currentPage),
-    wordCards = useSelector((state: StoreType): WordType[] => state.textbook.wordCards);
+  const currentGroup = useCustomSelector((state): number => state.textbook.currentGroup),
+    currentPage = useCustomSelector((state): number => state.textbook.currentPage),
+    wordCards = useCustomSelector((state): WordType[] => state.textbook.wordCards),
+    isLoading = useCustomSelector((state) => state.loading.isLoading);
 
   const [isLearnedCurrentPage, setIsLearnedCurrentPage] = useState<boolean>(false);
 
@@ -28,6 +29,7 @@ const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
 
   return (
     <div className={textbookStyles.inner}>
+      {isLoading && <Loader />}
       <h3 className={textbookStyles.title}>Учебник</h3>
       <TextbookControls
         currentPage={currentPage}

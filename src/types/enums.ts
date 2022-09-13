@@ -7,7 +7,9 @@ export enum ActionTypes {
   setPage = 'SET-PAGE',
   getWords = 'GET-WORDS',
   switchIsLogin = 'SWITCH-IS-LOGIN',
-  switchIsStartGameFromTextbook = 'IS-START-GAME-FROM-TEXTBOOK'
+  switchIsStartGameFromTextbook = 'IS-START-GAME-FROM-TEXTBOOK',
+  switchIsLoading = 'SWITCH-IS-LOADING',
+  switchIsLoadingHardWords = 'SWITCH-IS-LOADING-HARD-WORDS'
 }
 
 export enum Difficulties {

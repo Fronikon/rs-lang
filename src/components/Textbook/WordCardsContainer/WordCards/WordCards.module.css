@@ -1,0 +1,13 @@
+@media (max-width: 1424px) {
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 966px) {
+  .cardsContainer {
+    justify-content: center;
+  }
+}

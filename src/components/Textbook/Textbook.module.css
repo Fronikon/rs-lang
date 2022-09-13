@@ -1,4 +1,5 @@
 .inner {
+  min-height: var(--content-height);
   padding: 50px;
 }
 
@@ -10,9 +11,10 @@
 
 @media (max-width: 1066px) {
   .inner {
-    padding: 50px 0;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+
+    padding: 50px 0;
   }
 }
