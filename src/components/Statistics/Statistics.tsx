@@ -2,7 +2,7 @@ import cn from 'classnames';
 import styles from './Statistics.module.css';
 import UserStat from './UserStat/UserStat';
 import { useEffect, useState } from 'react';
-import { getStatistics } from '../../api/api';
+import { getStatistics } from '../../api/statisticsApi';
 import { StatisticsType } from '../../types/types';
 import { statisticsInitial } from './constant';
 import { useCustomSelector } from '../../hooks/redax-hooks';

@@ -121,3 +121,11 @@ export type StatDatasType = {
 export interface ResponseStatisticsType extends StatisticsType {
   id?: string
 }
+
+export type AuthDataTokens = {
+  message: string,
+  token: string,
+  refreshToken: string,
+  userId: string,
+  name: string
+}

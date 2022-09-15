@@ -4,10 +4,10 @@ import styles from '../Authorization.module.css';
 import { AuthInputDataType, AuthInputValueType } from '../../../types/types';
 import { authDatas } from './../Authorization';
 import LabelForm from '../LabelForm/LabelForm';
-import { loginUser } from '../../../api/api';
 import { actions } from '../../../redux/actions';
 import validation from '../LabelForm/validation';
 import { useCustomDispatch } from '../../../hooks/redax-hooks';
+import { loginUser } from '../../../api/authApi';
 
 type PropsType = {
   setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>

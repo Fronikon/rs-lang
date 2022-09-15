@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import styles from './Greeting.module.css';
 
-export const Greeting: React.FC = () => {
+const Greeting: React.FC = () => {
   return (
     <main className={cn(styles.main, 'container')}>
       <section className={cn(styles.section)}>
@@ -18,3 +18,5 @@ export const Greeting: React.FC = () => {
     </main>
   );
 };
+
+export default Greeting;

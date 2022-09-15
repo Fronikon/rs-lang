@@ -1,10 +1,10 @@
 import cn from "classnames";
-import { wordsApi } from "../../../../api/api";
 import { Difficulties } from "../../../../types/enums";
 import { asyncActions } from '../../../../redux/asyncActions';
 import { UserWordOptionalType } from "../../../../types/types";
 import styles from "./WordCardChoice.module.css";
 import { useCustomDispatch } from "../../../../hooks/redax-hooks";
+import { postUserWord, updateUserWord } from "../../../../api/userWordsApi";
 
 type PropsType = {
   wordId: string
@@ -17,9 +17,9 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, optional}) => 
 
   const changeLearnedStatus = async () => {
     if (optional && difficulty) {
-      await wordsApi.updateUserWord(wordId, Difficulties.common, {...optional, isLearned: !optional.isLearned});
+      await updateUserWord(wordId, Difficulties.common, {...optional, isLearned: !optional.isLearned});
     } else {
-      await wordsApi.postUserWord(wordId, Difficulties.common, {sucsessAttempts: 0, isLearned: true});
+      await postUserWord(wordId, Difficulties.common, {sucsessAttempts: 0, isLearned: true});
     }
     dispatch(asyncActions.getWords());
     dispatch(asyncActions.getHardWords());
@@ -28,9 +28,9 @@ const WordCardChoice: React.FC<PropsType> = ({wordId, difficulty, optional}) => 
   const makeWordHard = async () => {
     if (optional && difficulty) {
       const localDif = difficulty === Difficulties.hard ? Difficulties.common : Difficulties.hard;
-      await wordsApi.updateUserWord(wordId, localDif, {...optional, isLearned: false});
+      await updateUserWord(wordId, localDif, {...optional, isLearned: false});
     } else {
-      await wordsApi.postUserWord(wordId, Difficulties.hard, {sucsessAttempts: 0, isLearned: false});
+      await postUserWord(wordId, Difficulties.hard, {sucsessAttempts: 0, isLearned: false});
     }
     dispatch(asyncActions.getWords());
     dispatch(asyncActions.getHardWords());

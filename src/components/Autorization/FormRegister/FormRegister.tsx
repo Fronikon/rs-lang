@@ -4,8 +4,8 @@ import styles from '../Authorization.module.css';
 import { AuthInputDataType, AuthInputValueType } from "../../../types/types";
 import { authDatas } from '../Authorization';
 import LabelForm from "../LabelForm/LabelForm";
-import { createUser } from "../../../api/api";
 import validation from '../LabelForm/validation';
+import { createUser } from './../../../api/authApi';
 
 type PropsType = {
   setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>

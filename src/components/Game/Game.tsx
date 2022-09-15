@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { actions } from '../../redux/actions';
 import { WordType } from '../../types/types';
-import { getStatistics, updateStatistics, wordsApi } from '../../api/api';
+import { getStatistics, updateStatistics } from '../../api/statisticsApi';
 import { Difficulties, GameStatusData } from '../../types/enums';
 import styles from './Game.module.css';
 import GameStart from './GameStart/GameStart';
@@ -11,6 +11,8 @@ import AudioChallengeMain from './../AudioChallenge/AudioChallengeMain/AudioChal
 import { SprintMain } from './../Sprint/Sprint';
 import cn from 'classnames';
 import { useCustomDispatch, useCustomSelector } from '../../hooks/redax-hooks';
+import { getWords } from '../../api/wordsApi';
+import { getNotLearnedWords, getUserWords, postUserWord, updateUserWord } from '../../api/userWordsApi';
 
 type PropsType = {
   limit: number
@@ -76,15 +78,15 @@ const Game: React.FC<PropsType> = (props) => {
     if (gameStatus === GameStatusData.inProcess) {
       if (isStartGameFromTextbook) {
         dispatch(actions.switchIsStartGameFromTextbook());
-        getLimitCountWords(wordsApi.getNotLearnedWords, group, page, props.limit)
+        getLimitCountWords(getNotLearnedWords, group, page, props.limit)
           .then((data: WordType[]) => {
             setPageArray([...data]);
           });
       } else {
-        getLimitCountWords(wordsApi.getWords, group, page, props.limit)
+        getLimitCountWords(getWords, group, page, props.limit)
           .then((data: WordType[]) => {
             if (isLogin) {
-              wordsApi.getUserWords().then((userWords) => {
+              getUserWords().then((userWords) => {
                 data.forEach((word) => {
                   const userWord = userWords.find((userWord) => userWord.wordId === word.id);
                   if (userWord) {
@@ -117,7 +119,7 @@ const Game: React.FC<PropsType> = (props) => {
               sucsessAttempts: sucsessAttempts,
               isLearned: true
             };
-            wordsApi.updateUserWord(word.id, Difficulties.common, optional);
+            updateUserWord(word.id, Difficulties.common, optional);
             if (!word.optional.isLearned) {
               countLearnedWords += 1;
             }
@@ -126,14 +128,14 @@ const Game: React.FC<PropsType> = (props) => {
               ...word.optional,
               sucsessAttempts: sucsessAttempts,
             };
-            wordsApi.updateUserWord(word.id, word.difficulty, optional);
+            updateUserWord(word.id, word.difficulty, optional);
           }
         } else {
           const optional = {
             isLearned: false,
             sucsessAttempts: 1
           };
-          wordsApi.postUserWord(word.id, Difficulties.common, optional);
+          postUserWord(word.id, Difficulties.common, optional);
           countNewWords += 1;
         }
       });
@@ -145,9 +147,9 @@ const Game: React.FC<PropsType> = (props) => {
             sucsessAttempts: 0,
           };
           if (word.optional.isLearned) {
-            wordsApi.updateUserWord(word.id, Difficulties.common, optional);
+            updateUserWord(word.id, Difficulties.common, optional);
           } else {
-            wordsApi.updateUserWord(word.id, word.difficulty, optional);
+            updateUserWord(word.id, word.difficulty, optional);
           }
         }
       });
