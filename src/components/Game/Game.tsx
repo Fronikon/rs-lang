@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { actions } from '../../redux/actions';
 import { WordType } from '../../types/types';
 import { getStatistics, updateStatistics } from '../../api/statisticsApi';
-import { Difficulties, GameStatusData } from '../../types/enums';
+import { Difficulties, GameStatusData, GameType } from '../../types/enums';
 import styles from './Game.module.css';
 import GameStart from './GameStart/GameStart';
 import Result from './Result/Result';
@@ -16,7 +16,7 @@ import { getNotLearnedWords, getUserWords, postUserWord, updateUserWord } from '
 
 type PropsType = {
   limit: number
-  gameTipe: string
+  gameType: GameType
   title: string
   description: string
 }
@@ -159,7 +159,7 @@ const Game: React.FC<PropsType> = (props) => {
         const currentSeries = seriesSucсess.sort((a,b) => b - a)[0];
         const dataSeries = data.optional.sprint.seriesSucсessAnswersPerDay;
 
-        if (props.gameTipe === 'audioChallenge') {
+        if (props.gameType === GameType.audioChallenge) {
           statistics = {
             ...data,
             optional: {
@@ -173,7 +173,7 @@ const Game: React.FC<PropsType> = (props) => {
               }
             }
           };
-        } else if(props.gameTipe === 'sprint') {
+        } else if(props.gameType === GameType.sprint) {
           statistics = {
             ...data,
             optional: {
@@ -198,7 +198,13 @@ const Game: React.FC<PropsType> = (props) => {
 
 
   return (
-    <main className={cn(styles['game-container'], 'container')}>
+    <main className={
+      cn(
+        styles['game-container'],
+        props.gameType === GameType.audioChallenge ? 'audio-challenge-background' : 'sprint-background',
+        'container'
+      )
+    }>
       {
         gameStatus === GameStatusData.start &&
         <GameStart
@@ -212,7 +218,7 @@ const Game: React.FC<PropsType> = (props) => {
       {
         gameStatus === GameStatusData.inProcess && pageArray.length > 0 &&
         (
-          props.gameTipe === 'sprint' ?
+          props.gameType === GameType.sprint ?
             <SprintMain
               setGameStatus={setGameStatus}
               pageArray={pageArray}

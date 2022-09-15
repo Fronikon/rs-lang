@@ -17,6 +17,11 @@ export enum Difficulties {
   hard = 'hard',
 }
 
+export enum GameType {
+  audioChallenge = 'AUDIO-CHALLENGE',
+  sprint = 'SPRINT'
+}
+
 export const GameStatusData = {
   start: 'START',
   inProcess: 'IN-PROCESS',

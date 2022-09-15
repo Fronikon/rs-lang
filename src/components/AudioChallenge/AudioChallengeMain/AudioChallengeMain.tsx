@@ -116,16 +116,13 @@ const AudioChallengeMain: React.FC<PropsType> = ({
         count={numberCurrentWord || 0}
         setGameStatus={setGameStatus}
       />
-      {isShowResult ? <QuestionPageQuestionWord
+      
+      {numberCurrentWord !== null && numberCurrentWord <= pageArray.length - 1 && <QuestionPageQuestionWord
         img={BASE_URL + pageArray[numberCurrentWord || 0].image}
         wordName={pageArray[numberCurrentWord || 0].word}
         onClickPlayVoice={onClickPlayVoice}
-      /> :
-        <button
-          className={cn(styles.questionPage__button)}
-          onClick={onClickPlayVoice}
-          type='button'>
-        </button>}
+        isShowResult={isShowResult}
+      />}
 
       <ul className={cn(styles.questionPage__list)}>
         {listCurrenWords.map((el) => (
@@ -142,12 +139,12 @@ const AudioChallengeMain: React.FC<PropsType> = ({
       </ul>
       {
         isShowResult ?
-          <button className={cn(styles.questionPage__skipButton, styles['next'])}
+          <button className={cn(styles.questionPage__skipButton, 'button')}
             type='button'
             onClick={() => next()}
           >{'--->'}</button>
           :
-          <button className={cn(styles.questionPage__skipButton)}
+          <button className={cn(styles.questionPage__skipButton, 'button')}
             type='button'
             onClick={() => doNotKnow()}
           >{'Не знаю'}</button>

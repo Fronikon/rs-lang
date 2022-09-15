@@ -76,6 +76,14 @@ a {
   margin: 0;
 }
 
+.audio-challenge-background {
+  background: linear-gradient(180deg, #cd8c00 0%, #bc4d3e 100%);
+}
+
+.sprint-background {
+  background: linear-gradient(180deg, #0067cd 0%, #6e3ebc 100%);
+}
+
 @media (max-width: 1424px) {
   .container {
     padding: 0 20px;

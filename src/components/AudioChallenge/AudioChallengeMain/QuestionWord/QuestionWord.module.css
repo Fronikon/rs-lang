@@ -6,15 +6,17 @@
   margin: 50px auto;
 }
 
-.questionPage__image {
-  display: block;
-
+.questionPage__window {
   width: 200px;
   height: 200px;
-  margin: 0 auto;
-  margin-bottom: 26px;
+  margin: 0 auto 30px;
 
+  background-color: rgb(0 0 0 / 33%);
   border-radius: 50%;
+}
+
+.questionPage__image {
+  display: block;
 }
 
 .questionPage__main_container {
@@ -25,18 +27,36 @@
 .questionPage__button_small {
   width: 40px;
   height: 40px;
+  margin: 0;
 
   background-size: 20px 20px;
+}
+
+.questionPage__button,
+.questionPage__button_small {
+  display: flex;
+
+  background-image: url("../../../../assets/logo/volume.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  outline: none;
+
+  transition: all 400ms;
 }
 
 .questionPage__word {
   display: block;
 
-  width: 280px;
+  min-width: 280px;
 
   font-family: Inter, sans-serif;
   font-size: 40px;
   line-height: 48px;
   color: #fff;
   text-align: center;
+}
+
+.show-result {
+  opacity: 0;
 }

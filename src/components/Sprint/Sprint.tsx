@@ -5,13 +5,14 @@ import Timer from './Timer';
 import GameInner from './GameInner';
 import { WordType } from '../../types/types';
 import Game from './../Game/Game';
+import { GameType } from '../../types/enums';
 
 
 const Sprint: React.FC = () => {
   return (
     <Game
       limit={60}
-      gameTipe={'sprint'}
+      gameType={GameType.sprint}
       title={'Спринт'}
       description={'Успей за отведенное время набрать как можно больше очков.За каждые четыре правильно угаданных слова количество получаемых очков увеличивается.'} />
   );

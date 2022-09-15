@@ -2,28 +2,6 @@
   padding: 20px 0;
 }
 
-.questionPage__button,
-.questionPage__button_small {
-  display: flex;
-
-  background-color: rgb(0 0 0 / 33%);
-  background-image: url("../../../assets/logo/volume.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  border: none;
-  border-radius: 50%;
-
-  transition: all 400ms;
-}
-
-.questionPage__button {
-  width: 200px;
-  height: 200px;
-  margin: 50px auto 100px;
-
-  outline: none;
-}
-
 .questionPage__list {
   display: flex;
   flex-wrap: wrap;
@@ -32,27 +10,19 @@
 
   margin-bottom: 100px;
 
-  font-family: Inter, sans-serif;
   font-size: 40px;
-  line-height: 48px;
   color: #fff;
 }
 
 .questionPage__skipButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 
   margin: 0 auto;
   padding: 10px 15px;
 
-  font-family: Inter, sans-serif;
   font-size: 40px;
-  line-height: 48px;
-  color: #fff;
 
-  background-color: rgb(179 31 67 / 55%);
-  border: 1px solid #fff;
+  background-color: var(--red-primary);
 
   transition: all 400ms;
 }
