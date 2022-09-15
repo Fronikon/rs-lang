@@ -8,7 +8,6 @@ import validation from '../LabelForm/validation';
 import { createUser } from './../../../api/authApi';
 
 type PropsType = {
-  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>
   setModalMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -50,7 +49,7 @@ const FormRegister: React.FC<PropsType> = (props) => {
         props.setModalMessage(message);
       });
   
-      props.setIsModalActive(true);
+      // props.setIsModalActive(true);
     }
     setIsSubmitting(false);
   }, [isSubmitting, error, input.email, input.password, input.username, props]);

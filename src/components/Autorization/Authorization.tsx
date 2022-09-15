@@ -36,15 +36,14 @@ export const authDatas: AuthInputDataType[] = [
 ];
 
 const Authorization: React.FC = () => {
-  const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>('');
   const isLogin = useCustomSelector((state): boolean => state.auth.isLogin);
 
   useEffect(() => {
-    if (isModalActive) {
-      setTimeout(() => setIsModalActive(false), 1000);
+    if (modalMessage) {
+      setTimeout(() => setModalMessage(''), 2000);
     }
-  }, [isModalActive]);
+  }, [modalMessage]);
   
   if (isLogin) {
     return (
@@ -55,9 +54,9 @@ const Authorization: React.FC = () => {
   } else {
     return (
       <main className={cn(styles.author)}>
-        <FormRegister setIsModalActive={setIsModalActive} setModalMessage={setModalMessage} />
-        <FormLogin setIsModalActive={setIsModalActive} setModalMessage={setModalMessage} />
-        {isModalActive && <Modal message={modalMessage}/>}
+        <FormRegister setModalMessage={setModalMessage} />
+        <FormLogin setModalMessage={setModalMessage} />
+        {modalMessage && <Modal message={modalMessage}/>}
       </main>
     );
   }

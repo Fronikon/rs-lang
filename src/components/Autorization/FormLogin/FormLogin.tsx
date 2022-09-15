@@ -10,7 +10,6 @@ import { useCustomDispatch } from '../../../hooks/redax-hooks';
 import { loginUser } from '../../../api/authApi';
 
 type PropsType = {
-  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>
   setModalMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -58,7 +57,6 @@ const FormLogin: React.FC<PropsType> = (props) => {
         }
         const message = getMessageLogin(response.status);
         props.setModalMessage(message);
-        props.setIsModalActive(true);
       });
     }
     
