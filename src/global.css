@@ -68,6 +68,14 @@ a {
   opacity: 0.5;
 }
 
+.default-link {
+  color: blue;
+}
+
+.reset-margin {
+  margin: 0;
+}
+
 @media (max-width: 1424px) {
   .container {
     padding: 0 20px;

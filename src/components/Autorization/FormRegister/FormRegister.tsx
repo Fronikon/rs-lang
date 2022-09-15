@@ -6,12 +6,14 @@ import { authDatas } from '../Authorization';
 import LabelForm from "../LabelForm/LabelForm";
 import validation from '../LabelForm/validation';
 import { createUser } from './../../../api/authApi';
+import { Link, useNavigate } from 'react-router-dom';
 
 type PropsType = {
   setModalMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
 const FormRegister: React.FC<PropsType> = (props) => {
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [input, setInput] = useState<AuthInputValueType>({
     username: "",
@@ -47,12 +49,13 @@ const FormRegister: React.FC<PropsType> = (props) => {
       }).then(response => {
         const message = getMessageRegister(response.status);
         props.setModalMessage(message);
+        if (response.status === 200) {
+          navigate("/auth/login");
+        }
       });
-  
-      // props.setIsModalActive(true);
     }
     setIsSubmitting(false);
-  }, [isSubmitting, error, input.email, input.password, input.username, props]);
+  }, [isSubmitting, error, input.email, input.password, input.username, props, navigate]);
   
   const submitCreateUser = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -80,6 +83,7 @@ const FormRegister: React.FC<PropsType> = (props) => {
           setError={setError}
         />;
       })}
+      <p className='reset-margin'>Есть учётная запись? <Link to='/auth/login'><span className='default-link'>Войти</span></Link></p>
       <input className={cn(styles.button, "button")} type="submit" value="Регистрация"/>
     </form>
   );

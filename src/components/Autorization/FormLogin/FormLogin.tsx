@@ -8,6 +8,7 @@ import { actions } from '../../../redux/actions';
 import validation from '../LabelForm/validation';
 import { useCustomDispatch } from '../../../hooks/redax-hooks';
 import { loginUser } from '../../../api/authApi';
+import { Link } from 'react-router-dom';
 
 type PropsType = {
   setModalMessage: React.Dispatch<React.SetStateAction<string>>
@@ -90,6 +91,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
           setError={setError}
         />;
       })}
+      <p className='reset-margin'>Нет учётной записи? <Link to='/auth/register'><span className='default-link'>Регистрация</span></Link></p>
       <input className={cn(styles.button, "button")} type="submit" value="Войти"/>
     </form>
   );

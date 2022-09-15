@@ -56,7 +56,7 @@ function App() {
       <div className={styles.content}>
         <Routes>
           <Route path="/" element={<Greeting />} />
-          <Route path="/auth" element={<Authorization />} />
+          <Route path="/auth/*" element={<Authorization />} />
           <Route path='/textbook/*' element={<Textbook />} />
           <Route path="/about" element={<About />} />
           <Route path="/sprint" element={<Sprint />} />

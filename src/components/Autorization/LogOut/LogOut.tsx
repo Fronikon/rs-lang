@@ -18,7 +18,7 @@ const LogOut: React.FC = () => {
   return (
     <main className={cn(styles.logout)}>
       <div className={cn(styles.logout__container)}>
-        <h2 className={cn(styles.logout__title)}>Вы уже зарегистрированы</h2>
+        <h2 className={cn(styles.logout__title)}>Вы авторизованы</h2>
         <button className={cn(styles.logout__button, 'button')}
           onClick={clickButton} type='button'>Покинуть учётную запись</button>
       </div>
