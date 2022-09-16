@@ -19,7 +19,7 @@ const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
   const [isLearnedCurrentPage, setIsLearnedCurrentPage] = useState<boolean>(false);
 
   useEffect(() => {
-    if (wordCards.every((item) => item.optional?.isLearned)) {
+    if (wordCards.length > 0 && wordCards.every((item) => item.optional?.isLearned)) {
       setIsLearnedCurrentPage(true);
     } else {
       setIsLearnedCurrentPage(false);

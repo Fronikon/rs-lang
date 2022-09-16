@@ -1,5 +1,3 @@
-/* ------------------------------------Game------------------------------------ */
-
 .game-container {
   position: relative;
 }
@@ -99,58 +97,26 @@
 
 .checkboxes {
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.checkbox {
-  display: none;
-}
-
-.label:nth-child(2) {
-  margin: 0 15px;
+  gap: 15px;
 }
 
 .check {
-  cursor: pointer;
-
-  position: relative;
-
-  width: 20px;
-  height: 20px;
-
-  vertical-align: middle;
-
-  accent-color: grey;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  outline: none;
-
-  appearance: none;
-}
-
-.check::after {
-  cursor: pointer;
-  content: "✔";
-
-  display: none;
-
   width: 20px;
   height: 20px;
 
   color: white;
-  vertical-align: middle;
 
-  accent-color: grey;
   border: 1px solid #ddd;
   border-radius: 50%;
-  outline: none;
-
-  appearance: none;
 }
 
-.checkbox:checked + .check::after {
-  display: block;
+.check_active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: bold;
 
   background-color: var(--green-primary);
 }

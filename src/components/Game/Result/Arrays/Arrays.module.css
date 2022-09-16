@@ -10,13 +10,13 @@
 
   display: flex;
 
-  width: 20px;
-  height: 16px;
+  width: 30px;
+  height: 30px;
   margin-right: 17px;
 
   color: #000;
 
-  background-image: url("../../../../assets/logo/volume-black.png");
+  background-image: url("../../../../assets/logo/volume-up.png");
   background-repeat: no-repeat;
   background-position: center center;
   border: none;

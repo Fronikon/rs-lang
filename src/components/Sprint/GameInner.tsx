@@ -143,33 +143,9 @@ const GameInner: React.FC<PropsType> = ({
     >
       <div className={cn(styles.points, styles[pointsColor])}>+{scale}</div>
       <div className={cn(styles.checkboxes)}>
-        <label className={cn(styles.label)}>
-          <input
-            className={cn(styles.checkbox)}
-            type="checkbox"
-            checked={inARow % 4 >= 1}
-            readOnly
-          />
-          <div className={cn(styles.check)}></div>
-        </label>
-        <label className={cn(styles.label)}>
-          <input
-            className={cn(styles.checkbox)}
-            type="checkbox"
-            checked={inARow % 4 >= 2}
-            readOnly
-          />
-          <div className={cn(styles.check)}></div>
-        </label>
-        <label className={cn(styles.label)}>
-          <input
-            className={cn(styles.checkbox)}
-            type="checkbox"
-            checked={inARow % 4 >= 3}
-            readOnly
-          />
-          <div className={cn(styles.check)}></div>
-        </label>
+        {inARow % 4 >= 1 ? <div className={cn(styles.check, styles.check_active)}>✓</div> : <div className={cn(styles.check)}></div>}
+        {inARow % 4 >= 2 ? <div className={cn(styles.check, styles.check_active)}>✓</div> : <div className={cn(styles.check)}></div>}
+        {inARow % 4 >= 3 ? <div className={cn(styles.check, styles.check_active)}>✓</div> : <div className={cn(styles.check)}></div>}
       </div>
       <img className={cn(styles.picture)} src={fox} alt="fox" />
       <h3 className={cn(styles.english_word)}>{engWord}</h3>
