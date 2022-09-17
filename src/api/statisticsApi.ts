@@ -1,4 +1,4 @@
-import { statisticsInitial } from "../components/Statistics/constant";
+import { statisticsInitial } from "../data/statisticsInitial";
 import { ResponseStatisticsType, StatisticsType } from "../types/types";
 import { BASE_URL } from "./api";
 

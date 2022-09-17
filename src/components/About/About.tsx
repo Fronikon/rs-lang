@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import styles from './About.module.css';
 import Card from './Card';
-import cards from './constants';
+import authorsData from '../../data/authors';
 
 const About: React.FC = () => {
   return (
@@ -9,7 +9,7 @@ const About: React.FC = () => {
       <h2 className={cn(styles.title)}>Наша команда</h2>
       <section className={cn(styles.cards)}>
         {
-          cards.map((card) => (
+          authorsData.map((card) => (
             <Card
               key={card.id}
               gitHub={card.gitHub}

@@ -3,7 +3,7 @@ import styles from "./HardWordCardsContainer.module.css";
 import { Link } from 'react-router-dom';
 import HardWordCards from "./HardWordCards/HardWordCards";
 import { useCustomSelector } from "../../../hooks/redax-hooks";
-import Loader from "../../Loader/Loader";
+import Loader from "../../general/Loader/Loader";
 
 type PropsType = {
   isLogin: boolean

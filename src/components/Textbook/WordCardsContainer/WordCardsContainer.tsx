@@ -3,7 +3,7 @@ import WordCards from "./WordCards/WordCards";
 import TextbookControls from "./WordCardsControls/WordCardsControls";
 import { WordType } from './../../../types/types';
 import { useEffect, useState } from 'react';
-import Loader from "../../Loader/Loader";
+import Loader from "../../general/Loader/Loader";
 import { useCustomSelector } from "../../../hooks/redax-hooks";
 
 type PropsType = {

@@ -5,7 +5,7 @@ import styles from './Authorization.module.css';
 import FormRegister from './FormRegister/FormRegister';
 import FormLogin from './FormLogin/FormLogin';
 import LogOut from './LogOut/LogOut';
-import Modal from './Modal/Modal';
+import Modal from '../general/Modal/Modal';
 import { useCustomSelector } from '../../hooks/redax-hooks';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 

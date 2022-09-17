@@ -1,4 +1,4 @@
-import { AuthInputValueType } from "../../../types/types";
+import { AuthInputValueType } from "../types/types";
 
 const validation = (prev: AuthInputValueType, name: string, value: string) => {
   const stateObj = { ...prev, [name]: "" };

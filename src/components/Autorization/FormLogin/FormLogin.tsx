@@ -5,7 +5,7 @@ import { AuthInputDataType, AuthInputValueType } from '../../../types/types';
 import { authDatas } from './../Authorization';
 import LabelForm from '../LabelForm/LabelForm';
 import { actions } from '../../../redux/actions';
-import validation from '../LabelForm/validation';
+import validation from '../../../utils/validation';
 import { useCustomDispatch } from '../../../hooks/redax-hooks';
 import { loginUser } from '../../../api/authApi';
 import { Link } from 'react-router-dom';

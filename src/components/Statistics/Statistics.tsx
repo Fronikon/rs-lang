@@ -4,7 +4,7 @@ import UserStat from './UserStat/UserStat';
 import { useEffect, useState } from 'react';
 import { getStatistics } from '../../api/statisticsApi';
 import { StatisticsType } from '../../types/types';
-import { statisticsInitial } from './constant';
+import { statisticsInitial } from '../../data/statisticsInitial';
 import { useCustomSelector } from '../../hooks/redax-hooks';
 
 const Statistics: React.FC = () => {

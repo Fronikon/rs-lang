@@ -3,7 +3,7 @@ import PageSelect from './PageSelect/PageSelect';
 import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { actions } from '../../../../redux/actions';
-import GroupDropdown from '../../../GroupDropdown/GroupDropdown';
+import GroupDropdown from '../../../general/GroupDropdown/GroupDropdown';
 import { useCustomDispatch } from '../../../../hooks/redax-hooks';
 
 type PropsType = {

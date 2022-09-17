@@ -1,8 +1,18 @@
-import cn from 'classnames';
 import { ChangeEvent } from 'react';
-import styles from '../Authorization.module.css';
-import { LabelFormPropsType } from '../../../types/types';
-import validation from './validation';
+import { AuthInputValueType } from '../../../types/types';
+import styles from './LabelForm.module.css';
+import validation from '../../../utils/validation';
+
+export type LabelFormPropsType = {
+  name: string
+  errorName: string
+  placeholder: string
+  inputType: string
+  inputName: string
+  inputValue: string
+  setInput: React.Dispatch<React.SetStateAction<AuthInputValueType>>
+  setError: React.Dispatch<React.SetStateAction<AuthInputValueType>>
+}
 
 export const LabelForm: React.FC<LabelFormPropsType> = (props) => {
   const validateInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -23,11 +33,18 @@ export const LabelForm: React.FC<LabelFormPropsType> = (props) => {
   };
 
   return (
-    <label className={cn(styles.author__label)}>{props.name}
-      <input className={cn(styles.author__input)} type={props.inputType} name={props.inputName} value={props.inputValue}
-        onChange={changeInput} onBlur={validateInput} placeholder={props.placeholder} autoComplete="on">   
-      </input>
-      {props.errorName && <span className={cn(styles.err)}>{props.errorName}</span>}
+    <label className={styles.author__label}>{props.name}
+      <input
+        className={styles.author__input}
+        type={props.inputType}
+        name={props.inputName}
+        value={props.inputValue}
+        onChange={changeInput}
+        onBlur={validateInput}
+        placeholder={props.placeholder}
+        autoComplete="on"
+      ></input>
+      {props.errorName && <span className={styles.err}>{props.errorName}</span>}
     </label>
   );
 };

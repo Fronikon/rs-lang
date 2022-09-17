@@ -16,17 +16,6 @@ export type AuthInputDataType = {
   placeholder: string
 }
 
-export type LabelFormPropsType = {
-  name: string
-  errorName: string
-  placeholder: string
-  inputType: string
-  inputName: string
-  inputValue: string
-  setInput: React.Dispatch<React.SetStateAction<AuthInputValueType>>
-  setError: React.Dispatch<React.SetStateAction<AuthInputValueType>>
-}
-
 export interface generalWordType {
   group: number,
   page: number,
@@ -128,4 +117,13 @@ export type AuthDataTokens = {
   refreshToken: string,
   userId: string,
   name: string
+}
+
+export interface IAuthorData {
+  id: number,
+  gitHub: string,
+  img: string,
+  name: string,
+  position: string,
+  description: string,
 }

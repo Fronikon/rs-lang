@@ -4,7 +4,7 @@ import styles from '../Authorization.module.css';
 import { AuthInputDataType, AuthInputValueType } from "../../../types/types";
 import { authDatas } from '../Authorization';
 import LabelForm from "../LabelForm/LabelForm";
-import validation from '../LabelForm/validation';
+import validation from '../../../utils/validation';
 import { createUser } from './../../../api/authApi';
 import { Link, useNavigate } from 'react-router-dom';
 

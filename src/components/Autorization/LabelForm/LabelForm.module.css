@@ -1,0 +1,39 @@
+.author__label {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: Roboto, sans-serif;
+  font-size: 32px;
+  line-height: 18px;
+}
+
+.author__input {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+
+  box-sizing: border-box;
+  margin: 15px 0;
+  padding: 20px 10px;
+
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  line-height: 18px;
+  color: #718bae;
+
+  border: 1px solid #a6bcda;
+  border-radius: 4px;
+}
+
+.err {
+  position: absolute;
+  bottom: -10px;
+
+  font-size: 18px;
+  color: var(--green-primary);
+}

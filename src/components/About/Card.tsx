@@ -1,8 +1,8 @@
 import cn from 'classnames';
+import { IAuthorData } from '../../types/types';
 import styles from './About.module.css';
-import { ICards } from './constants';
 
-const Card: React.FC<ICards> = (props) => {
+const Card: React.FC<IAuthorData> = (props) => {
   return (
     <div className={cn(styles.card)} key={props.id}>
       <img src={props.img} alt={props.name} width={300} height={295} />

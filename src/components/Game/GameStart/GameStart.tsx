@@ -1,6 +1,6 @@
 import { GameStatusData } from '../../../types/enums';
 import styles from './GameStart.module.css';
-import GroupDropdown from '../../GroupDropdown/GroupDropdown';
+import GroupDropdown from '../../general/GroupDropdown/GroupDropdown';
 
 type PropsType = {
   setGameStatus: React.Dispatch<React.SetStateAction<string>>

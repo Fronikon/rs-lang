@@ -1,13 +1,15 @@
 import cn from 'classnames';
 import styles from './Footer.module.css';
 import rssLogo from '../../assets/logo/rssLogo.svg';
-import students from './constants';
+import authorsData from '../../data/authors';
 
 const Footer: React.FC = () => {
-  const listStudents = students.map((student) => (
-    <a className={cn(styles.student)} href={student.link} key={student.id}>
-      {student.name}
-    </a>
+  const listStudents = authorsData.map((data) => (
+    <a
+      className={cn(styles.student)}
+      href={data.gitHub}
+      key={data.id}
+    >{data.name}</a>
   ));
 
   return (
