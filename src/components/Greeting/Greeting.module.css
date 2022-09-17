@@ -26,8 +26,16 @@
   color: #fff;
 }
 
-.button {
-  position: relative;
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+.about-button {
+  color: black;
+
+  background-color: white;
 }
 
 .description {
@@ -39,16 +47,21 @@
   color: #fff;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1000px) {
   .main {
     display: flex;
     justify-content: center;
 
-    padding-bottom: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 
   .description {
     padding-left: 0;
+  }
+
+  .buttons {
+    justify-content: center;
   }
 
   .section {
@@ -57,12 +70,9 @@
     align-items: center;
 
     margin-left: 0;
+    padding: 40px 30px;
 
     text-align: center;
-  }
-
-  .button {
-    margin-left: 0;
   }
 }
 

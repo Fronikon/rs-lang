@@ -11,9 +11,14 @@ const Greeting: React.FC = () => {
           Проходи увлекательные игры, запоминай сложные слова и следи за своим
           прогрессом.
         </p>
-        <Link to="/about">
-          <button className={cn(styles.button, 'button')} type="button">Наша команда</button>
-        </Link>
+        <div className={styles.buttons}>
+          <Link to="/textbook">
+            <button className={cn(styles.button, 'button')} type="button">Начать</button>
+          </Link>
+          <Link to="/about">
+            <button className={cn(styles['about-button'], 'button')} type="button">Наша команда</button>
+          </Link>
+        </div>
       </section>
     </main>
   );
