@@ -1,13 +1,23 @@
 .nav-menu {
   cursor: initial;
 
-  width: 350px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  width: 300px;
   height: 100vh;
 
   background-color: #fff;
   box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
 
-  transition: left 500ms;
+  animation-name: animation;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animation {
+  from { transform: translateX(-350px); }
+  to { transform: translateX(0); }
 }
 
 .nav-menu__header {
@@ -17,11 +27,30 @@
 }
 
 .nav-menu__links {
+  padding-left: 0.5em;
+
   font-size: 2em;
 }
 
 .nav-menu__link {
   margin-bottom: 0.5em;
+  padding: 5px 10px;
+
+  border-radius: 10px 0 0 10px;
+
+  transition: transform 200ms;
+}
+
+.nav-menu__link a {
+  display: block;
+}
+
+.nav-menu__link:hover {
+  transform: translateX(20px);
+
+  color: white;
+
+  background-color: #1f5ba7;
 }
 
 .shadow {

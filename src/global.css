@@ -60,9 +60,11 @@ a {
   border: none;
   border-radius: 8px;
   box-shadow: 0 4px 0 rgb(5 5 5 / 80%);
+
+  transition: transform 200ms;
 }
 
-.button_inactive {
+.button:disabled {
   cursor: inherit;
 
   opacity: 0.5;
