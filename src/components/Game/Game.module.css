@@ -1,3 +1,4 @@
 .game-container {
   min-height: var(--content-height);
+  padding: 0;
 }
