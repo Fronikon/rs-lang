@@ -1,5 +1,17 @@
-.questionPage__container {
-  margin-bottom: 2rem;
+.questionPage__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: calc(var(--content-height) - 9rem);
+}
+
+.questionPage__wrapper_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  margin: auto 0;
 }
 
 .questionPage__list {
@@ -8,12 +20,16 @@
   gap: 1.5rem 3rem;
   justify-content: center;
 
-  margin-top: 5rem;
-  margin-bottom: 3rem;
+  margin: 0;
   padding: 0 1rem;
 
   font-size: 2.5rem;
   color: #fff;
+}
+
+.questionPage__item {
+  padding: 0;
+  padding-left: 0.5rem;
 }
 
 .questionPage__skipButton {
