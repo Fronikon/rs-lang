@@ -5,7 +5,7 @@ import Timer from './Timer';
 import GameInner from './GameInner';
 import { WordType } from '../../types/types';
 import Game from './../Game/Game';
-import { GameType } from '../../types/enums';
+import { GameStatusData, GameType } from '../../types/enums';
 
 
 const Sprint: React.FC = () => {
@@ -34,6 +34,10 @@ type PropsType = {
 export const SprintMain: React.FC<PropsType> = (props) => {
   const [points, setPoints] = useState(0);
 
+  const close = () => {
+    props.setGameStatus(GameStatusData.start);
+  };
+
   return (
     <div className={styles['game-container']}>
       <p className={cn(styles.total)}>{points}</p>
@@ -43,6 +47,7 @@ export const SprintMain: React.FC<PropsType> = (props) => {
         seriesSucсess={props.seriesSucсess}
         seriesRightAnswers={props.seriesRightAnswers}
       />
+      <button className={cn(styles.game__closeButton)} onClick={close} type='button'>✖</button>
       <GameInner
         setGameStatus={props.setGameStatus}
         pageArray={props.pageArray}

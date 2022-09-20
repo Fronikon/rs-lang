@@ -2,6 +2,30 @@
   position: relative;
 }
 
+.game__closeButton {
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  font-size: 3rem;
+  color: rgb(185 185 185);
+
+  background-color: transparent;
+  border: none;
+
+  transition: all 400ms;
+}
+
+.game__closeButton:hover {
+  transform: scale(1.2);
+}
+
+.game__closeButton:active {
+  transform: scale(1);
+}
+
 .game_wrapper {
   position: relative;
 
