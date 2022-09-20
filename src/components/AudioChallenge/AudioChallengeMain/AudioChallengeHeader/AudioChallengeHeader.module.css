@@ -1,6 +1,4 @@
 .questionPage__headerContainer {
-  position: relative;
-
   display: flex;
   justify-content: space-between;
 
@@ -26,9 +24,12 @@
 .questionPage__closeButton {
   cursor: pointer;
 
-  position: absolute;
+  align-self: flex-start;
+
+  /* position: absolute;
   top: 0;
-  right: 0;
+  right: 0; */
+  padding: 0;
 
   font-size: 3rem;
   color: rgb(185 185 185);
