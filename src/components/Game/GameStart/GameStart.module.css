@@ -4,56 +4,44 @@
 }
 
 .game_start__container {
-  box-sizing: border-box;
-  max-width: 650px;
-  margin: 150px;
-  padding: 25px 50px;
+  max-width: 45rem;
+  margin: 10rem 0;
+  padding: 2rem 3rem;
+
+  text-align: center;
 
   background: rgb(0 0 0 / 33%);
-  border-radius: 10px;
+  border-radius: 0.5rem;
 }
 
 .game_start__title {
-  margin: 0;
+  margin-bottom: 2rem;
 
-  font-family: Roboto, sans-serif;
-  font-size: 60px;
-  line-height: 70px;
   color: #fff;
-  text-align: center;
 }
 
 .game_start__description {
   margin: 0;
-  padding: 25px 0;
+  margin-bottom: 2rem;
 
-  font-family: Roboto, sans-serif;
-  font-size: 30px;
-  line-height: 35px;
+  font-size: 1.8rem;
   color: #fff;
-  text-align: center;
 }
 
 .buttons__wrapper {
   display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: space-around;
 }
 
 .start__button {
-  cursor: pointer;
-
-  width: 158px;
-  height: 65px;
-  margin-right: 20px;
-
-  font-family: Inter, sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 29px;
-  color: #fff;
-
   background-color: var(--green-primary);
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 5px 5px black;
+}
+
+@media (max-width: 425px) {
+  .game_start__container {
+    margin: 2rem 0;
+    padding: 1rem;
+  }
 }

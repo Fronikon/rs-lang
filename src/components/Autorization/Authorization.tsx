@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { AuthInputDataType } from '../../types/types';
 import styles from './Authorization.module.css';
 import FormRegister from './FormRegister/FormRegister';
 import FormLogin from './FormLogin/FormLogin';
 import LogOut from './LogOut/LogOut';
-import Modal from './Modal/Modal';
-import { StoreType } from '../../index';
+import Modal from '../general/Modal/Modal';
+import { useCustomSelector } from '../../hooks/redax-hooks';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 export const authDatas: AuthInputDataType[] = [
   {
@@ -37,31 +37,39 @@ export const authDatas: AuthInputDataType[] = [
 ];
 
 const Authorization: React.FC = () => {
-  const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>('');
-  const isLogin = useSelector((state: StoreType): boolean => state.auth.isLogin);
+  const isLogin = useCustomSelector((state): boolean => state.auth.isLogin);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if (isModalActive) {
-      setTimeout(() => setIsModalActive(false), 1000);
+    if (modalMessage) {
+      setTimeout(() => setModalMessage(''), 2000);
     }
-  }, [isModalActive]);
-  
-  if (isLogin) {
-    return (
-      <main className={cn(styles.author)}>
-        <LogOut />
-      </main>
-    );
-  } else {
-    return (
-      <main className={cn(styles.author)}>
-        <FormRegister setIsModalActive={setIsModalActive} setModalMessage={setModalMessage} />
-        <FormLogin setIsModalActive={setIsModalActive} setModalMessage={setModalMessage} />
-        {isModalActive && <Modal message={modalMessage}/>}
-      </main>
-    );
-  }
+  }, [modalMessage]);
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate('logout');
+    } else {
+      if (location.pathname.includes('register')) {
+        navigate('register');
+      } else {
+        navigate('login');
+      }
+    }
+  }, [location.pathname, isLogin, navigate]);
+
+  return (
+    <main className={cn(styles.author, 'container')}>
+      {modalMessage && <Modal message={modalMessage}/>}
+      <Routes>
+        <Route path="logout" element={<LogOut />} />
+        <Route path="login" element={<FormLogin setModalMessage={setModalMessage} />} />
+        <Route path="register" element={<FormRegister setModalMessage={setModalMessage} />} />
+      </Routes>
+    </main>
+  );
 };
 
 export default Authorization;

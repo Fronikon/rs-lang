@@ -1,0 +1,21 @@
+.modal__content {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 0.5rem 1rem;
+
+  background-color: #fff;
+  border: 1px solid #a6bcda;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 0 #a6bcda;
+}
+
+.modal__text {
+  margin: 0;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}

@@ -1,15 +1,15 @@
 import cn from 'classnames';
 import styles from './About.module.css';
 import Card from './Card';
-import cards from './constants';
+import authorsData from '../../data/authors';
 
 const About: React.FC = () => {
   return (
     <main className={cn(styles.main, 'container')}>
-      <h2 className={cn(styles.title)}>Наша команда</h2>
+      <h2 className={cn(styles.title, 'title-page')}>Наша команда</h2>
       <section className={cn(styles.cards)}>
         {
-          cards.map((card) => (
+          authorsData.map((card) => (
             <Card
               key={card.id}
               gitHub={card.gitHub}

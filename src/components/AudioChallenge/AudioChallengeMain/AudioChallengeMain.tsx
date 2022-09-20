@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import styles from './AudioChallengeMain.module.css';
 import WordQuest from './WordQuest/WordQuest';
-import QuestionPageHeader from './AudioChallengeMainHeader/AudioChallengeMain';
+import QuestionPageHeader from './AudioChallengeHeader/AudioChallengeHeader';
 import QuestionPageQuestionWord from './QuestionWord/QuestionWord';
 import { WordType } from '../../../types/types';
 import { BASE_URL } from '../../../api/api';
@@ -33,58 +33,63 @@ const AudioChallengeMain: React.FC<PropsType> = ({
   seriesRightAnswers,
   setSeriesRightAnswers
 }) => {
-  const [numberCurrentWord, setNumberCurrentWord] = useState<number>(0);
+  const [numberCurrentWord, setNumberCurrentWord] = useState<number | null>(null);
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
   const [listCurrenWords, setListCurrenWords] = useState<WordType[]>([]);
   const [wrongWordId, setWrongWordId] = useState<string>('');
   const [rightWordId, setRightWordId] = useState<string>('');
 
   useEffect(() => {
-    if (numberCurrentWord > pageArray.length - 1) {
-      setGameStatus(GameStatusData.finish);
-      setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
-    } else {
-      const getRandomNumber = (): number => {
-        const randomNumber = Math.floor(Math.random() * pageArray.length);
-        if (randomNumbers.includes(randomNumber)) return getRandomNumber();
-        return randomNumber;
-      };
-  
-      const randomNumbers: number[] = [numberCurrentWord];
-      
-      if (pageArray.length <= 5) {
-        while (randomNumbers.length < pageArray.length) {
-          randomNumbers.push(getRandomNumber());
-        }
+    if (numberCurrentWord !== null) {
+      if (numberCurrentWord > pageArray.length - 1) {
+        setGameStatus(GameStatusData.finish);
+        setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
       } else {
-        while (randomNumbers.length < 5) {
-          randomNumbers.push(getRandomNumber());
+        onClickPlayVoice();
+        const getRandomNumber = (): number => {
+          const randomNumber = Math.floor(Math.random() * pageArray.length);
+          if (randomNumbers.includes(randomNumber)) return getRandomNumber();
+          return randomNumber;
+        };
+    
+        const randomNumbers: number[] = [numberCurrentWord];
+        
+        if (pageArray.length <= 5) {
+          while (randomNumbers.length < pageArray.length) {
+            randomNumbers.push(getRandomNumber());
+          }
+        } else {
+          while (randomNumbers.length < 5) {
+            randomNumbers.push(getRandomNumber());
+          }
         }
+    
+        const words = randomNumbers.map((wordIndex) => pageArray[wordIndex]);
+        const shuffledWords = words.sort(() => Math.round(Math.random() * 100) - 50);
+    
+        setRightWordId(pageArray[numberCurrentWord].id);
+        setListCurrenWords([...shuffledWords]);
       }
-  
-      const words = randomNumbers.map((wordIndex) => pageArray[wordIndex]);
-      const shuffledWords = words.sort(() => Math.round(Math.random() * 100) - 50);
-  
-      setRightWordId(pageArray[numberCurrentWord].id);
-      setListCurrenWords([...shuffledWords]);
+    } else {
+      setNumberCurrentWord(0);
     }
   }, [numberCurrentWord]);
 
   const onClickPlayVoice = () => {
     const audio = new Audio();
-    audio.src = BASE_URL + pageArray[numberCurrentWord].audio;
+    audio.src = BASE_URL + pageArray[numberCurrentWord || 0].audio;
     audio.autoplay = true;
   };
 
   const checkWord = (wordId: string) => {
     setIsShowResult(true);
     if (wordId !== rightWordId) {
-      setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord]]);
+      setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord || 0]]);
       setWrongWordId(wordId);
       setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
       setSeriesRightAnswers(0);
     } else {
-      setRightAnswerWords([...rightAnswerWords, pageArray[numberCurrentWord]]);
+      setRightAnswerWords([...rightAnswerWords, pageArray[numberCurrentWord || 0]]);
       setSeriesRightAnswers(seriesRightAnswers + 1);
     }
   };
@@ -94,13 +99,13 @@ const AudioChallengeMain: React.FC<PropsType> = ({
       setWrongWordId('');
     }
     setIsShowResult(false);
-    setNumberCurrentWord(numberCurrentWord + 1);
+    setNumberCurrentWord((numberCurrentWord || 0) + 1);
   };
 
   const doNotKnow = () => {
     setSeriesSucсess([...seriesSucсess, seriesRightAnswers]);
     setSeriesRightAnswers(0);
-    setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord]]);
+    setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord || 0]]);
     setIsShowResult(true);
   };
   
@@ -108,19 +113,16 @@ const AudioChallengeMain: React.FC<PropsType> = ({
     <div className={cn(styles.questionPage__container)}>
       <QuestionPageHeader
         limit={pageArray.length}
-        count={numberCurrentWord}
+        count={numberCurrentWord || 0}
         setGameStatus={setGameStatus}
       />
-      {isShowResult ? <QuestionPageQuestionWord
-        img={BASE_URL + pageArray[numberCurrentWord].image}
-        wordName={pageArray[numberCurrentWord].word}
+      
+      {numberCurrentWord !== null && numberCurrentWord <= pageArray.length - 1 && <QuestionPageQuestionWord
+        img={BASE_URL + pageArray[numberCurrentWord || 0].image}
+        wordName={pageArray[numberCurrentWord || 0].word}
         onClickPlayVoice={onClickPlayVoice}
-      /> :
-        <button
-          className={cn(styles.questionPage__button)}
-          onClick={onClickPlayVoice}
-          type='button'>
-        </button>}
+        isShowResult={isShowResult}
+      />}
 
       <ul className={cn(styles.questionPage__list)}>
         {listCurrenWords.map((el) => (
@@ -137,12 +139,12 @@ const AudioChallengeMain: React.FC<PropsType> = ({
       </ul>
       {
         isShowResult ?
-          <button className={cn(styles.questionPage__skipButton, styles['next'])}
+          <button className={cn(styles.questionPage__skipButton, 'button')}
             type='button'
             onClick={() => next()}
           >{'--->'}</button>
           :
-          <button className={cn(styles.questionPage__skipButton)}
+          <button className={cn(styles.questionPage__skipButton, 'button')}
             type='button'
             onClick={() => doNotKnow()}
           >{'Не знаю'}</button>

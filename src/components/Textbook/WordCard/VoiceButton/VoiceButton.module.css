@@ -1,6 +1,9 @@
 .voice-button {
-  width: 24px;
-  height: 24px;
+  width: 2rem;
+  height: 2rem;
 
   background-image: url("../../../../assets/logo/volume-up.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 1.4rem;
 }

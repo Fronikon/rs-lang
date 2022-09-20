@@ -1,8 +1,7 @@
 import styles from "./VoiceButton.module.css";
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
-import { StoreType } from "../../../..";
 import { actions } from "../../../../redux/actions";
+import { useCustomDispatch, useCustomSelector } from "../../../../hooks/redax-hooks";
 
 type PropsType = {
   audio: string
@@ -13,8 +12,8 @@ type PropsType = {
 const VoiceButton: React.FC<PropsType> = (props) => {
   const music: string[] = [props.audio, props.audioMeaning, props.audioExample];
 
-  const dispatch = useDispatch();
-  const currentAudio = useSelector((state: StoreType) => state.textbook.currentAudio);
+  const dispatch = useCustomDispatch();
+  const currentAudio = useCustomSelector((state) => state.textbook.currentAudio);
 
   const onClickPlayVoice = () => {
     if (currentAudio) {

@@ -5,8 +5,9 @@
 :root {
   --red-primary: #a71f1f;
   --green-primary: #1fa74d;
-  --footer-height: 70px;
-  --header-height: 70px;
+  --app-shadow-color: rgb(0 0 0 / 27.4%);
+  --footer-height: 4rem;
+  --header-height: 4rem;
   --content-height: calc(100vh - var(--footer-height) - var(--header-height));
 }
 
@@ -14,10 +15,15 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+}
+
 html,
 body {
   overflow-x: hidden;
 
+  box-sizing: border-box;
   height: 100%;
 }
 
@@ -37,36 +43,74 @@ a {
 }
 
 .container {
-  padding: 0 50px;
+  position: relative;
+
+  padding: 2.5rem;
 }
 
 .icon-button {
   cursor: pointer;
 }
 
+.title-page {
+  margin: 0;
+
+  font-size: 3rem;
+}
+
 .button {
   cursor: pointer;
 
-  padding: 0.8em 1em;
+  padding: 1rem 1.2rem;
 
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: bold;
   color: #fff;
 
   background: #1f5ba7;
   border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 0 rgb(5 5 5 / 80%);
+  border-radius: 0.3rem;
+  box-shadow: 0 0.2rem 0 rgb(5 5 5 / 80%);
+
+  transition: transform 200ms;
 }
 
-.button_inactive {
+.button:disabled {
   cursor: inherit;
 
   opacity: 0.5;
 }
 
-@media (max-width: 1424px) {
+.default-link {
+  color: blue;
+}
+
+.reset-margin {
+  margin: 0;
+}
+
+.audio-challenge-background {
+  background: linear-gradient(180deg, #cd8c00 0%, #bc4d3e 100%);
+}
+
+.sprint-background {
+  background: linear-gradient(180deg, #0067cd 0%, #6e3ebc 100%);
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 500px) {
   .container {
-    padding: 0 20px;
+    padding: 1rem;
   }
 }

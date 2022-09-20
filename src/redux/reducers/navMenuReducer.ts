@@ -10,7 +10,7 @@ type NavMenuStateType = typeof initialState
 const navMenuReducer = (state: NavMenuStateType = initialState, action: AnyAction): NavMenuStateType => {
   switch (action.type) {
   case ActionTypes.switchIsNavMenuOpen: {
-    return {...state, isNavMenuOpen: !state.isNavMenuOpen};
+    return { ...state, isNavMenuOpen: !state.isNavMenuOpen };
   }
   default: {
     return state;

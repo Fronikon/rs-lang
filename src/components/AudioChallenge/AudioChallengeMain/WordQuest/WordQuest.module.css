@@ -30,20 +30,31 @@
   content: "";
 
   position: absolute;
-  top: 17px;
-  left: -30px;
+  top: 0.9rem;
+  left: -1.3rem;
 
-  width: 20px;
-  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  background-repeat: no-repeat;
-  background-size: cover;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+
+  border-radius: 50%;
 }
 
 .right::before {
-  background-image: url("../../../../assets/logo/right.png");
+  content: "✓";
+
+  background-color: var(--green-primary);
 }
 
 .wrong::before {
-  background-image: url("../../../../assets/logo/wrong.png");
+  content: "✖";
+
+  background-color: var(--red-primary);
 }

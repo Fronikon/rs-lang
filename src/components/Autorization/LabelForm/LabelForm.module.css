@@ -1,0 +1,33 @@
+.author__label {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 0.5rem;
+
+  font-family: Roboto, sans-serif;
+  font-size: 2rem;
+}
+
+.author__input {
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+
+  font-size: 1.5rem;
+  color: #718bae;
+
+  border: 1px solid #a6bcda;
+  border-radius: 0.3rem;
+}
+
+.err {
+  position: absolute;
+  bottom: -0.5rem;
+
+  font-size: 1.1rem;
+  color: var(--green-primary);
+}

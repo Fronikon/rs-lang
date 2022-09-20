@@ -1,12 +1,12 @@
 import cn from 'classnames';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useCustomDispatch } from '../../../hooks/redax-hooks';
 import { actions } from '../../../redux/actions';
 import styles from './LogOut.module.css';
 
 const LogOut: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   function clickButton(event: { preventDefault: () => void; }) {
     event.preventDefault();
@@ -18,7 +18,7 @@ const LogOut: React.FC = () => {
   return (
     <main className={cn(styles.logout)}>
       <div className={cn(styles.logout__container)}>
-        <h2 className={cn(styles.logout__title)}>Вы уже зарегистрированы</h2>
+        <p className={cn(styles.logout__title)}>Вы авторизованы</p>
         <button className={cn(styles.logout__button, 'button')}
           onClick={clickButton} type='button'>Покинуть учётную запись</button>
       </div>

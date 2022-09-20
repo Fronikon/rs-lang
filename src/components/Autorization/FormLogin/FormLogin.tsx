@@ -1,16 +1,16 @@
 import cn from 'classnames';
-import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import styles from '../Authorization.module.css';
 import { AuthInputDataType, AuthInputValueType } from '../../../types/types';
 import { authDatas } from './../Authorization';
 import LabelForm from '../LabelForm/LabelForm';
-import { loginUser } from '../../../api/api';
 import { actions } from '../../../redux/actions';
-import validation from '../LabelForm/validation';
+import validation from '../../../utils/validation';
+import { useCustomDispatch } from '../../../hooks/redax-hooks';
+import { loginUser } from '../../../api/authApi';
+import { Link } from 'react-router-dom';
 
 type PropsType = {
-  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>
   setModalMessage: React.Dispatch<React.SetStateAction<string>>
 }
 
@@ -26,7 +26,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   const getMessageLogin = (status: number) => {
     switch (status) {
@@ -58,7 +58,6 @@ const FormLogin: React.FC<PropsType> = (props) => {
         }
         const message = getMessageLogin(response.status);
         props.setModalMessage(message);
-        props.setIsModalActive(true);
       });
     }
     
@@ -78,7 +77,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
 
   return (
     <form className={cn(styles.author__form)}  onSubmit={submitLogin} key='FormLogin'>
-      <h2 className={cn(styles.author__title)}>Войти</h2>
+      <h2 className={cn(styles.author__title, 'title-page')}>Войти</h2>
       {authDatas.filter((item)=> item.dataName !== 'username').map((data: AuthInputDataType) => {
         return <LabelForm
           key={data.key + 'login'}
@@ -92,6 +91,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
           setError={setError}
         />;
       })}
+      <p className='reset-margin'>Нет учётной записи? <Link to='/auth/register'><span className='default-link'>Регистрация</span></Link></p>
       <input className={cn(styles.button, "button")} type="submit" value="Войти"/>
     </form>
   );

@@ -143,45 +143,17 @@ const GameInner: React.FC<PropsType> = ({
     >
       <div className={cn(styles.points, styles[pointsColor])}>+{scale}</div>
       <div className={cn(styles.checkboxes)}>
-        <label className={cn(styles.label)}>
-          <input
-            className={cn(styles.checkbox)}
-            type="checkbox"
-            checked={inARow % 4 >= 1}
-            readOnly
-          />
-          <div className={cn(styles.check)}></div>
-        </label>
-        <label className={cn(styles.label)}>
-          <input
-            className={cn(styles.checkbox)}
-            type="checkbox"
-            checked={inARow % 4 >= 2}
-            readOnly
-          />
-          <div className={cn(styles.check)}></div>
-        </label>
-        <label className={cn(styles.label)}>
-          <input
-            className={cn(styles.checkbox)}
-            type="checkbox"
-            checked={inARow % 4 >= 3}
-            readOnly
-          />
-          <div className={cn(styles.check)}></div>
-        </label>
+        {inARow % 4 >= 1 ? <div className={cn(styles.check, styles.check_active)}>✓</div> : <div className={cn(styles.check)}></div>}
+        {inARow % 4 >= 2 ? <div className={cn(styles.check, styles.check_active)}>✓</div> : <div className={cn(styles.check)}></div>}
+        {inARow % 4 >= 3 ? <div className={cn(styles.check, styles.check_active)}>✓</div> : <div className={cn(styles.check)}></div>}
       </div>
       <img className={cn(styles.picture)} src={fox} alt="fox" />
       <h3 className={cn(styles.english_word)}>{engWord}</h3>
       <p className={cn(styles.russian_word)}>{ruWord}</p>
       <div className={cn(styles.line)}></div>
       <div className={cn(styles.game_buttons_wrapper)}>
-        <button className={cn(styles.true)} onClick={trueBtnHandler}>
-          <p className={cn(styles.true_text)}>Верно</p>
-        </button>
-        <button className={cn(styles.false)} onClick={falseBtnHandler}>
-          <p className={cn(styles.false_text)}>Не верно</p>
-        </button>
+        <button className={cn(styles.true, 'button')} onClick={trueBtnHandler}>Верно</button>
+        <button className={cn(styles.false, 'button')} onClick={falseBtnHandler}>Не верно</button>
       </div>
     </div>
   );

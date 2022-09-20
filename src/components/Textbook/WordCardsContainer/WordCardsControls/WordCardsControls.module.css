@@ -1,18 +1,17 @@
 .textbook-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px 0;
+  gap: 1rem 0;
   justify-content: space-between;
 
-  margin-bottom: 30px;
-  padding: 5px 0;
+  margin-bottom: 1rem;
 }
 
 .control-page,
 .link-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1rem;
 }
 
 .link-on-hardwords {
@@ -25,10 +24,10 @@
   align-self: center;
   justify-content: center;
 
-  width: 20px;
-  height: 20px;
-  padding: 5px;
+  width: 1.5rem;
+  height: 1.5rem;
 
+  font-size: 0.9rem;
   font-weight: bold;
   color: white;
 

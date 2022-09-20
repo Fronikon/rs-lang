@@ -1,12 +1,13 @@
 import cn from 'classnames';
 import styles from './NavMenu.module.css';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { actions } from './../../redux/actions';
 import { MouseEventHandler } from 'react';
+import { useCustomDispatch } from '../../hooks/redax-hooks';
+import GameSelect from './GameSelect';
 
 const NavMenu: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
 
   const closeNavMenu: MouseEventHandler = (e) => {
     const target = e.target as HTMLElement;
@@ -28,17 +29,12 @@ const NavMenu: React.FC = () => {
           <li className={styles['nav-menu__link']}>
             <Link to="/textbook">Учебник</Link>
           </li>
+          <GameSelect />
           <li className={styles['nav-menu__link']}>
-            <Link to="/sprint">Спринт</Link>
-          </li>
-          <li className={styles['nav-menu__link']}>
-            <Link to="/audio">Аудиовызов</Link>
+            <Link to="/statistics">Статистика</Link>
           </li>
           <li className={styles['nav-menu__link']}>
             <Link to="/about">О команде</Link>
-          </li>
-          <li className={styles['nav-menu__link']}>
-            <Link to="/statistics">Статистика</Link>
           </li>
         </ul>
       </div>

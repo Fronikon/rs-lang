@@ -1,13 +1,23 @@
 .nav-menu {
   cursor: initial;
 
-  width: 350px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  width: 18rem;
   height: 100vh;
 
   background-color: #fff;
-  box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+  box-shadow: 0.5rem 0 0.8rem rgb(0 0 0 / 25%);
 
-  transition: left 500ms;
+  animation-name: animation;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animation {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
 
 .nav-menu__header {
@@ -17,11 +27,46 @@
 }
 
 .nav-menu__links {
-  font-size: 2em;
+  padding-left: 0.5rem;
+
+  font-size: 2rem;
 }
 
-.nav-menu__link {
-  margin-bottom: 0.5em;
+.game-select__title,
+.nav-menu__link a {
+  display: block;
+
+  padding: 0.5rem 0.8rem;
+
+  border-radius: 0.8rem 0 0 0.8rem;
+
+  transition: transform 200ms;
+}
+
+.nav-menu__link a:hover {
+  transform: translateX(1.8rem);
+
+  color: white;
+
+  background-color: #1f5ba7;
+}
+
+.game-select__title {
+  cursor: pointer;
+}
+
+.game-select__title:hover {
+  color: white;
+
+  background-color: #1f5ba7;
+  border-radius: 0.8rem 0 0 0.8rem;
+}
+
+.game-select__list {
+  margin-left: 1rem;
+  padding: 0;
+
+  border-left: 3px solid black;
 }
 
 .shadow {
@@ -35,5 +80,5 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: rgb(0 0 0 / 27.4%);
+  background-color: var(--app-shadow-color);
 }

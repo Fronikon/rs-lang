@@ -29,6 +29,14 @@ export type switchIsLogin = {
 export type switchIsStartGameFromTextbookActions = {
   type: ActionTypes.switchIsStartGameFromTextbook
 }
+export type switchIsLoadingActions = {
+  type: ActionTypes.switchIsLoading
+  status: boolean
+}
+export type switchIsLoadingHardWordsActions = {
+  type: ActionTypes.switchIsLoadingHardWords
+  status: boolean
+}
 
 export const actions = {
   switchIsNavMenuOpen: (): switchIsNavMenuOpenAction => ({type: ActionTypes.switchIsNavMenuOpen}),
@@ -38,5 +46,7 @@ export const actions = {
   setGroup: (group: number): setGroupAction => ({type: ActionTypes.setGroup, group}),
   setPage: (page: number): setPageAction => ({type: ActionTypes.setPage, page}),
   switchIsStartGameFromTextbook: (): switchIsStartGameFromTextbookActions => ({type: ActionTypes.switchIsStartGameFromTextbook}),
-  switchIsLogin: (status: boolean): switchIsLogin => ({type: ActionTypes.switchIsLogin, status})
+  switchIsLogin: (status: boolean): switchIsLogin => ({type: ActionTypes.switchIsLogin, status}),
+  switchIsLoading: (status: boolean): switchIsLoadingActions => ({type: ActionTypes.switchIsLoading, status}),
+  switchIsLoadingHardWords: (status: boolean): switchIsLoadingHardWordsActions => ({type: ActionTypes.switchIsLoadingHardWords, status})
 };

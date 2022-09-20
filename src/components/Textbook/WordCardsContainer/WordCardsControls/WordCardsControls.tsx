@@ -3,8 +3,8 @@ import PageSelect from './PageSelect/PageSelect';
 import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { actions } from '../../../../redux/actions';
-import { useDispatch } from 'react-redux';
-import GroupDropdown from '../../../GroupDropdown/GroupDropdown';
+import GroupDropdown from '../../../general/GroupDropdown/GroupDropdown';
+import { useCustomDispatch } from '../../../../hooks/redax-hooks';
 
 type PropsType = {
   currentPage: number
@@ -14,7 +14,7 @@ type PropsType = {
 }
 
 const WordCardsControls: React.FC<PropsType> = (props) => {
-  const dispatch = useDispatch();
+  const dispatch = useCustomDispatch();
   const navigate = useNavigate();
 
   const changeGroup = (group: number) => {
@@ -44,12 +44,12 @@ const WordCardsControls: React.FC<PropsType> = (props) => {
       <div className={styles['link-container']}>
         <button
           onClick={() => toSprint()}
-          className={cn('button', props.isLearnedCurrentPage && 'button_inactive')}
+          className='button'
           disabled={props.isLearnedCurrentPage}
         >Спринт</button>
         <button
           onClick={() => toAudio()}
-          className={cn('button', props.isLearnedCurrentPage && 'button_inactive')}
+          className='button'
           disabled={props.isLearnedCurrentPage}
         >Аудиовызов</button>
         <Link to={'hardwords'}>

@@ -84,8 +84,12 @@ const WordCard: React.FC<WordCardPropsType> = (props) => {
   return (
     <div className={styles['word-card']}>
       <img className={styles.img} src={props.img} alt="word" />
+      {props.isLogin && <div className={styles['statuses-word']}>
+        {props.optional?.isLearned && <div className={cn(styles['status-word'], styles['learned'])}></div>}
+        {props.difficulty === Difficulties.hard && <div className={cn(styles['status-word'], styles['hard'])}></div>}
+      </div>}
       <div className={styles['word-card__inner']}>
-        <WordCardNameContainer 
+        <WordCardNameContainer
           audio={props.audio}
           audioMeaning={props.audioMeaning}
           audioExample={props.audioExample}
@@ -107,10 +111,6 @@ const WordCard: React.FC<WordCardPropsType> = (props) => {
           optional={props.optional}
         />}
       </div>
-      {props.isLogin && <div className={styles['statuses-word']}>
-        {props.optional?.isLearned && <div className={cn(styles['status-word'], styles['learned'])}></div>}
-        {props.difficulty === Difficulties.hard && <div className={cn(styles['status-word'], styles['hard'])}></div>}
-      </div>}
     </div>
   );
 };
