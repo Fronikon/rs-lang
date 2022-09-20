@@ -1,22 +1,19 @@
 .wrapper {
-  padding: 10px;
+  padding: 0.5rem;
 }
 
 .title-container {
   display: flex;
   align-items: center;
-
-  height: 50px;
 }
 
 .title-small {
   position: relative;
 
   margin: 0;
-  margin-right: 10px;
+  margin-right: 0.5rem;
 
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 2rem;
   color: #000;
 }
 
@@ -26,14 +23,13 @@
   align-items: center;
   justify-content: center;
 
-  width: 46px;
-  height: 30px;
+  width: 3rem;
+  height: 2rem;
 
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 1rem;
   color: #fff;
 
-  border-radius: 15px;
+  border-radius: 1rem;
 }
 
 .wrong {
@@ -45,7 +41,7 @@
 }
 
 .list-container {
-  padding: 10px;
+  padding: 0.6rem;
   padding-right: 0;
 }
 
@@ -54,9 +50,9 @@
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 
-  height: 230px;
+  height: 14rem;
   margin: 0;
   padding: 0;
 }

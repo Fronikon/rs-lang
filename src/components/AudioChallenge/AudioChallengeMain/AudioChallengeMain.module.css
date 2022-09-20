@@ -1,16 +1,18 @@
 .questionPage__container {
-  padding: 20px 0;
+  margin-bottom: 2rem;
 }
 
 .questionPage__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 1.5rem 3rem;
   justify-content: center;
 
-  margin-bottom: 100px;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
 
-  font-size: 40px;
+  font-size: 2.5rem;
   color: #fff;
 }
 
@@ -18,9 +20,8 @@
   display: block;
 
   margin: 0 auto;
-  padding: 10px 15px;
 
-  font-size: 40px;
+  font-size: 2.5rem;
 
   background-color: var(--red-primary);
 
@@ -41,4 +42,10 @@
 .questionPage__item:active,
 .questionPage__skipButton:active {
   transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .questionPage__list {
+    margin: 2rem 0;
+  }
 }

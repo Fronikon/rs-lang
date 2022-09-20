@@ -1,22 +1,28 @@
 .word-card {
   overflow: hidden;
   display: flex;
+  flex-direction: column;
 
-  min-height: 200px;
-  margin-bottom: 50px;
+  width: 22rem;
 
-  font-size: 24px;
+  font-size: 1.2rem;
 
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 0.3rem;
 }
 
 .img {
-  width: 250px;
+  width: 100%;
+  height: 18rem;
 }
 
 .word-card__inner {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+
+  padding: 1rem;
 }
 
 .word-name__wrapper {
@@ -25,7 +31,7 @@
 }
 
 .word-name b {
-  margin-left: 10px;
+  margin-left: 0.2rem;
 
   color: var(--green-primary);
 }
@@ -37,17 +43,16 @@
 .word-name__wrapper,
 .word-meaning,
 .word-example {
-  margin: 0 0 15px;
+  margin: 0 0 0.8rem;
 }
 
 .statuses-word {
   display: flex;
-
-  margin-left: auto;
 }
 
 .status-word {
-  width: 10px;
+  width: 100%;
+  height: 0.5rem;
 }
 
 .hard {
@@ -56,44 +61,4 @@
 
 .learned {
   background-color: var(--green-primary);
-}
-
-@media (max-width: 1424px) {
-  .word-card {
-    flex-direction: column;
-
-    width: 460px;
-    height: auto;
-  }
-
-  .word-card__inner {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-  }
-
-  .img {
-    order: -2;
-
-    width: 460px;
-    height: 400px;
-  }
-
-  .statuses-word {
-    order: -1;
-
-    margin: 0;
-  }
-
-  .status-word {
-    width: 100%;
-    height: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .word-card:nth-child(odd) {
-    margin-right: 0;
-  }
 }

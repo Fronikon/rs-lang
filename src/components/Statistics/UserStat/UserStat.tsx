@@ -22,7 +22,7 @@ const UserStat: React.FC<PropsType> = ({ audiochallenge, sprint }) => {
   const statData: StatDatasType[] = [
     {
       key: 'stat0',
-      title: 'Общая за день',
+      title: 'Общая',
       list: [
         {key: 'item0', text: 'Количество новых слов', data: `${countNewWordsPerDay}`},
         {key: 'item1', text: 'Процент правильных ответов', data: `${percent || 0}%`},
@@ -31,7 +31,7 @@ const UserStat: React.FC<PropsType> = ({ audiochallenge, sprint }) => {
     },
     {
       key: 'stat1',
-      title: 'Спринт за день',
+      title: 'Спринт',
       list: [
         {key: 'item3', text: 'Количество новых слов', data: `${sprint.countNewWordsPerDay}`},
         {key: 'item4', text: 'Процент правильных ответов', data: `${percentSprint || 0}%`},
@@ -41,7 +41,7 @@ const UserStat: React.FC<PropsType> = ({ audiochallenge, sprint }) => {
     },
     {
       key: 'stat2',
-      title: 'Аудиовызов за день',
+      title: 'Аудиовызов',
       list: [
         {key: 'item6', text: 'Количество новых слов', data: `${audiochallenge.countNewWordsPerDay}`},
         {key: 'item7', text: 'Процент правильных ответов', data: `${percentAudio || 0}%`},

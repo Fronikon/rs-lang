@@ -152,12 +152,8 @@ const GameInner: React.FC<PropsType> = ({
       <p className={cn(styles.russian_word)}>{ruWord}</p>
       <div className={cn(styles.line)}></div>
       <div className={cn(styles.game_buttons_wrapper)}>
-        <button className={cn(styles.true)} onClick={trueBtnHandler}>
-          <p className={cn(styles.true_text)}>Верно</p>
-        </button>
-        <button className={cn(styles.false)} onClick={falseBtnHandler}>
-          <p className={cn(styles.false_text)}>Не верно</p>
-        </button>
+        <button className={cn(styles.true, 'button')} onClick={trueBtnHandler}>Верно</button>
+        <button className={cn(styles.false, 'button')} onClick={falseBtnHandler}>Не верно</button>
       </div>
     </div>
   );

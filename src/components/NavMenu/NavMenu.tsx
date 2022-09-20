@@ -35,10 +35,10 @@ const NavMenu: React.FC = () => {
             <Link to="/audio">Аудиовызов</Link>
           </li>
           <li className={styles['nav-menu__link']}>
-            <Link to="/about">О команде</Link>
+            <Link to="/statistics">Статистика</Link>
           </li>
           <li className={styles['nav-menu__link']}>
-            <Link to="/statistics">Статистика</Link>
+            <Link to="/about">О команде</Link>
           </li>
         </ul>
       </div>

@@ -21,7 +21,7 @@ const Statistics: React.FC = () => {
   return (
     <main className={'container'}>
       <div className={styles.content}>
-        <h2 className={cn(styles.statistics__main_title)}>Статистика за день</h2>
+        <h2 className={cn(styles.statistics__main_title, 'title-page')}>Статистика за день</h2>
         {!statistics.optional || !isLogin ?
           <p className={cn(styles.statistics__description)}>Нет данных для статистики</p> :
           <UserStat

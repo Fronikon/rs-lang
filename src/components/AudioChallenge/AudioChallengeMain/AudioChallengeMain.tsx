@@ -2,7 +2,7 @@ import cn from 'classnames';
 import { useEffect, useState } from 'react';
 import styles from './AudioChallengeMain.module.css';
 import WordQuest from './WordQuest/WordQuest';
-import QuestionPageHeader from './AudioChallengeMainHeader/AudioChallengeMain';
+import QuestionPageHeader from './AudioChallengeHeader/AudioChallengeHeader';
 import QuestionPageQuestionWord from './QuestionWord/QuestionWord';
 import { WordType } from '../../../types/types';
 import { BASE_URL } from '../../../api/api';

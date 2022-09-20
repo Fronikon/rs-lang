@@ -1,34 +1,21 @@
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  overflow-y: scroll;
-
-  width: 100%;
-  height: 100vh;
-
-  -webkit-overflow-scrolling: touch;
-}
-
 .modal__content {
   position: absolute;
-  top: 140px;
+  top: 1rem;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 
-  padding: 10px 34px;
+  padding: 0.5rem 1rem;
 
   background-color: #fff;
   border: 1px solid #a6bcda;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   box-shadow: 0 4px 0 #a6bcda;
 }
 
 .modal__text {
   margin: 0;
 
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 1.2rem;
+  font-weight: bold;
   text-align: center;
 }

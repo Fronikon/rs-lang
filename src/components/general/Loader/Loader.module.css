@@ -15,13 +15,13 @@
 
 .lds_ring {
   position: fixed;
-  top: calc(50vh - 40px);
-  left: calc(50vw - 40px);
+  top: calc(50vh - 2.5rem);
+  left: calc(50vw - 2.5rem);
 
   display: inline-block;
 
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
 }
 
 .lds_ring div {
@@ -30,11 +30,11 @@
   display: block;
 
   box-sizing: border-box;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
+  width: 4rem;
+  height: 4rem;
+  margin: 0.5rem;
 
-  border: 8px solid var(--red-primary);
+  border: 0.5rem solid var(--red-primary);
   border-color: var(--green-primary) transparent transparent transparent;
   border-radius: 50%;
 

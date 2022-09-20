@@ -61,7 +61,7 @@ const Authorization: React.FC = () => {
   }, [location.pathname, isLogin, navigate]);
 
   return (
-    <main className={cn(styles.author)}>
+    <main className={cn(styles.author, 'container')}>
       {modalMessage && <Modal message={modalMessage}/>}
       <Routes>
         <Route path="logout" element={<LogOut />} />

@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
     <footer className={cn(styles.footer, 'container')}>
       <div className={cn(styles.rs_logo_container)}>
         <a href="https://rs.school/js/">
-          <img src={rssLogo} alt="rss-logo" width={130} height={47} />
+          <img src={rssLogo} alt="rss-logo" width={'100%'} height={'100%'} />
         </a>
       </div>
       <div className={cn(styles.students)}>{listStudents}</div>

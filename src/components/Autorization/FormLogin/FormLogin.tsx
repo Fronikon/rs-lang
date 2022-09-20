@@ -77,7 +77,7 @@ const FormLogin: React.FC<PropsType> = (props) => {
 
   return (
     <form className={cn(styles.author__form)}  onSubmit={submitLogin} key='FormLogin'>
-      <h2 className={cn(styles.author__title)}>Войти</h2>
+      <h2 className={cn(styles.author__title, 'title-page')}>Войти</h2>
       {authDatas.filter((item)=> item.dataName !== 'username').map((data: AuthInputDataType) => {
         return <LabelForm
           key={data.key + 'login'}

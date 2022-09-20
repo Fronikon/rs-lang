@@ -1,7 +1,5 @@
 .result {
   position: relative;
-
-  padding: 20px 0;
 }
 
 .closeButton {
@@ -12,10 +10,7 @@
 
   display: block;
 
-  width: 30px;
-  height: 30px;
-
-  font-size: 2em;
+  font-size: 2.5em;
   color: rgb(185 185 185);
 
   background-color: transparent;
@@ -33,20 +28,14 @@
 }
 
 .container {
-  max-width: 500px;
+  max-width: 32rem;
   margin: 0 auto;
-  padding: 20px;
+  padding: 1rem;
 
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 0.5rem;
 }
 
 .title {
-  margin: 0;
-  padding: 0;
-
-  font-size: 40px;
-  line-height: 48px;
-  color: #000;
   text-align: center;
 }

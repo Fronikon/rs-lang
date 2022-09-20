@@ -1,8 +1,6 @@
 .arrays__item {
   display: flex;
   align-items: center;
-
-  height: 30px;
 }
 
 .arrays__button {
@@ -10,15 +8,16 @@
 
   display: flex;
 
-  width: 30px;
-  height: 30px;
-  margin-right: 17px;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
 
   color: #000;
 
   background-image: url("../../../../assets/logo/volume-up.png");
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: 1.3rem;
   border: none;
   border-radius: 50%;
 
@@ -34,12 +33,11 @@
 }
 
 .arrays__span {
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 1.1rem;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 0.4rem;
 }
 
 ::-webkit-scrollbar-track {

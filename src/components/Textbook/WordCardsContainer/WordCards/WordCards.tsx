@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import { useEffect } from 'react';
 import { asyncActions } from '../../../../redux/asyncActions';
 import { useSearchParams } from "react-router-dom";
@@ -48,7 +47,7 @@ const WordCards: React.FC<PropsType> = ({isLogin, currentGroup, currentPage, wor
   }, [dispatch, setSearchParams, currentGroup, currentPage]);
 
   return (
-    <div className={cn(styles.cardsContainer)}>
+    <div className={styles['cards-container']}>
       {
         wordCards.map((wordCard) => <WordCard
           id={wordCard.id}

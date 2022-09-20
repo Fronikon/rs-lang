@@ -1,20 +1,9 @@
 .inner {
   min-height: var(--content-height);
-  padding: 50px;
 }
 
 .title {
-  margin: 0 0 30px;
+  margin-bottom: 2rem;
 
-  font-size: 60px;
-}
-
-@media (max-width: 1066px) {
-  .inner {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-
-    padding: 50px 0;
-  }
+  text-align: center;
 }

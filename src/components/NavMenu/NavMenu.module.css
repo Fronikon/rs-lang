@@ -4,11 +4,11 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  width: 300px;
+  width: 18rem;
   height: 100vh;
 
   background-color: #fff;
-  box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+  box-shadow: 0.5rem 0 0.8rem rgb(0 0 0 / 25%);
 
   animation-name: animation;
   animation-duration: 0.4s;
@@ -16,7 +16,7 @@
 }
 
 @keyframes animation {
-  from { transform: translateX(-350px); }
+  from { transform: translateX(-100%); }
   to { transform: translateX(0); }
 }
 
@@ -27,26 +27,24 @@
 }
 
 .nav-menu__links {
-  padding-left: 0.5em;
+  padding-left: 0.5rem;
 
-  font-size: 2em;
-}
-
-.nav-menu__link {
-  margin-bottom: 0.5em;
-  padding: 5px 10px;
-
-  border-radius: 10px 0 0 10px;
-
-  transition: transform 200ms;
+  font-size: 2rem;
 }
 
 .nav-menu__link a {
   display: block;
+
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.8rem;
+
+  border-radius: 0.8rem 0 0 0.8rem;
+
+  transition: transform 200ms;
 }
 
-.nav-menu__link:hover {
-  transform: translateX(20px);
+.nav-menu__link a:hover {
+  transform: translateX(1.8rem);
 
   color: white;
 

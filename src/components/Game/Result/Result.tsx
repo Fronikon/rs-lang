@@ -23,7 +23,7 @@ const Result: React.FC<PropsType> = ({rightAnswerWords, wrongAnswerWords, setGam
         type='button'
       >✖</button>
       <div className={cn(styles.container)}>
-        <h2 className={cn(styles.title)}>Результат</h2>
+        <h2 className={cn(styles.title, 'title-page')}>Результат</h2>
         <AnswersWrapper
           title={'Знаю'}
           type={'right'}

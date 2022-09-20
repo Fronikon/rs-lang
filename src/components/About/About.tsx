@@ -6,7 +6,7 @@ import authorsData from '../../data/authors';
 const About: React.FC = () => {
   return (
     <main className={cn(styles.main, 'container')}>
-      <h2 className={cn(styles.title)}>Наша команда</h2>
+      <h2 className={cn(styles.title, 'title-page')}>Наша команда</h2>
       <section className={cn(styles.cards)}>
         {
           authorsData.map((card) => (

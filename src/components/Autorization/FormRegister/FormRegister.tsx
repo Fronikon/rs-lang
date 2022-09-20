@@ -69,7 +69,7 @@ const FormRegister: React.FC<PropsType> = (props) => {
 
   return (
     <form className={cn(styles.author__form)}  onSubmit={submitCreateUser} key='FormRegister'>
-      <h2 className={cn(styles.author__title)}>Регистрация</h2>
+      <h2 className={cn(styles.author__title, 'title-page')}>Регистрация</h2>
       {authDatas.map((data: AuthInputDataType) => {
         return <LabelForm
           key={data.key + 'register'}

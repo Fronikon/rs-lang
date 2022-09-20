@@ -35,30 +35,28 @@ export const SprintMain: React.FC<PropsType> = (props) => {
   const [points, setPoints] = useState(0);
 
   return (
-    <div className={styles.general_game_wrapper}>
+    <div className={styles['game-container']}>
       <p className={cn(styles.total)}>{points}</p>
-      <div className={styles['game-container']}>
-        <Timer
-          setGameStatus={props.setGameStatus}
-          setSeriesSucсess={props.setSeriesSucсess}
-          seriesSucсess={props.seriesSucсess}
-          seriesRightAnswers={props.seriesRightAnswers}
-        />
-        <GameInner
-          setGameStatus={props.setGameStatus}
-          pageArray={props.pageArray}
-          points={points}
-          setPoints={setPoints}
-          trueArray={props.rightAnswerWords}
-          setTrueArray={props.setRightAnswerWords}
-          falseArray={props.wrongAnswerWords}
-          setFalseArray={props.setWrongAnswerWords}
-          setSeriesSucсess={props.setSeriesSucсess}
-          seriesSucсess={props.seriesSucсess}
-          setSeriesRightAnswers={props.setSeriesRightAnswers}
-          seriesRightAnswers={props.seriesRightAnswers}
-        />
-      </div>
+      <Timer
+        setGameStatus={props.setGameStatus}
+        setSeriesSucсess={props.setSeriesSucсess}
+        seriesSucсess={props.seriesSucсess}
+        seriesRightAnswers={props.seriesRightAnswers}
+      />
+      <GameInner
+        setGameStatus={props.setGameStatus}
+        pageArray={props.pageArray}
+        points={points}
+        setPoints={setPoints}
+        trueArray={props.rightAnswerWords}
+        setTrueArray={props.setRightAnswerWords}
+        falseArray={props.wrongAnswerWords}
+        setFalseArray={props.setWrongAnswerWords}
+        setSeriesSucсess={props.setSeriesSucсess}
+        seriesSucсess={props.seriesSucсess}
+        setSeriesRightAnswers={props.setSeriesRightAnswers}
+        seriesRightAnswers={props.seriesRightAnswers}
+      />
     </div>
   );
 };

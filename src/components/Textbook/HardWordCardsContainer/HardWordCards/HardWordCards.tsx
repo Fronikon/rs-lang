@@ -1,9 +1,10 @@
-import WordCard from "../../WordCard/WordCard";
-import { BASE_URL } from '../../../../api/api';
 import { useEffect } from 'react';
+import styles from "./HardWordCards.module.css";
+import { BASE_URL } from '../../../../api/api';
 import { asyncActions } from '../../../../redux/asyncActions';
 import { UsersWordType } from "../../../../types/types";
 import { useCustomDispatch, useCustomSelector } from "../../../../hooks/redax-hooks";
+import WordCard from "../../WordCard/WordCard";
 
 type PropsType = {
   isLogin: boolean
@@ -18,7 +19,7 @@ const HardWordCards: React.FC<PropsType> = ({isLogin}) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles['cards-container']}>
       {
         wordCards.length > 0 ?
           wordCards.map((wordCard) => <WordCard
@@ -39,7 +40,7 @@ const HardWordCards: React.FC<PropsType> = ({isLogin}) => {
             isLogin={isLogin}
             key={wordCard._id}
           />) : 
-          <h3>Список слов пуст. Вы можете добавлять сложные слова нажав соответствующую кнопку в учебнике.</h3>
+          <h3 className={styles['empty-page']}>Список слов пуст</h3>
       }
     </div>
   );

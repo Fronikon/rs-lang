@@ -5,6 +5,7 @@ import { WordType } from './../../../types/types';
 import { useEffect, useState } from 'react';
 import Loader from "../../general/Loader/Loader";
 import { useCustomSelector } from "../../../hooks/redax-hooks";
+import cn from 'classnames';
 
 type PropsType = {
   isLogin: boolean
@@ -30,7 +31,7 @@ const WordCardsContainer: React.FC<PropsType> = ({isLogin}) => {
   return (
     <div className={textbookStyles.inner}>
       {isLoading && <Loader />}
-      <h3 className={textbookStyles.title}>Учебник</h3>
+      <h3 className={cn(textbookStyles.title, 'title-page')}>Учебник</h3>
       <TextbookControls
         currentPage={currentPage}
         currentGroup={currentGroup}
