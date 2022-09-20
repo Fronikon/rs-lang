@@ -32,10 +32,10 @@
   font-size: 2rem;
 }
 
+.game-select__title,
 .nav-menu__link a {
   display: block;
 
-  margin-bottom: 0.5rem;
   padding: 0.5rem 0.8rem;
 
   border-radius: 0.8rem 0 0 0.8rem;
@@ -49,6 +49,24 @@
   color: white;
 
   background-color: #1f5ba7;
+}
+
+.game-select__title {
+  cursor: pointer;
+}
+
+.game-select__title:hover {
+  color: white;
+
+  background-color: #1f5ba7;
+  border-radius: 0.8rem 0 0 0.8rem;
+}
+
+.game-select__list {
+  margin-left: 1rem;
+  padding: 0;
+
+  border-left: 3px solid black;
 }
 
 .shadow {

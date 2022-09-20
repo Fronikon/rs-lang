@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { actions } from './../../redux/actions';
 import { MouseEventHandler } from 'react';
 import { useCustomDispatch } from '../../hooks/redax-hooks';
+import GameSelect from './GameSelect';
 
 const NavMenu: React.FC = () => {
   const dispatch = useCustomDispatch();
@@ -28,12 +29,7 @@ const NavMenu: React.FC = () => {
           <li className={styles['nav-menu__link']}>
             <Link to="/textbook">Учебник</Link>
           </li>
-          <li className={styles['nav-menu__link']}>
-            <Link to="/sprint">Спринт</Link>
-          </li>
-          <li className={styles['nav-menu__link']}>
-            <Link to="/audio">Аудиовызов</Link>
-          </li>
+          <GameSelect />
           <li className={styles['nav-menu__link']}>
             <Link to="/statistics">Статистика</Link>
           </li>
