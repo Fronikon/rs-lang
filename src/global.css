@@ -118,7 +118,7 @@ a {
 }
 
 @media (max-width: 500px) {
-  .container {
-    padding: 1rem;
+  :root {
+    --main-padding: 1rem;
   }
 }
