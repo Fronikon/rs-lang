@@ -1,9 +1,13 @@
+.questionPage__container {
+  min-height: var(--content-height-padding);
+}
+
 .questionPage__wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  min-height: calc(var(--content-height) - 9rem);
+  min-height: calc(var(--content-height-padding) - 7rem);
 }
 
 .questionPage__wrapper_content {

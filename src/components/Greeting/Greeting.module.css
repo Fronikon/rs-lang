@@ -1,6 +1,5 @@
 .main {
   min-height: var(--content-height);
-  padding: 0;
 
   background-color: #2d253a;
   background-image: url("../../assets/images/background_main.png");
@@ -13,10 +12,9 @@
   display: flex;
   gap: 2rem;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
-  min-height: var(--content-height);
-  margin: 0 1rem;
+  min-height: var(--content-height-padding);
 }
 
 .start-section {
@@ -90,8 +88,6 @@
   .section-wrapper {
     flex-wrap: wrap;
     justify-content: center;
-
-    margin-top: 0;
   }
 
   .start-section,

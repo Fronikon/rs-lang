@@ -5,16 +5,18 @@
 }
 
 .title {
-  margin-bottom: 2rem;
+  line-height: 4rem;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  align-items: center;
   justify-content: space-evenly;
 
   width: 100%;
+  min-height: calc(var(--content-height-padding) - 4rem);
 }
 
 .card {
@@ -57,4 +59,17 @@
   margin-top: 1rem;
 
   font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: row;
+
+    max-width: 40rem;
+  }
+
+  .card img {
+    width: 280px;
+    height: 280px;
+  }
 }

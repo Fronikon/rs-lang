@@ -3,7 +3,7 @@
 
   display: flex;
 
-  min-height: var(--content-height);
+  min-height: var(--content-height-padding);
 }
 
 .closeButton {
@@ -13,8 +13,6 @@
   right: 0;
 
   display: block;
-
-  padding: 1rem;
 
   font-size: 2.5em;
   color: rgb(185 185 185);
