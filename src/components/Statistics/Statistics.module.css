@@ -1,3 +1,11 @@
+.statistics__main_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: var(--content-height);
+}
+
 .statistics__main_title {
   margin-bottom: 2rem;
 }
