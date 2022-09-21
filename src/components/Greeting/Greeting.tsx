@@ -18,9 +18,7 @@ const Greeting: React.FC = () => {
             <Link to="/textbook">
               <button className={cn(styles.button, 'button')} type="button">Начать</button>
             </Link>
-            <Link to="/about">
-              <button className={cn(styles['two-button'], 'button')} type="button">Наша команда</button>
-            </Link>
+            
           </div>
         </section>
         {!isLogin && <section className={cn(styles['register-section'])}>
