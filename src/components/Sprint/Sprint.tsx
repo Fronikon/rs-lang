@@ -48,20 +48,22 @@ export const SprintMain: React.FC<PropsType> = (props) => {
         seriesRightAnswers={props.seriesRightAnswers}
       />
       <button className={cn(styles.game__closeButton)} onClick={close} type='button'>✖</button>
-      <GameInner
-        setGameStatus={props.setGameStatus}
-        pageArray={props.pageArray}
-        points={points}
-        setPoints={setPoints}
-        trueArray={props.rightAnswerWords}
-        setTrueArray={props.setRightAnswerWords}
-        falseArray={props.wrongAnswerWords}
-        setFalseArray={props.setWrongAnswerWords}
-        setSeriesSucсess={props.setSeriesSucсess}
-        seriesSucсess={props.seriesSucсess}
-        setSeriesRightAnswers={props.setSeriesRightAnswers}
-        seriesRightAnswers={props.seriesRightAnswers}
-      />
+      <div className={cn(styles.game__wrapper)}>
+        <GameInner
+          setGameStatus={props.setGameStatus}
+          pageArray={props.pageArray}
+          points={points}
+          setPoints={setPoints}
+          trueArray={props.rightAnswerWords}
+          setTrueArray={props.setRightAnswerWords}
+          falseArray={props.wrongAnswerWords}
+          setFalseArray={props.setWrongAnswerWords}
+          setSeriesSucсess={props.setSeriesSucсess}
+          seriesSucсess={props.seriesSucсess}
+          setSeriesRightAnswers={props.setSeriesRightAnswers}
+          seriesRightAnswers={props.seriesRightAnswers}
+        />
+      </div>
     </div>
   );
 };
