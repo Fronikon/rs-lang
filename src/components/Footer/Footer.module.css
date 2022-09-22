@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
 
-  height: var(--footer-height);
+  min-height: var(--footer-height);
   padding-top: 0;
   padding-bottom: 0;
 
@@ -42,7 +42,6 @@
     flex-direction: column;
     gap: 1rem;
 
-    height: inherit;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }

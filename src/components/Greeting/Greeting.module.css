@@ -20,6 +20,7 @@
 .start-section_wrapper {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   min-height: calc(var(--content-height-padding) - 13rem);
 }
