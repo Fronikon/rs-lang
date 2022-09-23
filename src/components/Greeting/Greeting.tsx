@@ -9,20 +9,20 @@ const Greeting: React.FC = () => {
   return (
     <main className={cn(styles.main, 'container')}>
       <div className={styles['section-wrapper']}>
-        <div className={cn(styles['start-section_wrapper'])}>
-          <section className={cn(styles['start-section'])}>
-            <h2 className={cn(styles.title, 'title-page')}>Изучай английский вместе с RS-LANG</h2>
-            <p className={cn(styles.description)}>
+        <section className={cn(styles['start-section'])}>
+          <h2 className={cn(styles.title, 'title-page')}>Изучай английский вместе с RS-LANG</h2>
+          <p className={cn(styles.description)}>
           Проходи увлекательные игры, пополняй словарный запас благодаря учебнику состоящему из 3600 слов.
-            </p>
-            <div className={styles.buttons}>
-              <Link to="/textbook">
-                <button className={cn(styles.button, 'button')} type="button">Начать</button>
-              </Link>
-            
-            </div>
-          </section>
-        </div>
+          </p>
+          <div className={styles.buttons}>
+            <Link to="/textbook">
+              <button className={cn(styles.button, 'button')} type="button">Начать</button>
+            </Link>
+            <Link to="/about">
+              <button className={cn(styles['two-button'], 'button')} type="button">Наша команда</button>
+            </Link>
+          </div>
+        </section>
         {!isLogin && <section className={cn(styles['register-section'])}>
           <h2 className={cn(styles.title, 'title-page')}>Учётная запись</h2>
           <p className={cn(styles.description)}>

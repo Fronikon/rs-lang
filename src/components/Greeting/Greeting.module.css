@@ -10,50 +10,27 @@
 
 .section-wrapper {
   display: flex;
-  flex-direction: column-reverse;
-  align-items: stretch;
-  justify-content: start;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
 
-  min-height: var(--content-height-padding);
+  margin-top: 3rem;
 }
 
-.start-section_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: calc(var(--content-height-padding) - 13rem);
-}
-
-.start-section {
-  max-width: 45rem;
+.start-section,
+.register-section {
   padding: 2rem 1.5rem;
 
   background-color: rgb(0 0 0 / 40%);
   border-radius: 0.5rem;
 }
 
-.register-section::before {
-  content: "";
-
-  position: absolute;
-  top: -3rem;
-  right: 1.3rem;
-
-  border: 1.5rem solid transparent;
-  border-right: 1.5rem solid rgb(0 0 0 / 60%);
-  border-bottom: 1.5rem solid rgb(0 0 0 / 60%);
+.start-section {
+  max-width: 50rem;
 }
 
 .register-section {
-  position: relative;
-
-  max-width: 23rem;
-  margin-left: auto;
-  padding: 1rem;
-
-  background-color: rgb(0 0 0 / 60%);
-  border-radius: 0.5rem;
+  max-width: 45rem;
 }
 
 .title {
@@ -61,10 +38,6 @@
   margin-bottom: 1.6rem;
 
   color: #fff;
-}
-
-.register-section .title {
-  font-size: 1.5rem;
 }
 
 .buttons {
@@ -88,33 +61,24 @@
   color: #fff;
 }
 
-.register-section .description {
-  font-size: 1rem;
-}
-
 @media (max-width: 1024px) {
+  .section-wrapper {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    margin-top: 0;
+  }
+
   .start-section,
   .register-section {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    padding: 1rem;
-
     text-align: center;
   }
 
   .buttons {
     justify-content: center;
-  }
-}
-
-@media (max-width: 550px) {
-  .register-section::before {
-    top: -2rem;
-
-    border: 1rem solid transparent;
-    border-right: 1rem solid rgb(0 0 0 / 60%);
-    border-bottom: 1rem solid rgb(0 0 0 / 60%);
   }
 }
