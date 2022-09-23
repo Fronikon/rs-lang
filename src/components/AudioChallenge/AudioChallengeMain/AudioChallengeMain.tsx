@@ -108,6 +108,19 @@ const AudioChallengeMain: React.FC<PropsType> = ({
     setWrongAnswerWords([...wrongAnswerWords, pageArray[numberCurrentWord || 0]]);
     setIsShowResult(true);
   };
+
+  useEffect(() => {
+    const skip = (event: KeyboardEvent) => {
+      if (event.code === 'Space') {
+        if (isShowResult) next();
+        else doNotKnow();
+      }
+    };
+    document.addEventListener('keydown', skip);
+    return () => {
+      document.removeEventListener('keydown', skip);
+    };
+  });
   
   return (
     <div className={cn(styles.questionPage__container)}>
