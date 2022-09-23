@@ -120,10 +120,10 @@ const GameInner: React.FC<PropsType> = ({
 
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
-      if (event.code === 'Digit1') {
+      if (event.code === 'Digit1' || event.code === 'ArrowLeft') {
         trueBtnHandler();
       }
-      if (event.code === 'Digit2') {
+      if (event.code === 'Digit2' || event.code === 'ArrowRight') {
         falseBtnHandler();
       }
     };
