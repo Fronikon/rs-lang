@@ -1,6 +1,17 @@
 .author {
   display: flex;
+  align-items: center;
   justify-content: center;
+
+  min-height: var(--content-height);
+}
+
+.author__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: var(--content-height-padding);
 }
 
 .author__form {

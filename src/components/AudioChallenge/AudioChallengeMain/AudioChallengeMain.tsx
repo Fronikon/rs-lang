@@ -129,39 +129,42 @@ const AudioChallengeMain: React.FC<PropsType> = ({
         count={numberCurrentWord || 0}
         setGameStatus={setGameStatus}
       />
-      
-      {numberCurrentWord !== null && numberCurrentWord <= pageArray.length - 1 && <QuestionPageQuestionWord
-        img={BASE_URL + pageArray[numberCurrentWord || 0].image}
-        wordName={pageArray[numberCurrentWord || 0].word}
-        onClickPlayVoice={onClickPlayVoice}
-        isShowResult={isShowResult}
-      />}
-
-      <ul className={cn(styles.questionPage__list)}>
-        {listCurrenWords.map((el) => (
-          <WordQuest
-            wordTranslate={el.wordTranslate}
-            checkWord={checkWord}
+      <div className={cn(styles.questionPage__wrapper)}>
+        <div className={cn(styles.questionPage__wrapper_content)}>
+          {numberCurrentWord !== null && numberCurrentWord <= pageArray.length - 1 && <QuestionPageQuestionWord
+            img={BASE_URL + pageArray[numberCurrentWord || 0].image}
+            wordName={pageArray[numberCurrentWord || 0].word}
+            onClickPlayVoice={onClickPlayVoice}
             isShowResult={isShowResult}
-            isWrong={el.id === wrongWordId}
-            isRight={el.id === rightWordId}
-            wordId={el.id}
-            key={el.id}
-          />
-        ))}
-      </ul>
-      {
-        isShowResult ?
-          <button className={cn(styles.questionPage__skipButton, 'button')}
-            type='button'
-            onClick={() => next()}
-          >{'--->'}</button>
-          :
-          <button className={cn(styles.questionPage__skipButton, 'button')}
-            type='button'
-            onClick={() => doNotKnow()}
-          >{'Не знаю'}</button>
-      }
+          />}
+
+          <ul className={cn(styles.questionPage__list)}>
+            {listCurrenWords.map((el) => (
+              <WordQuest
+                wordTranslate={el.wordTranslate}
+                checkWord={checkWord}
+                isShowResult={isShowResult}
+                isWrong={el.id === wrongWordId}
+                isRight={el.id === rightWordId}
+                wordId={el.id}
+                key={el.id}
+              />
+            ))}
+          </ul>
+          {
+            isShowResult ?
+              <button className={cn(styles.questionPage__skipButton, 'button')}
+                type='button'
+                onClick={() => next()}
+              >{'--->'}</button>
+              :
+              <button className={cn(styles.questionPage__skipButton, 'button')}
+                type='button'
+                onClick={() => doNotKnow()}
+              >{'Не знаю'}</button>
+          }
+        </div>
+      </div>
     </div>
   );
 };

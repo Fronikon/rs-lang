@@ -1,11 +1,13 @@
 .game_start {
   display: flex;
+  align-items: center;
   justify-content: center;
+
+  min-height: var(--content-height-padding);
 }
 
 .game_start__container {
   max-width: 45rem;
-  margin: 10rem 0;
   padding: 2rem 3rem;
 
   text-align: center;

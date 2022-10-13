@@ -1,5 +1,9 @@
 .result {
   position: relative;
+
+  display: flex;
+
+  min-height: var(--content-height-padding);
 }
 
 .closeButton {
@@ -29,7 +33,7 @@
 
 .container {
   max-width: 32rem;
-  margin: 0 auto;
+  margin: auto;
   padding: 1rem;
 
   background-color: #fff;

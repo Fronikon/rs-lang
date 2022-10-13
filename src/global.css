@@ -9,6 +9,8 @@
   --footer-height: 4rem;
   --header-height: 4rem;
   --content-height: calc(100vh - var(--footer-height) - var(--header-height));
+  --main-padding: 2.5rem;
+  --content-height-padding: calc(var(--content-height) - var(--main-padding) - var(--main-padding));
 }
 
 * {
@@ -45,7 +47,7 @@ a {
 .container {
   position: relative;
 
-  padding: 2.5rem;
+  padding: var(--main-padding);
 }
 
 .icon-button {
@@ -103,6 +105,12 @@ a {
   }
 }
 
+@media (max-width: 900px) {
+  :root {
+    --footer-height: 10rem;
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 12px;
@@ -110,7 +118,7 @@ a {
 }
 
 @media (max-width: 500px) {
-  .container {
-    padding: 1rem;
+  :root {
+    --main-padding: 1rem;
   }
 }

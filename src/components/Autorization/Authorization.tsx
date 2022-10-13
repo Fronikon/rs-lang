@@ -62,12 +62,14 @@ const Authorization: React.FC = () => {
 
   return (
     <main className={cn(styles.author, 'container')}>
-      {modalMessage && <Modal message={modalMessage}/>}
-      <Routes>
-        <Route path="logout" element={<LogOut />} />
-        <Route path="login" element={<FormLogin setModalMessage={setModalMessage} />} />
-        <Route path="register" element={<FormRegister setModalMessage={setModalMessage} />} />
-      </Routes>
+      <div className={cn(styles.author__content)}>
+        {modalMessage && <Modal message={modalMessage}/>}
+        <Routes>
+          <Route path="logout" element={<LogOut />} />
+          <Route path="login" element={<FormLogin setModalMessage={setModalMessage} />} />
+          <Route path="register" element={<FormRegister setModalMessage={setModalMessage} />} />
+        </Routes>
+      </div>
     </main>
   );
 };

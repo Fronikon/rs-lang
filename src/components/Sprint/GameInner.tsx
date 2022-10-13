@@ -136,7 +136,7 @@ const GameInner: React.FC<PropsType> = ({
   return (
     <div
       className={cn(
-        styles.game_wrapper,
+        styles.game__wrapper_content,
         right && styles.right,
         wrong && styles.wrong
       )}
